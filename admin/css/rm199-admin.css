@@ -1,0 +1,245 @@
+.custom_row {
+    width: 98%;
+    display: flex;
+    flex-direction: row;
+}
+.rm199__home_cols {
+    display: flex;
+    flex-direction: row;
+}
+.rm199__home_col {
+    width: 50%;
+    float: left;
+    box-sizing: border-box;
+}
+.rm199__home_col--lg {
+    width: 60%;
+    padding: 10px;
+}
+
+.rm199__home_col--sm {
+    width: 40%;
+    padding: 10px;
+}
+.mr-2 {
+    margin-right: 10px;
+}
+.ml-2 {
+    margin-left: 10px;
+}
+.mx-2 {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.d-flex {
+    display: flex !important;
+}
+.align-items-center {
+    align-items: center;
+}
+.dashicons {
+    text-decoration: none;
+}
+a:focus {
+    box-shadow: none !important;
+}
+.m-auto {
+    margin: auto;
+}
+.justify-content-center {
+    justify-content: center;
+}
+
+.rm199_input {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+.rm199_input--row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.rm199_input label {
+    margin-bottom: 5px;
+    font-size: 15px;
+    min-width: 140px;
+}
+
+.rm199_input--row input {
+    margin-top: 1px;
+    margin-right: 10px;
+}
+
+.rm199_input--row label {
+    font-size: 15px;
+    min-width: 140px;
+}
+
+.rm199_input--row select,
+.rm199_input select {
+    min-width: 170px;
+}
+
+.rm199_input_more_post_types,
+.rm199_input_more_categories,
+.rm199_input_more_tags {
+    /* display: none; */
+    background: #fff;
+    padding: 20px;
+    padding-top: 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.rm199_input_more_post_types__close,
+.rm199_input_more_categories__close,
+.rm199_input_more_tags__close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+}
+
+/* start the right column  */
+
+.rm199__home_col--sm .generator_box,
+.rm199__home_col .generator_box {
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    position: relative;
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    flex-direction: column;
+}
+
+.generator_box__header {
+    border-bottom: 1px solid #ccd0d4;
+    padding: 10px;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.generator_box__content {
+    padding: 10px;
+}
+
+.generator_box__btn {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    clear: both;
+    border-top: 1px solid #ddd;
+    background: #f5f5f5;
+    border-radius: 0px 0px 5px 5px;
+}
+
+.generator_box__btn_cancel {
+    color: #a00;
+}
+
+.rm199_input__shortcode_action {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.rm199_input__shortcode_action input {
+    width: 80%;
+}
+
+table.rm199_table {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    table-layout: fixed;
+}
+
+table.rm199_table caption {
+    font-size: 1.5em;
+    margin: 0.5em 0 0.75em;
+}
+
+table.rm199_table tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: 0.35em;
+}
+
+table.rm199_table th,
+table.rm199_table td {
+    padding: 0.625em;
+    text-align: center;
+}
+
+table.rm199_table th {
+    font-size: 0.85em;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
+@media screen and (max-width: 600px) {
+    table.rm199_table {
+        border: 0;
+    }
+
+    table.rm199_table caption {
+        font-size: 1.3em;
+    }
+
+    table.rm199_table thead {
+        border: none;
+        clip: rect(0 0 0 0);
+        height: 1px;
+        margin: -1px;
+        overflow: hidden;
+        padding: 0;
+        position: absolute;
+        width: 1px;
+    }
+
+    table.rm199_table tr {
+        border-bottom: 3px solid #ddd;
+        display: block;
+        margin-bottom: 0.625em;
+    }
+
+    table.rm199_table td {
+        border-bottom: 1px solid #ddd;
+        display: block;
+        font-size: 0.8em;
+        text-align: right;
+    }
+
+    table.rm199_table td::before {
+        /*
+      * aria-label has no advantage, it won't be read inside a table.rm199_table
+      content: attr(aria-label);
+      */
+        content: attr(data-label);
+        float: left;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+
+    table.rm199_table td:last-child {
+        border-bottom: 0;
+    }
+}
