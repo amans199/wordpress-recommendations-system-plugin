@@ -47,8 +47,16 @@ function rm199js_enqueue()
 require_once('classes/Rm199_Shortcodes_Class.php');
 
 // add shortCode to show posts 
-add_shortcode('rm199_posts',  array('Rm199_Shortcodes_Class', 'rm199_posts'));
+add_shortcode('rm199_posts',  array('Rm199ShortcodesHandlerClass', 'rm199_posts'));
 
 
 // add shortCode to show the tags input for user 
-add_shortcode('rm199_input',  array('Rm199_Shortcodes_Class', 'rm199_input'));
+add_shortcode('rm199_input',  array('Rm199ShortcodesHandlerClass', 'rm199_input'));
+
+
+
+
+// add user preferences meta 
+require_once('classes/Rm199_Handel_User_Meta_Class.php');
+new Rm199HandelUserMetaClass();
+// add_action('edit_user_profile', array('Rm199HandelUserMetaClass', 'displayUserPreferencesInHisProfile'));

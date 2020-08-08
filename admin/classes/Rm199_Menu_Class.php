@@ -29,13 +29,13 @@ class Rm199_Menu_Class
             'rm199_dashboard',
             array('Rm199_Menu_Class', 'dashboardCallback')
         );
-        add_submenu_page(
-            'rm199_manager',
-            __('All User\'s Preferences', 'rm199'),
-            __('All Preferences', 'rm199'),
-            'manage_options',
-            'edit.php?post_type=user_preference'
-        );
+        // add_submenu_page(
+        //     'rm199_manager',
+        //     __('All User\'s Preferences', 'rm199'),
+        //     __('All Preferences', 'rm199'),
+        //     'manage_options',
+        //     'edit.php?post_type=user_preference'
+        // );
 
         add_submenu_page(
             'rm199_manager',

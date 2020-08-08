@@ -37,7 +37,7 @@ class Rm199_PostType_Class
             'show_in_rest' => true,
             'show_in_menu' => 'edit.php?post_type=user_preference'
         );
-        register_post_type('user_preference', $custom_args);
+        // register_post_type('user_preference', $custom_args);
     }
 
     // public static function custom_args($args, $post_type)

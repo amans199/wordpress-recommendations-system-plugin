@@ -21,7 +21,7 @@ if (!class_exists('rm199')) :
         private function __construct()
         {
             $this->initializeHooks();
-            $this->setupDatabase();
+            // $this->setupDatabase();
         }
         public static function getInstance()
         {
@@ -37,13 +37,13 @@ if (!class_exists('rm199')) :
             }
             require_once('public/public.php');
         }
-        private function setupDatabase()
-        {
-            require_once('admin/classes/Rm199_Database.php');
-            register_activation_hook(__FILE__, array('Rm199_Database', 'setup'));
-            // register_uninstall_hook()
-            add_action('wp_login', array('Rm199_Database', 'createDatabaseEntry'), 10, 2);
-        }
+        // private function setupDatabase()
+        // {
+        //     require_once('admin/classes/Rm199_Database.php');
+        //     register_activation_hook(__FILE__, array('Rm199_Database', 'setup'));
+        //     // register_uninstall_hook()
+        //     add_action('wp_login', array('Rm199_Database', 'createDatabaseEntry'), 10, 2);
+        // }
     }
 endif;
 
