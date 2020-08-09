@@ -234,7 +234,8 @@ class Rm199ShortcodesHandlerClass
 
             foreach ($current_user_preferences as $preference) {
                 // if (!empty(trim($all_preferences_shown[$p]))) {
-                echo '<span class="rm199__keyword"><span class="rm199__keyword__content">' .  $preference . '</span> 
+                echo '
+                <span class="rm199__keyword"><span class="rm199__keyword__content">' .  $preference . '</span> 
                 <button name="delete-this-keyword" value="' .  $preference . '" onClick="deleteThisKeyword(event)" style="padding:0px;">
                 <span class="dashicons dashicons-no-alt" style="top:0px"></span>
                 </button>
@@ -242,15 +243,11 @@ class Rm199ShortcodesHandlerClass
                 // }
             }
             echo '</form>';
-            // if (isset($_POST['categories-submitted'])) {
             if (isset($_POST['delete-this-keyword'])) {
-                // $subject = sanitize_text_field($_POST["rm199_preferences"]);
-                delete_user_meta(get_current_user_id(), 'preferences', $_POST['delete-this-keyword']);
+                delete_user_meta(get_current_user_id(), 'preferences', sanitize_text_field($_POST['delete-this-keyword']));
             }
             if (isset($_POST['rm199-submitted'])) {
-                // insert the preferences as a user meta 
-                $preferences = sanitize_text_field(wp_strip_all_tags($_POST["rm199_preferences"]));
-                add_user_meta(get_current_user_id(), 'preferences', $preferences);
+                add_user_meta(get_current_user_id(), 'preferences', sanitize_text_field(wp_strip_all_tags($_POST["rm199_preferences"])));
             }
             return ob_get_clean();
         }

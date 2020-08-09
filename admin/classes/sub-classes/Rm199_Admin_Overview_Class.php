@@ -26,6 +26,7 @@ class Rm199_Admin_Overview_Class
                         ?>
                     </div>
                 </div>
+
                 <!-- <div class="generator_box mr-2">
                     <h2 class="generator_box__header">
                         <span class="mr-2"><?php// _e('Posts Performance', 'rm199') ?></span>

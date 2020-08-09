@@ -119,7 +119,6 @@ add_filter('admin_footer_text', array('Rm199_Footer_Class', 'add_to_footer'));
 
 
 
-// register post type 
-require_once('classes/Rm199_PostType_Class.php');
-add_action('init', array('Rm199_PostType_Class', 'custom_post_type'));
-// add_filter('register_post_type_args', array('Rm199_PostType_Class', 'custom_args'), 10, 2);
+// // register post type 
+// require_once('classes/Rm199_PostType_Class.php');
+// add_action('init', array('Rm199PostTypesClass', 'rmPacks'));

@@ -21,7 +21,8 @@ function rm199js_enqueue()
         array(
             'ajaxurl' => admin_url('admin-ajax.php'),
             'security'  => wp_create_nonce('rm199'),
-            'siteurl'  => get_site_url()
+            'siteurl'  => get_site_url(),
+            'user' => get_current_user_id()
         )
     );
 }
