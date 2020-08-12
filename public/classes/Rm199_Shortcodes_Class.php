@@ -19,9 +19,7 @@ class Rm199ShortcodesHandlerClass
 ?>
 
         <style>
-            .rm199_frontend_title,
-            .rm199_front__content a,
-            .rm199_post__link {
+            .rm199_frontend_title {
                 color: <?php echo $text_color; ?>
             }
 
@@ -39,7 +37,19 @@ class Rm199ShortcodesHandlerClass
         <?php
     }
 
-
+    public static function setPostViews($postID)
+    {
+        $count_key = 'post_views_count';
+        $count = get_post_meta($postID, $count_key, true);
+        if ($count == '') {
+            $count = 0;
+            delete_post_meta($postID, $count_key);
+            add_post_meta($postID, $count_key, '0');
+        } else {
+            $count++;
+            update_post_meta($postID, $count_key, $count);
+        }
+    }
 
     public static function rm199_posts($attr)
     {
@@ -50,6 +60,8 @@ class Rm199ShortcodesHandlerClass
         $main_color = (isset($attr['main_color']) ? $attr['main_color'] . ' !important' : '#007cba');
         $secondary_color = (isset($attr['secondary_color']) ?  $attr['secondary_color'] . ' !important' : '#000');
         $text_color = (isset($attr['text_color'])  ? $attr['text_color']   . ' !important'  : '#007cba');
+
+
 
         if (!isset($attr['keywords_selection']) || isset($attr['latest_posts']) || !is_user_logged_in()) {            // get the latest posts 
             $args = array(
@@ -63,6 +75,12 @@ class Rm199ShortcodesHandlerClass
             if ($query->have_posts()) {
                 ob_start();
                 Rm199ShortcodesHandlerClass::rm199_styles($main_color, $secondary_color, $text_color);
+
+                // count all post views
+                Rm199ShortcodesHandlerClass::setPostViews(get_the_ID());
+                // Remove issues with prefetching adding extra views
+                remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+
                 echo '<div class="rm199_front__content">';
                 if (isset($attr['title'])) {
                     echo '<h2 class="rm199_frontend_title">' . $attr['title'] . '</h2>';
@@ -74,7 +92,7 @@ class Rm199ShortcodesHandlerClass
                     <?php echo get_the_post_thumbnail('thumbnail'); ?>
                     <!-- /* here add code what you need to display like above title, image and more */ -->
                     <?php
-                    echo 'fbffb' . $main_color, $secondary_color, $text_color;
+                    // echo 'fbffb' . $main_color, $secondary_color, $text_color;
                 }
                 echo '</div>';
                 // todo : test this reset 
@@ -146,6 +164,11 @@ class Rm199ShortcodesHandlerClass
                     echo '<div class="rm199_front__content">';
 
                     Rm199ShortcodesHandlerClass::rm199_styles($main_color, $secondary_color, $text_color);
+                    // count all post views
+                    Rm199ShortcodesHandlerClass::setPostViews(get_the_ID());
+                    // Remove issues with prefetching adding extra views
+                    remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+
 
                     if (isset($attr['title'])) {
                         echo '<h2 class="rm199_frontend_title">' . $attr['title'] . '</h2>';
@@ -174,7 +197,7 @@ class Rm199ShortcodesHandlerClass
                         <a href="<?php echo get_the_permalink(); ?>" class="rm199_post__link"><?php // echo $all_keywords[$i];
                                                                                                 echo get_the_title() . ' gggggg'; ?></a>
                         <?php echo get_the_post_thumbnail('thumbnail'); ?>
-            <?php
+<?php
                     } //end while
                     echo '</div>';
                     return ob_get_clean();
@@ -202,25 +225,8 @@ class Rm199ShortcodesHandlerClass
             echo '<input type="text" size="40" placeholder="add keywords spectated with commas" name="rm199_preferences" class="rm199_preferences"  value="' . (isset($_POST["rm199_preferences"]) ? esc_attr($_POST["rm199_preferences"]) : '') . '"  />';
             echo '</p>';
             // todo : create a select tags functionality to allow users to choose from all tags in website and categories
-            ?>
-            <!-- <select name="categories[]" id="categories" multiple>
-            <option value="cars">Cars</option>
-            <option value="cooking">Cooking</option>
-            <option value="travelling">Traveling</option>
-            <option value="programming">Programming</option>
-        </select> -->
-<?php
-
-            // $current_user = wp_get_current_user();
-            // $name = esc_html($current_user->user_login);
-            // echo '<p><input type="submit" name="categories-submitted" value="Send"/></p>';
             echo '<p><input type="submit" name="rm199-submitted" value="' . __('Add Keyword', 'rm199') . '" class="submit_keyword"></p>';
             echo '</form>';
-            // $args = array(
-            //     'author'        =>   get_current_user_id(),
-            //     'post_type' => 'user_preference',
-            // );
-            // $current_user_preferences = get_posts($args);
             $current_user_preferences = get_user_meta(get_current_user_id(), 'preferences', false);
             // <!-- todo : allow user to delete a preference from the list below  -->
             // $all_preferences_shown = explode(",", trim($current_user_preferences[0]->post_content));
@@ -231,6 +237,10 @@ class Rm199ShortcodesHandlerClass
             // echo ' <input id="rm199_all_keywords" type="hidden" value="' . trim($current_user_preferences[0]->post_content) . '" />';
             // for ($p = 0; $p < count($all_preferences_shown); $p++) {
             Rm199ShortcodesHandlerClass::rm199_styles($main_color, $secondary_color, $text_color);
+            Rm199ShortcodesHandlerClass::setPostViews(get_the_ID());
+            // Remove issues with prefetching adding extra views
+            remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+
 
             foreach ($current_user_preferences as $preference) {
                 // if (!empty(trim($all_preferences_shown[$p]))) {

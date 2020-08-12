@@ -30,21 +30,31 @@ class Rm199_Menu_Class
             array('Rm199_Menu_Class', 'dashboardCallback')
         );
         // add_submenu_page(
-        //     'rm199_manager',
-        //     __('All User\'s Preferences', 'rm199'),
-        //     __('All Preferences', 'rm199'),
+        //     'rm199_templates',
+        //     __('All Templates', 'rm199'),
+        //     __('All Templates', 'rm199'),
         //     'manage_options',
-        //     'edit.php?post_type=user_preference'
+        //     'edit.php?post_type=rm_templates'
+        // );
+        // add_submenu_page(
+        //     'rm199_manager',
+        //     __('Templates', 'rm199'),
+        //     __('Templates', 'rm199'),
+        //     'manage_options',
+        //     'rm199_templates',
+        //     array('Rm199_Menu_Class', 'templateCreator')
         // );
 
-        add_submenu_page(
-            'rm199_manager',
-            __('rm sub manager', 'rm199'),
-            __('Settings', 'rm199'),
-            'manage_options',
-            'rm199_settings',
-            array('Rm199_Menu_Class', 'Settings')
-        );
+
+
+        // add_submenu_page(
+        //     'rm199_manager',
+        //     __('rm sub manager', 'rm199'),
+        //     __('Settings', 'rm199'),
+        //     'manage_options',
+        //     'rm199_settings',
+        //     array('Rm199_Menu_Class', 'Settings')
+        // );
     }
     public static function dashboardCallback()
     {
@@ -61,8 +71,10 @@ class Rm199_Menu_Class
         $overview_content = new Rm199_Admin_Overview_Class();
         $overview_content->overview_content();
     }
-    public static function Settings()
+    public static function templateCreator()
     {
-        echo ' SettingsSettingsSettingsSettingsSettingsSettings';
+        require('sub-classes/Rm199_Templates_Class.php');
+        $template_creator = new Rm199TemplatesClass();
+        $template_creator->allTemplates();
     }
 }

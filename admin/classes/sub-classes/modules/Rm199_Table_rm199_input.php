@@ -3,8 +3,19 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
-class Rm199_Table_rm199_input
+class Rm199TableRm199Input
 {
+    public static function getPostViews($postID)
+    {
+        $count_key = 'post_views_count';
+        $count = get_post_meta($postID, $count_key, true);
+        if ($count == '') {
+            delete_post_meta($postID, $count_key);
+            add_post_meta($postID, $count_key, '0');
+            return "0 View";
+        }
+        return $count . ' Views';
+    }
     public static function keywords_table_structure()
     {
         $the_query_args = array(
@@ -20,8 +31,7 @@ class Rm199_Table_rm199_input
                 <tr>
                     <th scope="col"><?php _e('Post / Page Title', 'rm199'); ?></th>
                     <th scope="col"><?php _e('Edit Post / Page', 'rm199'); ?></th>
-                    <!-- <th scope="col"><?php //_e('Views', 'rm199'); 
-                                            ?></th> -->
+                    <th scope="col"><?php _e('Views', 'rm199'); ?></th>
                 </tr>
             </thead>
             <tbody>
@@ -39,8 +49,8 @@ class Rm199_Table_rm199_input
                                     </button>
                                 </a>
                             </td>
-                            <!-- <td data-label="<?php //_e('Views', 'rm199'); 
-                                                    ?>"><?php// echo Rm199_Table_rm199_posts::getPostViews(get_the_ID()); ?></td> -->
+                            <td data-label="<?php _e('Views', 'rm199');
+                                            ?>"><?php echo Rm199TableRm199Input::getPostViews(get_the_ID()); ?></td>
                         </tr>
                 <?php
                     }

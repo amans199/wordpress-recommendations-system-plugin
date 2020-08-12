@@ -135,6 +135,9 @@ a:focus {
 
 .generator_box__content {
     padding: 10px;
+    max-height: 500px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .generator_box__btn {
@@ -187,6 +190,7 @@ table.rm199_table th,
 table.rm199_table td {
     padding: 0.625em;
     text-align: center;
+    overflow-wrap: anywhere;
 }
 
 table.rm199_table th {
@@ -242,4 +246,8 @@ table.rm199_table th {
     table.rm199_table td:last-child {
         border-bottom: 0;
     }
+}
+
+.w-100 {
+    width: 100%;
 }
