@@ -117,12 +117,20 @@ class Rm199_Admin_Dashboard_Class
 
                 <!-- choose template for recommendations -->
                 <h2><?php _e('Templates ', 'rm199') ?></h2>
-                <div class="rm199_input--row">
-                    <input type="radio" id="minimal" name="template" value="minimal">
-                    <label for="minimal"><?php _e('Minimal', 'rm199') ?></label><br>
-                    <input type="radio" id="structured" name="template" value="structured">
-                    <label for="structured"><?php _e('Structured', 'rm199') ?></label><br>
-                    <a href="#"><?php _e('Or Customize your own template', 'rm199') ?></a>
+                <div class="rm199_input--col">
+                    <div class="mb-4">
+                        <input type="radio" id="minimal" name="template" value="minimal">
+                        <label for="minimal"><?php _e('Minimal', 'rm199') ?></label><br>
+                        <label for="minimal"><img src="https://via.placeholder.com/500x150" alt="minimal-rm199"></label>
+                    </div>
+                    <div class="mb-4">
+                        <input type="radio" id="structured" name="template" value="structured">
+                        <label for="structured"><?php _e('Structured', 'rm199') ?></label><br>
+                        <label for="structured"><img src="https://via.placeholder.com/500x150" alt="structured-rm199"></label>
+                    </div>
+
+                    <!-- <a href="#"><?php //_e('Or Customize your own template', 'rm199') 
+                                        ?></a> -->
                 </div>
                 <hr style="margin-bottom: 20px;">
                 <h2><?php _e('Choose Global Styles ', 'rm199') ?></h2>
@@ -144,6 +152,7 @@ class Rm199_Admin_Dashboard_Class
             </div>
 
 
+
             <!-- start the right column  -->
             <div class="rm199__home_col--sm">
                 <!-- generate shortcode  -->
@@ -151,23 +160,10 @@ class Rm199_Admin_Dashboard_Class
                     <!-- todo : add a preview feature  -->
                     <h2 class="generator_box__header"><span><?php _e('Generate ShortCodes', 'rm199') ?></span></h2>
                     <div class="generator_box__content">
-                        <div class="rm199_input">
-                            <label for="shortcode_for_recommendations"><?php _e('ShortCode for Recommendations', 'rm199') ?></label>
-                            <div class="rm199_input__shortcode_action">
-                                <input type="text" readonly id="shortcode_for_recommendations" name="shortcode_for_recommendations" value="dvdvdvdvdv">
-                                <button class="button" onclick="copy_shortcode_for_recommendations()"><?php _e('Copy', 'rm199') ?></button>
-                            </div>
-                        </div>
-                        <div class=" rm199_input">
-                            <label for="shortcode_for_user_preferences"><?php _e('ShortCode for User Keywords', 'rm199') ?></label>
-                            <div class="rm199_input__shortcode_action">
-                                <input type="text" readonly id="shortcode_for_user_preferences" name="shortcode_for_recommendations" value="fvvvvfvvfv">
-                                <button class="button" onclick="copy_shortcode_for_user_preferences()"><?php _e('Copy', 'rm199') ?></button>
-                            </div>
-                        </div>
+                        ddddddd
                     </div>
                     <div class="generator_box__btn">
-                        <a href="#" class="generator_box__btn_cancel"><?php _e('Clear page', 'rm199') ?></a>
+                        <a href="#" class="generator_box__btn_cancel" onclick="location.reload()"><?php _e('Clear page', 'rm199') ?></a>
                         <button class="button button-primary button-large " onclick="generate_shortcode()"><?php _e('Generate ShortCodes', 'rm199') ?></button>
                     </div>
 
@@ -187,11 +183,44 @@ class Rm199_Admin_Dashboard_Class
                     <h2 class="generator_box__header">
                         <span><?php _e('Credits', 'rm199') ?></span></h2>
                     <div class="generator_box__content">
-                        dddddd
+                        <?php
+                        require('modules/Rm199_Credits_Class.php');
+                        $credits = new Rm199Credits();
+                        $credits->credits();
+                        ?>
                     </div>
                 </div>
             </div>
 
+
+        </div>
+
+        <!-- start the overlay shortcode box  -->
+        <div class="shortcodes_box--container">
+            <span class="shortcodes_box_backdrop" onclick="closeSshortcodeBox()"></span>
+            <div class="shortcodes_box">
+                <div class="shortcodes_box_content">
+                    <div class="mb-4">
+                        <h3 class="m-0"><?php _e('Generated ShotCodes', 'rm199') ?></h3>
+                        <small><?php _e('Copy the ShortCode and Paste into any post, page or inside your code', 'rm199') ?></small>
+                    </div>
+                    <div class="rm199_input">
+                        <label for="shortcode_for_recommendations"><?php _e('ShortCode for Recommendations', 'rm199') ?></label>
+                        <div class="rm199_input__shortcode_action">
+                            <input type="text" readonly id="shortcode_for_recommendations" name="shortcode_for_recommendations" value="dvdvdvdvdv">
+                            <button class="button" onclick="copy_shortcode_for_recommendations()"><?php _e('Copy', 'rm199') ?></button>
+                        </div>
+                    </div>
+                    <div class=" rm199_input">
+                        <label for="shortcode_for_user_preferences"><?php _e('ShortCode for User Keywords', 'rm199') ?></label>
+                        <div class="rm199_input__shortcode_action">
+                            <input type="text" readonly id="shortcode_for_user_preferences" name="shortcode_for_recommendations" value="fvvvvfvvfv">
+                            <button class="button" onclick="copy_shortcode_for_user_preferences()"><?php _e('Copy', 'rm199') ?></button>
+                        </div>
+                    </div>
+                </div>
+                <span class="dashicons dashicons-no-alt cursor-pointer" onclick="closeSshortcodeBox()"></span>
+            </div>
         </div>
 <?php
     }

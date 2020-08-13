@@ -67,7 +67,11 @@ class Rm199_Admin_Overview_Class
                                                                                             ?></button> -->
                     </h2>
                     <div class="generator_box__content">
-                        Ahmed Mansour
+                        <?php
+                        require('modules/Rm199_Credits_Class.php');
+                        $credits = new Rm199Credits();
+                        $credits->credits();
+                        ?>
                     </div>
                 </div>
             </div>

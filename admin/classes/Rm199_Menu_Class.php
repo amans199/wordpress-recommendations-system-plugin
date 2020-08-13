@@ -71,10 +71,10 @@ class Rm199_Menu_Class
         $overview_content = new Rm199_Admin_Overview_Class();
         $overview_content->overview_content();
     }
-    public static function templateCreator()
-    {
-        require('sub-classes/Rm199_Templates_Class.php');
-        $template_creator = new Rm199TemplatesClass();
-        $template_creator->allTemplates();
-    }
+    // public static function templateCreator()
+    // {
+    //     require('sub-classes/Rm199_Templates_Class.php');
+    //     $template_creator = new Rm199TemplatesClass();
+    //     $template_creator->allTemplates();
+    // }
 }

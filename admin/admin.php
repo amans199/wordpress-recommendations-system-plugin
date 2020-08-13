@@ -18,14 +18,14 @@ add_action('admin_enqueue_scripts', 'rm199_admin_scripts');
 add_action('admin_menu', array('Rm199_Menu_Class', 'createMenu'));
 
 
-// start admin bar functions 
-require_once('classes/Rm199_Adminbar_Class.php');
-add_action('admin_bar_menu', array('Rm199_Adminbar_Class', 'add_to_adminbar'));
+// // start admin bar functions 
+// require_once('classes/Rm199_Adminbar_Class.php');
+// add_action('admin_bar_menu', array('Rm199_Adminbar_Class', 'add_to_adminbar'));
 
 
-// start footer functions 
-require_once('classes/Rm199_Footer_Class.php');
-add_filter('admin_footer_text', array('Rm199_Footer_Class', 'add_to_footer'));
+// // start footer functions 
+// require_once('classes/Rm199_Footer_Class.php');
+// add_filter('admin_footer_text', array('Rm199_Footer_Class', 'add_to_footer'));
 
 
 

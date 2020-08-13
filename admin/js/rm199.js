@@ -45,7 +45,9 @@ function toggleTagsBox() {
   }
 }
 
-
+function closeSshortcodeBox() {
+  document.querySelector('.shortcodes_box--container').style.display = 'none';
+}
 
 function copy_shortcode_for_recommendations() {
   var copyText = document.getElementById("shortcode_for_recommendations");
@@ -62,6 +64,8 @@ function copy_shortcode_for_user_preferences() {
 }
 
 function generate_shortcode() {
+  document.querySelector('.shortcodes_box--container').style.display = 'flex';
+
   var title = document.getElementById('rm199__title_input').value,
     canUserSelectKeywords = document.getElementById('filter_by_keyword').checked,
     showOnlyForLoggedInUsers = document.getElementById('show_only_for_loggedin_users').checked,
@@ -117,3 +121,6 @@ function generate_shortcode() {
   document.getElementById("shortcode_for_user_preferences").value = "[rm199_input]"
   // }
 }
+
+
+
