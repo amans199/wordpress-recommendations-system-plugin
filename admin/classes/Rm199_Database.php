@@ -2,7 +2,7 @@
 // if (!defined('ABSPATH')) {
 //     exit;
 // }
-// class Rm199_Database
+// class Rm199Database
 // {
 //     public static function setup()
 //     {
