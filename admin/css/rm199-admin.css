@@ -413,3 +413,7 @@ a.generator_box__content--href {
 .generator_box__content--instagram {
     background: #1da1f2;
 } */
+
+#rm199_generator_form {
+    display: none;
+}

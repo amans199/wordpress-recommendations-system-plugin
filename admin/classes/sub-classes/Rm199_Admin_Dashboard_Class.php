@@ -164,7 +164,11 @@ class Rm199_Admin_Dashboard_Class
                     </div>
                     <div class="generator_box__btn">
                         <a href="#" class="generator_box__btn_cancel" onclick="location.reload()"><?php _e('Clear page', 'rm199') ?></a>
-                        <button class="button button-primary button-large " onclick="generate_shortcode()"><?php _e('Generate ShortCodes', 'rm199') ?></button>
+                        <button type="submit" class="button button-primary button-large " name="generate_shortcode" id="generate_shortcode" onclick="generate_shortcode()"><?php _e('Generate ShortCodes', 'rm199') ?></button>
+                        <form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post" id="rm199_generator_form" name="rm199Generate">
+                            <input type="hidden" name="rm199_shortcode_content" class="rm199_shortcode_content" value="">
+                            <button type="submit" class="button button-primary button-large " name="save_shortcode" id="save_shortcode"><?php _e('Publish', 'rm199') ?></button>
+                        </form>
                     </div>
 
                 </div>
@@ -204,24 +208,52 @@ class Rm199_Admin_Dashboard_Class
                         <h3 class="m-0"><?php _e('Generated ShotCodes', 'rm199') ?></h3>
                         <small><?php _e('Copy the ShortCode and Paste into any post, page or inside your code', 'rm199') ?></small>
                     </div>
-                    <div class="rm199_input">
-                        <label for="shortcode_for_recommendations"><?php _e('ShortCode for Recommendations', 'rm199') ?></label>
-                        <div class="rm199_input__shortcode_action">
-                            <input type="text" readonly id="shortcode_for_recommendations" name="shortcode_for_recommendations" value="dvdvdvdvdv">
-                            <button class="button" onclick="copy_shortcode_for_recommendations()"><?php _e('Copy', 'rm199') ?></button>
+                    <form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post">
+                        <div class="rm199_input">
+                            <label for="shortcode_for_recommendations"><?php _e('ShortCode for Recommendations', 'rm199') ?></label>
+                            <div class="rm199_input__shortcode_action">
+                                <input type="text" readonly id="shortcode_for_recommendations" name="shortcode_for_recommendations" value="dvdvdvdvdv">
+                                <button class="button" onclick="copy_shortcode_for_recommendations()"><?php _e('Copy', 'rm199') ?></button>
+                            </div>
                         </div>
-                    </div>
-                    <div class=" rm199_input">
-                        <label for="shortcode_for_user_preferences"><?php _e('ShortCode for User Keywords', 'rm199') ?></label>
-                        <div class="rm199_input__shortcode_action">
-                            <input type="text" readonly id="shortcode_for_user_preferences" name="shortcode_for_recommendations" value="fvvvvfvvfv">
-                            <button class="button" onclick="copy_shortcode_for_user_preferences()"><?php _e('Copy', 'rm199') ?></button>
+                        <div class=" rm199_input">
+                            <label for="shortcode_for_user_preferences"><?php _e('ShortCode for User Keywords', 'rm199') ?></label>
+                            <div class="rm199_input__shortcode_action">
+                                <input type="text" readonly id="shortcode_for_user_preferences" name="shortcode_for_recommendations" value="">
+                                <button class="button" onclick="copy_shortcode_for_user_preferences()"><?php _e('Copy', 'rm199') ?></button>
+                            </div>
                         </div>
-                    </div>
+                        <input type="hidden" name="rm199_shortcode_content" class="rm199_shortcode_content" value="">
+                        <button type="submit" class="button button-primary button-large " name="save_shortcode__from_popup"><?php _e('Publish', 'rm199') ?></button>
+                    </form>
                 </div>
                 <span class="dashicons dashicons-no-alt cursor-pointer" onclick="closeSshortcodeBox()"></span>
             </div>
         </div>
+        <?php
+        // insert the shortcode into database 
+        if (isset($_POST['save_shortcode']) || isset($_POST['save_shortcode__from_popup'])) {
+            // dashboard_content::insertShortcodeIntoDatabase();
+            global $wpdb;
+            $current_user = wp_get_current_user();
+            $rm199_shortcode_content = $_POST['rm199_shortcode_content'];
+            $created_by = $current_user->ID;
+            $table_name = $wpdb->prefix . 'rm199_shortcodes';
+
+            $wpdb->insert(
+                $table_name,
+                array(
+                    'shortcode_content' => $rm199_shortcode_content,
+                    'created_by' => $created_by,
+                    'created_in' => current_time('mysql')
+                )
+            );
+        }
+        ?>
 <?php
     }
+
+    // public static function insertShortcodeIntoDatabase()
+    // {
+    // }
 }

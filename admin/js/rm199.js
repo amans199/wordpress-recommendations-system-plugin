@@ -63,6 +63,20 @@ function copy_shortcode_for_user_preferences() {
   document.execCommand("copy");
 }
 
+// jQuery("#rm199_generator_form").submit(function (e) {
+//   // e.preventDefault();
+//   generate_shortcode();
+//   $('#rm199_generator_form').submit(); 
+
+// });
+
+// $('#generate_shortcode').on('click', function (e) {
+//   e.preventDefault();
+//   generate_shortcode();
+//   $('#rm199_generator_form').submit();
+
+// });
+
 function generate_shortcode() {
   document.querySelector('.shortcodes_box--container').style.display = 'flex';
 
@@ -104,18 +118,25 @@ function generate_shortcode() {
     }
   }
 
+  const rm199_shortcode = `[rm199_posts title="${title ? title : 'Recommended for you:'}" 
+  ${canUserSelectKeywords ? 'keywords_selection="true"' : 'latest_posts="true"'}
+  ${showOnlyForLoggedInUsers ? 'show_for_loggedin_only="true"' : 'show_for_all_users="true"'}
+  number_of_posts="${numberOfItems ? numberOfItems : 3}" 
+  main_color="${mainColor}" 
+  secondary_color="${secondaryColor}" 
+  text_color="${textColor}" 
+  postTypes="${postTypes ? postTypes : 'post'}" 
+  template="${chosenTemplate}" 
+  categories="${categories}" tags="${tags}" ]`
 
-  document.getElementById("shortcode_for_recommendations").value =
-    `[rm199_posts title="${title ? title : 'Recommended for you:'}" 
-    ${canUserSelectKeywords ? 'keywords_selection="true"' : 'latest_posts="true"'}
-    ${showOnlyForLoggedInUsers ? 'show_for_loggedin_only="true"' : 'show_for_all_users="true"'}
-    number_of_posts="${numberOfItems ? numberOfItems : 3}" 
-    main_color="${mainColor}" 
-    secondary_color="${secondaryColor}" 
-    text_color="${textColor}" 
-    postTypes="${postTypes ? postTypes : 'post'}" 
-    template="${chosenTemplate}" 
-    categories="${categories}" tags="${tags}" ]`
+  document.getElementById("shortcode_for_recommendations").value = rm199_shortcode
+  // document.getElementById('rm199_shortcode_content').value = rm199_shortcode
+  var rm199_shortcode_content = document.querySelectorAll('.rm199_shortcode_content');
+  [].forEach.call(rm199_shortcode_content, function (rm199_shortcode_content) {
+    rm199_shortcode_content.value = rm199_shortcode
+  });
+  document.getElementById('rm199_generator_form').style.display = 'block'
+  document.getElementById('generate_shortcode').style.display = 'none'
   // todo : make the input shortcode only appear if the admin allows it users to choose keywords 
   // if (canUserSelectKeywords) {
   document.getElementById("shortcode_for_user_preferences").value = "[rm199_input]"

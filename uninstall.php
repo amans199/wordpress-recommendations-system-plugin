@@ -14,9 +14,15 @@
 // remember '' is different from ""  
 // $wpdb->query('DROP TABLE IF EXISTS $table_name');
 // $wpdb->query("DROP TABLE IF EXISTS $table_name");
+class Rm199Uninstall
+{
 
-if (!defined('WP_UNINSTALL_PLUGIN')) exit();
-global $wpdb;
-$table_name = $wpdb->prefix . 'rm199_db';
-$wpdb->query("DROP TABLE IF EXISTS $table_name");
+    public static function uninstall($wpdb)
+    {
+        if (!defined('WP_UNINSTALL_PLUGIN')) exit();
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'rm199_shortcodes';
+        $wpdb->query("DROP TABLE IF EXISTS $table_name");
+    }
+}
 // delete_option("my_plugin_db_version");

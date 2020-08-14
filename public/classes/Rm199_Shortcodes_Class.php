@@ -194,8 +194,9 @@ class Rm199ShortcodesHandlerClass
                         // add_post_meta(get_the_ID(), "testtting", "vvv");
 
                     ?>
-                        <a href="<?php echo get_the_permalink(); ?>" class="rm199_post__link"><?php // echo $all_keywords[$i];
-                                                                                                echo get_the_title() . ' gggggg'; ?></a>
+                        <a href="<?php echo get_the_permalink(); ?>" class="rm199_post__link">
+                            <?php // echo $all_keywords[$i];
+                            echo get_the_title() . ' gggggg'; ?></a>
                         <?php echo get_the_post_thumbnail('thumbnail'); ?>
 <?php
                     } //end while
