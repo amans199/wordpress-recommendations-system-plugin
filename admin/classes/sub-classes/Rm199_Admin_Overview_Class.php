@@ -4,6 +4,7 @@ if (!defined('ABSPATH')) {
 }
 class Rm199_Admin_Overview_Class
 {
+
     public static function overview_content()
     {
 ?>

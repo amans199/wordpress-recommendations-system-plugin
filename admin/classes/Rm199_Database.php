@@ -11,9 +11,9 @@ class Rm199Database
         $charset_collate = $wpdb->get_charset_collate();
         $sql = "CREATE TABLE $table_name (
             id int(11) NOT NULL AUTO_INCREMENT,
-            shortcode_content text NOT NULL,
+            shortcode_content json NOT NULL,
             created_by int(11) NOT NULL,
-            created_in datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
+            created_in datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
             PRIMARY KEY (id)
             ) $charset_collate";
         require_once(ABSPATH . 'wp-admin/includes/upgrade.php');

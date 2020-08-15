@@ -233,13 +233,19 @@ class Rm199_Admin_Dashboard_Class
         <?php
         // insert the shortcode into database 
         if (isset($_POST['save_shortcode']) || isset($_POST['save_shortcode__from_popup'])) {
+            // check if user can (editposts)
             // dashboard_content::insertShortcodeIntoDatabase();
             global $wpdb;
             $current_user = wp_get_current_user();
-            $rm199_shortcode_content = $_POST['rm199_shortcode_content'];
+            // $rm199_shortcode_content = $_POST['rm199_shortcode_content'];
+            // $rm199_shortcode_content = '[rm199_posts title="Recommended for you:"   latest_posts="true"  show_for_all_users="true"  number_of_posts="3"   main_color="#0073aa"   secondary_color="#000000"   text_color="#ffffff"   postTypes="all"   template=""   categories="all" tags="all" ]';
+            // create nonce 
+            $rm199_shortcode_content = json_encode([
+                "title" => "Recommended for you:"
+            ]);
             $created_by = $current_user->ID;
             $table_name = $wpdb->prefix . 'rm199_shortcodes';
-
+            // $data_json = json_decode()
             $wpdb->insert(
                 $table_name,
                 array(
