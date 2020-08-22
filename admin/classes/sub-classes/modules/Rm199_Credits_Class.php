@@ -20,7 +20,7 @@ class Rm199Credits
 
 
         <div class="amans199__job text-center my-2">
-            Web Developer
+            Software Developer
         </div>
 
         <hr>
