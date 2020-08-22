@@ -223,6 +223,12 @@ class Rm199_Admin_Dashboard_Class
                                 <button class="button" onclick="copy_shortcode_for_user_preferences()"><?php _e('Copy', 'rm199') ?></button>
                             </div>
                         </div>
+                        <!-- all options  -->
+                        <input type="hidden" name="rm199_shortcode_content" class="rm199_shortcode_content" value="">
+                        <input type="hidden" name="rm199_shortcode_content" class="rm199_shortcode_content" value="">
+                        <input type="hidden" name="rm199_shortcode_content" class="rm199_shortcode_content" value="">
+                        <input type="hidden" name="rm199_shortcode_content" class="rm199_shortcode_content" value="">
+                        <input type="hidden" name="rm199_shortcode_content" class="rm199_shortcode_content" value="">
                         <input type="hidden" name="rm199_shortcode_content" class="rm199_shortcode_content" value="">
                         <button type="submit" class="button button-primary button-large " name="save_shortcode__from_popup"><?php _e('Publish', 'rm199') ?></button>
                     </form>
@@ -240,8 +246,19 @@ class Rm199_Admin_Dashboard_Class
             // $rm199_shortcode_content = $_POST['rm199_shortcode_content'];
             // $rm199_shortcode_content = '[rm199_posts title="Recommended for you:"   latest_posts="true"  show_for_all_users="true"  number_of_posts="3"   main_color="#0073aa"   secondary_color="#000000"   text_color="#ffffff"   postTypes="all"   template=""   categories="all" tags="all" ]';
             // create nonce 
+            $code = 515151;
             $rm199_shortcode_content = json_encode([
-                "title" => "Recommended for you:"
+                "title" => "Recommended for you:",
+                "can_user_select_keywords" => false,
+                "show_only_for_loggedin_users" => false,
+                "number_of_items" => 5,
+                "post_types" => "posts",
+                "categories" => null,
+                "tags" => null,
+                "main_color" => "#000",
+                "secondary_color" => "#f00",
+                "text_color" => "#00f",
+                "template" => "minimal"
             ]);
             $created_by = $current_user->ID;
             $table_name = $wpdb->prefix . 'rm199_shortcodes';
@@ -249,7 +266,8 @@ class Rm199_Admin_Dashboard_Class
             $wpdb->insert(
                 $table_name,
                 array(
-                    'shortcode_content' => $rm199_shortcode_content,
+                    'code' => $code,
+                    'options' => $rm199_shortcode_content,
                     'created_by' => $created_by,
                     'created_in' => current_time('mysql')
                 )
