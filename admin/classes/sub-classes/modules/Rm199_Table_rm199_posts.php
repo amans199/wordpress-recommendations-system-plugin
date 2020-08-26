@@ -1,5 +1,7 @@
 <?php
-
+if (!defined('ABSPATH')) {
+    exit;
+}
 class Rm199Tablerm199posts
 {
 
@@ -40,7 +42,7 @@ class Rm199Tablerm199posts
                 if ($the_query->have_posts()) {
                     while ($the_query->have_posts()) {
                         $the_query->the_post(); ?>
-                        <tr>
+                        <tr onmouseover="table_mOvr(this,'#ddd');" onmouseout="table_mOut(this,'#f8f8f8');">
                             <td data-label="<?php _e('Title', 'rm199'); ?>"><a href="<?php the_permalink() ?>" target="_blank"><?php the_title(); ?><span class="dashicons dashicons-external mx-2"></span></a></td>
                             <td data-label="<?php _e('Author', 'rm199'); ?>"><?php echo get_the_author_link(); ?></td>
                             <td data-label="<?php _e('Date', 'rm199'); ?>"><?php echo get_the_date(); ?></td>

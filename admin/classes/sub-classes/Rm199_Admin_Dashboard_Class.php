@@ -17,7 +17,15 @@ class Rm199_Admin_Dashboard_Class
                 <!-- title -->
                 <div class="rm199_input">
                     <label for="rm199__title_input"><?php _e('Title', 'rm199') ?></label>
-                    <input id="rm199__title_input" type="text" placeholder="<?php _e('We Recommend You Those Posts', 'rm199') ?>" onkeyup="rm199_title(this.value)">
+                    <input id="rm199__title_input" type="text" placeholder="<?php _e('We Recommend You Those Posts', 'rm199') ?>" onkeyup="rm199_title(this.value)" aria-describedby="rm199__title">
+                    <small id="rm199__title"><?php _e('This Title is shown to the Users', 'rm199') ?></small>
+                </div>
+
+                <!-- Description -->
+                <div class="rm199_input">
+                    <label for="rm199__description_input"><?php _e('Description', 'rm199') ?></label>
+                    <input id="rm199__description_input" type="text" placeholder="<?php _e('Enter a Description here', 'rm199') ?>" onkeyup="rm199_description(this.value)" aria-describedby="rm199__description">
+                    <small id="rm199__description"><?php _e('What do you want this Shortcode to do !? ', 'rm199') ?></small>
                 </div>
 
                 <!-- filter by keyword -->
@@ -201,10 +209,18 @@ class Rm199_Admin_Dashboard_Class
                     </div>
                     <div class="generator_box__btn">
                         <a href="#" class="generator_box__btn_cancel" onclick="location.reload()"><?php _e('Clear page', 'rm199') ?></a>
-                        <button type="submit" class="button button-primary button-large " name="generate_shortcode" id="generate_shortcode" onclick="generate_shortcode()"><?php _e('Generate ShortCodes', 'rm199') ?></button>
-                        <form action="<?php echo esc_url($_SERVER['REQUEST_URI']); ?>" method="post" id="rm199_generator_form" name="rm199Generate">
+
+                        <!-- <button type="submit" class="button button-primary button-large " name="generate_shortcode" id="generate_shortcode" onclick="generate_shortcode()"><?php //_e('Generate ShortCodes', 'rm199') 
+                                                                                                                                                                                ?></button> -->
+                        <?php
+                        $rm199_code = uniqid();
+                        ?>
+                        <!-- todo : url=www.google.com -->
+                        <form action="<?php echo esc_url($_SERVER['REQUEST_URI'] . '&redirect_url=www.google.com'); ?>" method="post" id="rm199_generator_form" name="rm199Generate">
+
                             <!-- all options  -->
                             <input type="hidden" name="rm199_so_title" id="rm199_so_title" value="">
+                            <input type="hidden" name="rm199_so_description" id="rm199_so_description" value="">
                             <input type="hidden" name="rm199_so_can_user_select_keywords" id="rm199_so_can_user_select_keywords" value="">
                             <input type="hidden" name="rm199_so_show_only_for_loggedin_users" id="rm199_so_show_only_for_loggedin_users" value="">
                             <input type="hidden" name="rm199_so_number_of_items" id="rm199_so_number_of_items" value="">
@@ -215,7 +231,7 @@ class Rm199_Admin_Dashboard_Class
                             <input type="hidden" name="rm199_so_main_color" id="rm199_so_main_color" value="">
                             <input type="hidden" name="rm199_so_secondary_color" id="rm199_so_secondary_color" value="">
                             <input type="hidden" name="rm199_so_text_color" id="rm199_so_text_color" value="">
-                            <button type="submit" class="button button-primary button-large " name="save_shortcode" id="save_shortcode"><?php _e('Publish', 'rm199') ?></button>
+                            <button type="submit" class="button button-primary button-large " name="save_shortcode" id="save_shortcode"><?php _e('Publish ShortCodes', 'rm199') ?></button>
                         </form>
                     </div>
 
@@ -259,9 +275,9 @@ class Rm199_Admin_Dashboard_Class
             $current_user = wp_get_current_user();
 
             // create nonce 
-            $code = 515151;
             $rm199_shortcode_content = json_encode([
                 "title" => $_POST['rm199_so_title'] !== '' ? $_POST['rm199_so_title'] : "Recommended for you:",
+                "description" => $_POST['rm199_so_description'] !== '' ? $_POST['rm199_so_description'] : "",
                 "can_user_select_keywords" => $_POST['rm199_so_can_user_select_keywords'] !== '' ? $_POST['rm199_so_can_user_select_keywords'] : false,
                 "show_only_for_loggedin_users" => $_POST['rm199_so_show_only_for_loggedin_users'] !== '' ? $_POST['rm199_so_show_only_for_loggedin_users'] : false,
                 "number_of_items" => $_POST['rm199_so_number_of_items'] !== '' ? $_POST['rm199_so_number_of_items'] : 3,
@@ -271,7 +287,8 @@ class Rm199_Admin_Dashboard_Class
                 "main_color" => $_POST['rm199_so_main_color'] !== '' ? $_POST['rm199_so_main_color'] : null,
                 "secondary_color" => $_POST['rm199_so_secondary_color'] !== '' ? $_POST['rm199_so_secondary_color'] :  null,
                 "text_color" => $_POST['rm199_so_text_color'] !== '' ? $_POST['rm199_so_text_color'] : null,
-                "template" => "minimal"
+                "template" => "minimal",
+                'code' => $rm199_code
             ]);
             $created_by = $current_user->ID;
             $table_name = $wpdb->prefix . 'rm199_shortcodes';
@@ -279,17 +296,26 @@ class Rm199_Admin_Dashboard_Class
             $wpdb->insert(
                 $table_name,
                 array(
-                    'code' => $code,
+                    'code' => $rm199_code,
                     'options' => $rm199_shortcode_content,
                     'created_by' => $created_by,
                     'created_in' => current_time('mysql')
                 )
             );
+            // dashboard_content::redirect('www.google.com');
+            exit;
         }
         ?>
 <?php
     }
 
+    // public static function redirect($url)
+    // {
+    //     $string = '<script type="text/javascript">';
+    //     $string .= 'window.location = "' . $url . '"';
+    //     $string .= '</script>';
+    //     echo $string;
+    // }
     // public static function insertShortcodeIntoDatabase()
     // {
     // }

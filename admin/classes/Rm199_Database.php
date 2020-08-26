@@ -11,7 +11,7 @@ class Rm199Database
         $charset_collate = $wpdb->get_charset_collate();
         $sql = "CREATE TABLE $table_name (
             id int(11) NOT NULL AUTO_INCREMENT,
-            code int(11) NOT NULL,
+            code text NOT NULL,
             options json NOT NULL,
             created_by int(11) NOT NULL,
             created_in datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
