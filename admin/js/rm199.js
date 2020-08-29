@@ -37,19 +37,22 @@ function toggleTagsBox() {
   }
 }
 
-function copy_shortcode_for_recommendations() {
-  var copyText = document.getElementById("shortcode_for_recommendations");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-  document.execCommand("copy");
+function copy_shortcode_for_shortcode(e, shortcode) {
+  var copyText = e.target.parentNode.childNodes[0];
+  // copyText.select();
+  // copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+  console.log(copyText + shortcode);
+  // document.execCommand("copy");
+  // navigator.clipboard.writeText(shortcode);
+
 }
 
-function copy_shortcode_for_user_preferences() {
-  var copyText = document.getElementById("shortcode_for_user_preferences");
-  copyText.select();
-  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-  document.execCommand("copy");
-}
+// function copy_shortcode_for_user_preferences() {
+//   var copyText = document.getElementById("shortcode_for_user_preferences");
+//   copyText.select();
+//   copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+//   document.execCommand("copy");
+// }
 
 
 // add options 

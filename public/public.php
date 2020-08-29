@@ -44,17 +44,24 @@ function rm199js_enqueue()
 // }
 // add_action('wp_enqueue_scripts', 'rm199_js');
 
+// // start shortcode functions
+// require_once('classes/Rm199_Shortcodes_Class.php');
+
+// // add shortCode to show posts 
+// add_shortcode('rm199_posts',  array('Rm199ShortcodesHandlerClass', 'rm199_posts'));
+
+
+// // add shortCode to show the tags input for user 
+// add_shortcode('rm199_input',  array('Rm199ShortcodesHandlerClass', 'rm199_input'));
+
 // start shortcode functions
-require_once('classes/Rm199_Shortcodes_Class.php');
+require_once('classes/Rm199_Shortcode_Class.php');
 
 // add shortCode to show posts 
-add_shortcode('rm199_posts',  array('Rm199ShortcodesHandlerClass', 'rm199_posts'));
-
+add_shortcode('rm199_posts',  array('Rm199ShortCodeManager', 'rm199_posts'));
 
 // add shortCode to show the tags input for user 
-add_shortcode('rm199_input',  array('Rm199ShortcodesHandlerClass', 'rm199_input'));
-
-
+add_shortcode('rm199_input',  array('Rm199ShortCodeManager', 'rm199_input'));
 
 
 // add user preferences meta 
