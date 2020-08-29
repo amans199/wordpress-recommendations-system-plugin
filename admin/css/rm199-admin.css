@@ -270,6 +270,7 @@ table.rm199_table {
     padding: 0;
     width: 100%;
     table-layout: fixed;
+    user-select: none;
 }
 
 table.rm199_table caption {

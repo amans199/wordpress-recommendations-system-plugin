@@ -25,18 +25,20 @@ class Rm199Credits
 
         <hr>
         <div class="amans199__socialmedia text-center">
-            <a class="generator_box__content--href generator_box__content--facebook" href="https://www.facebook.com/amans199" target="_blank" rel="noopener noreferer">
-                <img class="generator_box__content--icon " src="<?php echo plugins_url() . '/recommendations-master/assets/images/social-icons/facebook.png' ?>" alt="amans199">
-            </a>
+            <!-- <a class="generator_box__content--href generator_box__content--facebook" href="https://www.facebook.com/amans199" target="_blank" rel="noopener noreferer">
+                <img class="generator_box__content--icon " src="<?php //echo plugins_url() . '/recommendations-master/assets/images/social-icons/facebook.png' 
+                                                                ?>" alt="amans199">
+            </a> -->
             <a class="generator_box__content--href generator_box__content--twitter" href="https://twitter.com/amans199" target="_blank" rel="noopener noreferer">
                 <img class="generator_box__content--icon " src="<?php echo plugins_url() . '/recommendations-master/assets/images/social-icons/twitter.png' ?>" alt="amans199">
             </a>
             <a class="generator_box__content--href generator_box__content--linkedin" href="https://www.linkedin.com/in/amans199/" target="_blank" rel="noopener noreferer">
                 <img class="generator_box__content--icon " src="<?php echo plugins_url() . '/recommendations-master/assets/images/social-icons/linkedin.png' ?>" alt="amans199_">
             </a>
-            <a class="generator_box__content--href generator_box__content--instagram" href="https://www.instagram.com/amans199_/" target="_blank" rel="noopener noreferer">
-                <img class="generator_box__content--icon " src="<?php echo plugins_url() . '/recommendations-master/assets/images/social-icons/instagram.png' ?>" alt="amans199_">
-            </a>
+            <!-- <a class="generator_box__content--href generator_box__content--instagram" href="https://www.instagram.com/amans199_/" target="_blank" rel="noopener noreferer">
+                <img class="generator_box__content--icon " src="<?php // echo plugins_url() . '/recommendations-master/assets/images/social-icons/instagram.png' 
+                                                                ?>" alt="amans199_">
+            </a> -->
             <a class="generator_box__content--href generator_box__content--buymeacoffee" href="https://www.buymeacoffee.com/amans199" target="_blank" rel="noopener noreferer">
                 <img class="generator_box__content--icon " src="<?php echo plugins_url() . '/recommendations-master/assets/images/social-icons/buymeacoffee.png' ?>" alt="amans199">
             </a>
