@@ -72,7 +72,7 @@ function rm199_filter_by_keyword() {
 
 function rm199_show_only_for_loggedin_users() {
   var show_only_for_loggedin_users = document.getElementById('show_only_for_loggedin_users').checked;
-  document.getElementById('show_only_for_loggedin_users').value = show_only_for_loggedin_users ? 'true' : 'false';
+  document.getElementById('rm199_so_show_only_for_loggedin_users').value = show_only_for_loggedin_users ? 'true' : 'false';
 }
 
 function rm199_number_of_posts(value) {

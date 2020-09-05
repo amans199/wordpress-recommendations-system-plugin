@@ -14,6 +14,6 @@ class Rm199Input
 
     public static function rm199_input($attr)
     {
-        echo ' input is working ';
+        // echo ' input is working ';
     }
 }

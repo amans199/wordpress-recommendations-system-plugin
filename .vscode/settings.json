@@ -1,6 +1,11 @@
 {
     "cSpell.ignoreWords": [
+        "loggedin",
+        "prefetching",
+        "query",
         "shortcodes",
+        "wp",
+        "wp query",
         "wpdb"
     ]
 }
