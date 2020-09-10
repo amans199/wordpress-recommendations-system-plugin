@@ -32,7 +32,7 @@ class Rm199TableRm199Shortcodes
                     ?>
                         <tr onmouseover="table_mOvr(this,'#ddd');" onmouseout="table_mOut(this,'#f8f8f8');">
                             <td data-label="<?php _e('ShortCode', 'rm199'); ?>" class="d-flex align-items-center">
-                                <input type="text" value="<?php echo  '[rm199_posts id=' . $row->code . ']'; ?>">
+                                <input type="text" value="<?php echo  '[rm199_posts id=' . $row->code . ']'; ?>" readonly>
                                 <!-- <span class="ml-2 dashicons dashicons-admin-page cursor-pointer" onclick="copy_shortcode_for_shortcode(event , '<?php // echo  '[rm199_posts id=' . $row->code . ']'; 
                                                                                                                                                         ?>')"></span> -->
                             </td>

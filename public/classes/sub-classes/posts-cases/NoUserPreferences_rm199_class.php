@@ -3,13 +3,13 @@ if (!defined('ABSPATH')) {
     die();
 }
 
-// if the user not logged in of if user not allowed to register preferences show the latest posts
+// if the user not logged in or if user not allowed to register preferences show the latest posts
 
 class NoUserPreferencesRm199
 {
     function __construct()
     {
-        require('SetPostViewsCounter_Rm199_class.php');
+        include_once('SetPostViewsCounter_Rm199_class.php');
     }
 
     public static function showPosts($attr, $parsed_options)

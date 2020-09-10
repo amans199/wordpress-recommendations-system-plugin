@@ -3,7 +3,7 @@ if (!defined('ABSPATH')) {
     die();
 }
 
-class Rm199Posts
+class Rm199AllPosts
 {
     /**
      * The main Class to manage displaying posts/products based on Users' preferences ..
@@ -22,31 +22,30 @@ class Rm199Posts
         print_r($results);
 
         if (!empty($results)) {
-            if (!($parsed_options['show_only_for_loggedin_users'] && !is_user_logged_in())) {
+            // if (!($parsed_options['show_only_for_loggedin_users'] && !is_user_logged_in())) {}
+
+            // if there is no user preferences
+            if (!is_user_logged_in() || !$parsed_options['can_user_select_keywords']) {
+                include_once('posts-cases/NoUserPreferences_rm199_class.php');
+                $posts_when_user_not_loggedin = new NoUserPreferencesRm199();
+                $posts_when_user_not_loggedin->showPosts($attr, $parsed_options);
+            }
+
+
+            // if user is logged in and can add preferences 
+            if (is_user_logged_in() && $parsed_options['can_user_select_keywords']) {
+                include_once('posts-cases/UserPreferences.php');
+                $posts_when_user_is_loggedin_and_can_add_preferences = new UserPreferencesRm199();
+                $posts_when_user_is_loggedin_and_can_add_preferences->showPosts($attr, $parsed_options);
+            }
 
 
 
 
 
-                // if there is no user preferences
-                if (!is_user_logged_in() || !$parsed_options['can_user_select_keywords']) {
-                    require('posts-cases/NoUserPreferences_rm199_class.php');
-                    $posts_when_user_not_loggedin = new NoUserPreferencesRm199();
-                    $posts_when_user_not_loggedin->showPosts($attr, $parsed_options);
-                }
+            // end testing 
 
 
-
-
-
-
-
-                // end testing 
-
-
-
-
-            } // end condition whether to show_only_for_loggedin_users or not 
         } else { // if results is empty or not
             echo 'no results';
         }

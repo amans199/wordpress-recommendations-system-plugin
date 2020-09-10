@@ -14,14 +14,14 @@ class Rm199ShortCodeManager
 
     public static function rm199_input($attr)
     {
-        require('sub-classes/Rm199_Input_Class.php');
+        include_once('sub-classes/Rm199_Input_Class.php');
         $Rm199Input = new Rm199Input();
         $Rm199Input->rm199_input($attr);
     }
     public static function rm199_posts($attr)
     {
-        require('sub-classes/Rm199_posts_Class.php');
-        $Rm199Posts = new Rm199Posts();
+        include_once('sub-classes/Rm199_posts_Class.php');
+        $Rm199Posts = new Rm199AllPosts();
         $Rm199Posts->rm199_posts($attr);
     }
 }
