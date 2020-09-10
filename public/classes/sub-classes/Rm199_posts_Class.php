@@ -19,7 +19,7 @@ class Rm199AllPosts
         $row_id = $attr['id'];
         $results = $wpdb->get_results("SELECT * FROM $table_name WHERE code='$row_id'");
         $parsed_options = json_decode($results[0]->options, true);
-        print_r($results);
+        // print_r($results);
 
         if (!empty($results)) {
             // if (!($parsed_options['show_only_for_loggedin_users'] && !is_user_logged_in())) {}

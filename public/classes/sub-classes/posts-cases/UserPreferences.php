@@ -28,9 +28,9 @@ class UserPreferencesRm199
         $current_user_preferences = get_user_meta(get_current_user_id(), 'preferences', false);
 
 
-        echo '<br>is is workingggggggggg<br>' .  $specified_number_of_posts . '<br>';
-        \print_r($current_user_preferences);
-        echo '<br>';
+        // echo '<br>is is workingggggggggg<br>' .  $specified_number_of_posts . '<br>';
+        // \print_r($current_user_preferences);
+        // echo '<br>';
 
 
         foreach ($current_user_preferences as $preference) {
@@ -73,7 +73,8 @@ class UserPreferencesRm199
             if ($query->have_posts()) { // get all posts related to those preferences
                 ob_start();
                 echo '<div class="rm199_front__content">';
-
+                // todo : fix this 
+                // new SetPostViewsCounter_Rm199_class->setPostViews(get_the_ID());   // count post's views
                 Rm199Posts::setPostViews(get_the_ID());   // count post's views
                 remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
 
