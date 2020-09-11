@@ -44,7 +44,7 @@ class NoUserPreferencesRm199
                 <?php echo get_the_post_thumbnail('thumbnail'); ?>
                 <!-- /* todo :  here add code what you need to display like above title, image and more */ -->
 
-<?php  }
+<?php  } // end while
             echo '</div>';
             wp_reset_postdata();
             return ob_get_clean();

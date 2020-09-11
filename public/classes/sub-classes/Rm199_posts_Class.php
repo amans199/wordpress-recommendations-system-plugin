@@ -16,10 +16,11 @@ class Rm199AllPosts
 
         global $wpdb;
         $table_name = $wpdb->prefix . 'rm199_shortcodes';
+        ob_start();
         $row_id = $attr['id'];
         $results = $wpdb->get_results("SELECT * FROM $table_name WHERE code='$row_id'");
         $parsed_options = json_decode($results[0]->options, true);
-        // print_r($results);
+        ob_get_clean();
 
         if (!empty($results)) {
             // if (!($parsed_options['show_only_for_loggedin_users'] && !is_user_logged_in())) {}
@@ -41,13 +42,12 @@ class Rm199AllPosts
 
 
 
-
-
-            // end testing 
-
+            // 
 
         } else { // if results is empty or not
+            ob_start();
             echo 'no results';
+            ob_get_clean();
         }
     } //end of function : rm199_posts
 } //end of class
