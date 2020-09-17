@@ -106,9 +106,9 @@ class UserPreferencesRm199
                     <?php echo get_the_post_thumbnail('thumbnail'); ?>
 <?php
                 } //end while
-                echo '</div>';
                 wp_reset_postdata();
-                // return ob_get_clean();
+                ob_clean();
+                echo '</div>';
             }
         }
     } //end method :: showPosts

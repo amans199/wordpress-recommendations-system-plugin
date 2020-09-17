@@ -63,7 +63,7 @@ class NoUserPreferencesRm199
             } // end while
 
             wp_reset_postdata();
-            return ob_get_clean();
+            ob_clean();
             echo '</div>';
         }
     }
