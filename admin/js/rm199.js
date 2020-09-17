@@ -135,6 +135,12 @@ function choose_text_color(value) {
   document.getElementById('rm199_so_text_color').value = value
 }
 
+
+function choose_code_custom_css(value) {
+  document.getElementById('rm199_so_custom_css').value = value
+}
+
+
 function table_mOvr(src, clrOver) {
   if (!src.contains(event.fromElement)) {
     src.style.backgroundColor = clrOver;

@@ -12,8 +12,10 @@ class NoUserPreferencesRm199
         include_once('SetPostViewsCounter_Rm199_class.php');
     }
 
-    public static function showPosts($attr, $parsed_options)
+    public static function showPosts($attr, $parsed_options, $custom_styles)
     {
+
+
         $args = array(
             'posts_per_page' => ($parsed_options['number_of_items'] ? $parsed_options['number_of_items'] : 3),
             'orderby' => 'post_date',
@@ -24,10 +26,23 @@ class NoUserPreferencesRm199
         $query = new WP_Query($args);
         if ($query->have_posts()) {
 
-            echo '<div class="rm199_front">';
+            echo '<div class="rm199_front rm199__'  . $parsed_options['code'] . '" >';
             if (isset($parsed_options['title'])) {
                 echo '<h2 class="rm199_front__title">' . $parsed_options['title'] . '</h2>';
             }
+
+
+?>
+            <!-- // testing styles  -->
+            <style nonce="<?php echo wp_create_nonce('rm199'); ?>">
+                <?php $styles_exploded_to_selectors = explode("}", $custom_styles);
+                foreach ($styles_exploded_to_selectors as $selector) {
+                    echo ' .rm199__' .  $parsed_options['code'] . ' ' .  $selector . '}';
+                }
+                ?>
+            </style>
+            <?php
+
             while ($query->have_posts()) {
                 $query->the_post();
 
@@ -44,10 +59,12 @@ class NoUserPreferencesRm199
                 <?php echo get_the_post_thumbnail('thumbnail'); ?>
                 <!-- /* todo :  here add code what you need to display like above title, image and more */ -->
 
-<?php  } // end while
-            echo '</div>';
+<?php
+            } // end while
+
             wp_reset_postdata();
             return ob_get_clean();
+            echo '</div>';
         }
     }
 }

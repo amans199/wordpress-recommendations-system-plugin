@@ -20,6 +20,7 @@ class Rm199AllPosts
         $row_id = $attr['id'];
         $results = $wpdb->get_results("SELECT * FROM $table_name WHERE code='$row_id'");
         $parsed_options = json_decode($results[0]->options, true);
+        $custom_styles = $results[0]->custom_styles;
         ob_get_clean();
 
         if (!empty($results)) {
@@ -29,7 +30,7 @@ class Rm199AllPosts
             if (!is_user_logged_in() || !$parsed_options['can_user_select_keywords']) {
                 include_once('posts-cases/NoUserPreferences_rm199_class.php');
                 $posts_when_user_not_loggedin = new NoUserPreferencesRm199();
-                $posts_when_user_not_loggedin->showPosts($attr, $parsed_options);
+                $posts_when_user_not_loggedin->showPosts($attr, $parsed_options, $custom_styles);
             }
 
 
@@ -37,7 +38,7 @@ class Rm199AllPosts
             if (is_user_logged_in() && $parsed_options['can_user_select_keywords']) {
                 include_once('posts-cases/UserPreferences.php');
                 $posts_when_user_is_loggedin_and_can_add_preferences = new UserPreferencesRm199();
-                $posts_when_user_is_loggedin_and_can_add_preferences->showPosts($attr, $parsed_options);
+                $posts_when_user_is_loggedin_and_can_add_preferences->showPosts($attr, $parsed_options, $custom_styles);
             }
 
 

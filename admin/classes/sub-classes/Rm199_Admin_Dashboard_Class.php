@@ -175,6 +175,10 @@ class Rm199_Admin_Dashboard_Class
                         <label for="choose_text_color" style="min-width: 220px;"><?php _e('Choose text color ', 'rm199') ?></label><br>
                         <input class="mx-2" type="color" id="choose_text_color" name="text-color" value="#ffffff" onchange="choose_text_color(this.value)">
                     </div>
+                    <div class="rm199_input--column">
+                        <label for="choose_text_color" style="min-width: 220px;"><?php _e('Add Custom CSS', 'rm199') ?></label><br><br>
+                        <textarea name="code-custom-css" class="w-100" id="code_custom_css" rows="10" onchange="choose_code_custom_css(this.value)" placeholder="<?php _e('.rm199_post__link {color:#000;}', 'rm199') ?>"></textarea>
+                    </div>
                 </div>
             </div>
 
@@ -231,6 +235,7 @@ class Rm199_Admin_Dashboard_Class
                             <input type="hidden" name="rm199_so_main_color" id="rm199_so_main_color" value="">
                             <input type="hidden" name="rm199_so_secondary_color" id="rm199_so_secondary_color" value="">
                             <input type="hidden" name="rm199_so_text_color" id="rm199_so_text_color" value="">
+                            <input type="hidden" name="rm199_so_custom_css" id="rm199_so_custom_css" value="">
                             <button type="submit" class="button button-primary button-large " name="save_shortcode" id="save_shortcode"><?php _e('Publish ShortCodes', 'rm199') ?></button>
                         </form>
                     </div>
@@ -292,12 +297,13 @@ class Rm199_Admin_Dashboard_Class
             ]);
             $created_by = $current_user->ID;
             $table_name = $wpdb->prefix . 'rm199_shortcodes';
-            // $data_json = json_decode()
+            $rm199_so_custom_css = $_POST['rm199_so_custom_css'];
             $wpdb->insert(
                 $table_name,
                 array(
                     'code' => $rm199_code,
                     'options' => $rm199_shortcode_content,
+                    'custom_styles' => $rm199_so_custom_css,
                     'created_by' => $created_by,
                     'created_in' => current_time('mysql')
                 )

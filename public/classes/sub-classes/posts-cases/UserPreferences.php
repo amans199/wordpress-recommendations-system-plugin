@@ -11,7 +11,7 @@ class UserPreferencesRm199
         include_once('SetPostViewsCounter_Rm199_class.php');
     }
 
-    public static function showPosts($attr, $parsed_options)
+    public static function showPosts($attr, $parsed_options, $custom_styles)
     {
 
         $specified_number_of_posts = ($parsed_options['number_of_items'] ? $parsed_options['number_of_items'] : 3);
@@ -61,14 +61,26 @@ class UserPreferencesRm199
 
             $do_not_duplicate = array();
             if ($query->have_posts()) { // get all posts related to those preferences
-                echo '<div class="rm199_front__content">';
+                echo '<div class="rm199_front__content rm199__'  . $parsed_options['code'] . '" >';
 
                 if (isset($parsed_options['title'])) {
                     echo '<h2 class="rm199_frontend_title">' . $parsed_options['title'] . '</h2>';
                 }
+
+?>
+                <!-- // testing styles  -->
+                <style nonce="<?php echo wp_create_nonce('rm199'); ?>">
+                    <?php $styles_exploded_to_selectors = explode("}", $custom_styles);
+                    foreach ($styles_exploded_to_selectors as $selector) {
+                        echo ' .rm199__' .  $parsed_options['code'] . ' ' .  $selector . '}';
+                    }
+                    ?>
+                </style>
+                <?php
                 while ($query->have_posts()) {
                     $query->the_post();
                     $number_of_shown_posts++;
+
                     // if (in_array(get_the_ID(), $do_not_duplicate)) {
                     // todo : fix this to prevent post duplication 
                     if (array_key_exists(get_the_ID(), $do_not_duplicate)) {
@@ -87,7 +99,7 @@ class UserPreferencesRm199
                     // ===================== post's views counter 
 
                     ob_start();
-?>
+                ?>
                     <a href="<?php echo get_the_permalink(); ?>" class="rm199_post__link">
                         <?php echo get_the_title(); ?>
                     </a>
@@ -96,7 +108,7 @@ class UserPreferencesRm199
                 } //end while
                 echo '</div>';
                 wp_reset_postdata();
-                return ob_get_clean();
+                // return ob_get_clean();
             }
         }
     } //end method :: showPosts

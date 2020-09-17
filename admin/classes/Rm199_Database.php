@@ -13,6 +13,7 @@ class Rm199Database
             id int(11) NOT NULL AUTO_INCREMENT,
             code text NOT NULL,
             options json NOT NULL,
+            custom_styles text,
             created_by int(11) NOT NULL,
             created_in datetime DEFAULT CURRENT_TIMESTAMP NOT NULL,
             PRIMARY KEY (id)
