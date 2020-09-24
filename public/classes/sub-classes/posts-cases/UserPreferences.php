@@ -68,7 +68,7 @@ class UserPreferencesRm199
                 }
 
 ?>
-                <!-- // testing styles  -->
+                <!-- && todo : the style section's classes is not shown properly   -->
                 <style nonce="<?php echo wp_create_nonce('rm199'); ?>">
                     <?php $styles_exploded_to_selectors = explode("}", $custom_styles);
                     foreach ($styles_exploded_to_selectors as $selector) {
