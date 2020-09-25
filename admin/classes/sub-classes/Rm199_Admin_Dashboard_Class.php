@@ -6,21 +6,43 @@ class Rm199_Admin_Dashboard_Class
 {
     public static function dashboard_content()
     {
+        $edit_shortcode = isset($_GET['edit_shortcode']) ?  $_GET['edit_shortcode'] : false;
 
+        // connect to db 
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'rm199_shortcodes';
+
+        $results = "";
+        $custom_styles = "";
+        $number_of_items = "3";
+        $template = "minimal";
+        if ($edit_shortcode) {
+            $results = $wpdb->get_results("SELECT * FROM $table_name WHERE id=$edit_shortcode");
+            $shortcode_decoded = json_decode($results[0]->options, true);
+            $custom_styles =  isset($results[0]->custom_styles) ?   $results[0]->custom_styles : '';
+            $number_of_items = isset($shortcode_decoded['number_of_items']) ? $shortcode_decoded['number_of_items'] : '3';
+            $template = isset($shortcode_decoded['template']) ? $shortcode_decoded['template'] : 'minimal';
+        }
 
 ?>
         <h1><?php _e('Generate a new Recommendation Pack ', 'rm199') ?></h1>
         <div class="rm199__home_cols">
             <?php
-            if (isset($_GET['edit_shortcode'])) {
+
+
+            if ($edit_shortcode && !empty($results)) {
                 require('modules/dashboard/Rm199_Edit_Dashboard_mode.php');
                 $dashboard_edit_shortcode = new Rm199_Edit_Dashboard_mode();
-                $dashboard_edit_shortcode->dashboard_edit_mode();
+                $dashboard_edit_shortcode->dashboard_edit_mode($results, $shortcode_decoded);
             } else {
                 require('modules/dashboard/Rm199_New_Dashboard_mode.php');
                 $dashboard_new_shortcode = new Rm199_New_Dashboard_mode();
                 $dashboard_new_shortcode->dashboard_new_mode();
             }
+
+            // } else {
+            //     echo '<h2>' .  _e('Sorry, an Error occurred', 'rm199') . '</h2>';
+            // }
             ?>
 
 
@@ -28,26 +50,24 @@ class Rm199_Admin_Dashboard_Class
             <div class="rm199__home_col--sm">
                 <!-- generate shortcode  -->
                 <div class="generator_box">
-                    <!-- todo : add a preview feature  -->
                     <h2 class="generator_box__header"><span><?php _e('Generate ShortCodes', 'rm199') ?></span></h2>
                     <div class="generator_box__content">
-                        <!-- <h2><?php //_e('Overview', 'rm199') 
-                                    ?></h2> -->
                         <h3 id="rm199__overview__title" class="m-0"><?php _e('Recommended for you:', 'rm199') ?></h3>
+                        <!-- todo : make the template interact with the custom css entered be the user  -->
                         <div class="rm199__post rm199__post--overview d-flex align-items-center" style="justify-content: space-around;margin: 40px 0;">
-                            <div id="rm199__structured__template" class="text-center" style="    max-width: 150px;">
+                            <div id="rm199__structured__template" class="text-center" <?php echo ($template == 'structured' ? 'style="max-width: 150px;"' : 'style="display: none;"'); ?>>
                                 <div id="rm199__post__img" style="margin-bottom: 2px;">
                                     <img src="https://via.placeholder.com/150x150" alt="amas199 post image" width="150" height="150" />
                                 </div>
                                 <a id="rm199__post__title" rel="noopener noreferer" href="#" style="margin-top: 2px;"><?php _e('Example Post Title', 'rm199') ?></a>
                                 <p id="rm199__post__excerpt" style="margin-top: 2px;"><?php _e('Lorem ipsum dolor sit amet consectetur', 'rm199') ?>...</p>
                             </div>
-                            <div id="rm199__minimal__template" class="" style="display: none;">
+                            <div id="rm199__minimal__template" class="" <?php echo ($template != 'structured' ?: 'style="display: none;max-width: 150px;"'); ?>>
                                 <a id="rm199__post__title" rel="noopener noreferer" class="mr-2" href="#"><?php _e('Example Post Title', 'rm199') ?></a>
                             </div>
                             <div class="d-flex align-items-center text-left">
                                 <span class="dashicons dashicons-no-alt" style="font-size: 45px;display: inline-table;"></span>
-                                <h2 id="rm199__overview__number" style="font-size: 45px;display: inline-table;">3</h2>
+                                <h2 id="rm199__overview__number" style="font-size: 45px;display: inline-table;"><?php echo $number_of_items; ?></h2>
                             </div>
                         </div>
                     </div>
@@ -76,7 +96,7 @@ class Rm199_Admin_Dashboard_Class
                             <input type="hidden" name="rm199_so_secondary_color" id="rm199_so_secondary_color" value="">
                             <input type="hidden" name="rm199_so_text_color" id="rm199_so_text_color" value="">
                             <input type="hidden" name="rm199_so_custom_css" id="rm199_so_custom_css" value="">
-                            <button type="submit" class="button button-primary button-large " name="save_shortcode" id="save_shortcode"><?php _e('Publish ShortCodes', 'rm199') ?></button>
+                            <button type="submit" class="button button-primary button-large " name="save_shortcode" id="save_shortcode"><?php ($edit_shortcode  && !empty($results)) ? _e('Update', 'rm199') : _e('Publish', 'rm199') ?></button>
                         </form>
                     </div>
 
@@ -120,6 +140,7 @@ class Rm199_Admin_Dashboard_Class
             $current_user = wp_get_current_user();
 
             // create nonce 
+            //todo : replace the $_POST with isset($_POST)
             $rm199_shortcode_content = json_encode([
                 "title" => $_POST['rm199_so_title'] !== '' ? $_POST['rm199_so_title'] : "Recommended for you:",
                 "description" => $_POST['rm199_so_description'] !== '' ? $_POST['rm199_so_description'] : "",
@@ -136,18 +157,32 @@ class Rm199_Admin_Dashboard_Class
                 'code' => $rm199_code
             ]);
             $created_by = $current_user->ID;
-            $table_name = $wpdb->prefix . 'rm199_shortcodes';
             $rm199_so_custom_css = $_POST['rm199_so_custom_css'];
-            $wpdb->insert(
-                $table_name,
-                array(
-                    'code' => $rm199_code,
-                    'options' => $rm199_shortcode_content,
-                    'custom_styles' => $rm199_so_custom_css,
-                    'created_by' => $created_by,
-                    'created_in' => current_time('mysql')
-                )
-            );
+            if ($edit_shortcode  && !empty($results)) {
+                $wpdb->update(
+                    $table_name,
+                    array(
+                        'code' => $rm199_code,
+                        'options' => $rm199_shortcode_content,
+                        'custom_styles' => $rm199_so_custom_css,
+                        'created_by' => $created_by,
+                        'created_in' => current_time('mysql')
+                    ),
+                    array('id' => $edit_shortcode)
+                );
+            } else {
+                $wpdb->insert(
+                    $table_name,
+                    array(
+                        'code' => $rm199_code,
+                        'options' => $rm199_shortcode_content,
+                        'custom_styles' => $rm199_so_custom_css,
+                        'created_by' => $created_by,
+                        'created_in' => current_time('mysql')
+                    )
+                );
+            }
+
             // dashboard_content::redirect('www.google.com');
             // header('Location: http://www.google.com/');
 
