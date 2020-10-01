@@ -30,7 +30,7 @@ class Rm199TableRm199Shortcodes
                         $parsed_options = json_decode($row->options, true);
 
                     ?>
-                        <tr onmouseover="table_mOvr(this,'#ddd');" onmouseout="table_mOut(this,'#f8f8f8');">
+                        <tr onmouseover="table_mOvr(this,'#ddd');" onmouseout="table_mOut(this,'#f8f8f8');" data-code="<?php echo $row->code; ?>">
                             <td data-label="<?php _e('ShortCode', 'rm199'); ?>" class="d-flex align-items-center">
                                 <input type="text" value="<?php echo  '[rm199_posts id=' . $row->code . ']'; ?>" readonly>
                                 <!-- <span class="ml-2 dashicons dashicons-admin-page cursor-pointer" onclick="copy_shortcode_for_shortcode(event , '<?php // echo  '[rm199_posts id=' . $row->code . ']'; 
@@ -67,7 +67,8 @@ class Rm199TableRm199Shortcodes
                                                                                                                                 ?>" style="text-decoration: none;margin:auto;">
                                     <span style="text-decoration: none;" class="dashicons dashicons-chart-line "></span>
                                 </button> -->
-                                <form action="<?php echo esc_url($_SERVER['REQUEST_URI']) . '&req_id=' . $row->id; ?>" method="post" id="rm199_shortcode_actions" class="d-flex" style="margin:auto;">
+                                <!-- todo : make the delete action -> ajaxed  -->
+                                <form action="<?php echo esc_url($_SERVER['REQUEST_URI']) . '&req_id=' . $row->id; ?>" method="post" class="d-flex" style="margin:auto;">
                                     <input type="hidden" name="rm199_shrotcode_id" value="<?php echo $row->id ?>">
 
                                     <button type="submit" class="rm199_btn rm199_btn_danger cursor-pointer d-flex align-items-center " title="<?php _e('Delete', 'rm199'); ?>" style="text-decoration: none;margin:auto;" name="rm199_delete_shortcode">
