@@ -10,7 +10,7 @@ class Rm199_Admin_Overview_Class
 ?>
         <span class="d-flex align-items-center">
             <h1 class="mr-2"><?php _e('Overview', 'rm199') ?></h1>
-            <button title="<?php _e('update data', 'rm199') ?>" class="button button-primary mx-2 cursor-pointer d-flex align-items-center justify-content-center" onclick="location.reload()" style="height: 30px;width: 30px;"><span class="dashicons dashicons-update-alt "></span></button>
+            <button title="<?php _e('update data', 'rm199') ?>" class="button button-primary mx-2 cursor-pointer d-flex align-items-center justify-content-center" onclick="location.href='<?php echo site_url('/wp-admin/admin.php?page=rm199_manager'); ?>'" style="height: 30px;width: 30px;"><span class="dashicons dashicons-update-alt "></span></button>
         </span>
         <div class="custom_row">
             <div class="rm199__home_col w-100">

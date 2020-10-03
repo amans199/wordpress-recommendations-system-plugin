@@ -42,11 +42,7 @@ class Rm199_Admin_Dashboard_Class
                 $dashboard_new_shortcode->dashboard_new_mode();
             }
 
-            // } else {
-            //     echo '<h2>' .  _e('Sorry, an Error occurred', 'rm199') . '</h2>';
-            // }
             ?>
-
 
             <!-- start the right column  -->
             <div class="rm199__home_col--sm">
@@ -76,26 +72,7 @@ class Rm199_Admin_Dashboard_Class
                     <div class="generator_box__btn">
                         <a href="#" class="generator_box__btn_cancel" onclick="location.reload()"><?php _e('Clear page', 'rm199') ?></a>
 
-                        <!-- <button type="submit" class="button button-primary button-large " name="generate_shortcode" id="generate_shortcode" onclick="generate_shortcode()"><?php //_e('Generate ShortCodes', 'rm199') 
-                                                                                                                                                                                ?></button> -->
-                        <?php
-                        // $rm199_code = uniqid();
-                        ?>
-                        <!-- todo : url=www.google.com -->
                         <form method="post" id="rm199_generator_form">
-                            <!-- <input type="hidden" name="rm199_so_title" id="rm199_so_title" value="">
-                            <input type="hidden" name="rm199_so_description" id="rm199_so_description" value="">
-                            <input type="hidden" name="rm199_so_can_user_select_keywords" id="rm199_so_can_user_select_keywords" value="">
-                            <input type="hidden" name="rm199_so_show_only_for_loggedin_users" id="rm199_so_show_only_for_loggedin_users" value="">
-                            <input type="hidden" name="rm199_so_number_of_items" id="rm199_so_number_of_items" value="">
-                            <input type="hidden" name="rm199_so_post_types" id="rm199_so_post_types" value="">
-                            <input type="hidden" name="rm199_so_categories" id="rm199_so_categories" value="">
-                            <input type="hidden" name="rm199_so_tags" id="rm199_so_tags" value="">
-                            <input type="hidden" name="rm199_so_template" id="rm199_so_template" value="">
-                            <input type="hidden" name="rm199_so_main_color" id="rm199_so_main_color" value="">
-                            <input type="hidden" name="rm199_so_secondary_color" id="rm199_so_secondary_color" value="">
-                            <input type="hidden" name="rm199_so_text_color" id="rm199_so_text_color" value=""> -->
-                            <!-- <input type="hidden" name="rm199_so_custom_css" id="rm199_so_custom_css" value=""> -->
                             <input type="hidden" name="rm199_so_template" id="rm199_so_template" value="minimal">
                             <input type="hidden" name="rm199_if_edit_mode" id="rm199_if_edit_mode" value="<?php echo (($edit_shortcode  && !empty($results)) ?  $uniq_code  : '');  ?>">
                             <input type="hidden" name="shortcode_created_in" id="shortcode_created_in" value="<?php echo (($edit_shortcode  && !empty($results)) ?  $shortcode_created_in  : current_time('mysql'));  ?>">
@@ -132,67 +109,6 @@ class Rm199_Admin_Dashboard_Class
 
         </div>
 
-        <?php
-        // if (!current_user_can('manage_options')) {
-        //     exit;
-        // }
-
-        // // insert the shortcode's options into database 
-        // if (isset($_POST['save_shortcode']) && current_user_can('manage_options')) {
-
-        //     global $wpdb;
-        //     $current_user = wp_get_current_user();
-
-        //     // create nonce 
-        //     //todo : replace the $_POST with isset($_POST)
-        //     $rm199_shortcode_content = json_encode([
-        //         "title" => $_POST['rm199_so_title'] !== '' ? $_POST['rm199_so_title'] : "Recommended for you:",
-        //         "description" => $_POST['rm199_so_description'] !== '' ? $_POST['rm199_so_description'] : "",
-        //         "can_user_select_keywords" => $_POST['rm199_so_can_user_select_keywords'] !== '' ? $_POST['rm199_so_can_user_select_keywords'] : false,
-        //         "show_only_for_loggedin_users" => $_POST['rm199_so_show_only_for_loggedin_users'] !== '' ? $_POST['rm199_so_show_only_for_loggedin_users'] : false,
-        //         "number_of_items" => $_POST['rm199_so_number_of_items'] !== '' ? $_POST['rm199_so_number_of_items'] : 3,
-        //         "post_types" => $_POST['rm199_so_post_types'] !== '' ? $_POST['rm199_so_post_types'] : "all",
-        //         "categories" => $_POST['rm199_so_categories'] !== '' ? $_POST['rm199_so_categories'] : "all",
-        //         "tags" =>  $_POST['rm199_so_tags'] !== '' ? $_POST['rm199_so_tags'] : "all",
-        //         "main_color" => $_POST['rm199_so_main_color'] !== '' ? $_POST['rm199_so_main_color'] : null,
-        //         "secondary_color" => $_POST['rm199_so_secondary_color'] !== '' ? $_POST['rm199_so_secondary_color'] :  null,
-        //         "text_color" => $_POST['rm199_so_text_color'] !== '' ? $_POST['rm199_so_text_color'] : null,
-        //         "template" => "minimal",
-        //         'code' => $rm199_code
-        //     ]);
-        //     $created_by = $current_user->ID;
-        //     $rm199_so_custom_css = $_POST['rm199_so_custom_css'];
-        //     if ($edit_shortcode  && !empty($results)) {
-        //         $wpdb->update(
-        //             $table_name,
-        //             array(
-        //                 'code' => $rm199_code,
-        //                 'options' => $rm199_shortcode_content,
-        //                 'custom_styles' => $rm199_so_custom_css,
-        //                 'created_by' => $created_by,
-        //                 'created_in' => current_time('mysql')
-        //             ),
-        //             array('id' => $edit_shortcode)
-        //         );
-        //     } else {
-        //         $wpdb->insert(
-        //             $table_name,
-        //             array(
-        //                 'code' => $rm199_code,
-        //                 'options' => $rm199_shortcode_content,
-        //                 'custom_styles' => $rm199_so_custom_css,
-        //                 'created_by' => $created_by,
-        //                 'created_in' => current_time('mysql')
-        //             )
-        //         );
-        //     }
-
-        //     // dashboard_content::redirect('www.google.com');
-        //     // header('Location: http://www.google.com/');
-
-        //     exit;
-        // }
-        ?>
 <?php
     }
 }

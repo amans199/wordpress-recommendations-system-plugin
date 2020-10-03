@@ -50,7 +50,7 @@ function add_new_shortcode_handler()
     // Localize Our Script so we can use `ajax_url`
     wp_localize_script(
         'add_new_shortcode_um_cb',
-        'rm199Obj',
+        'add_new_shortcode_rm199Obj',
         array(
             'ajax_url' => $ajax_url,
             'security'  => wp_create_nonce('rm199'),
@@ -95,7 +95,7 @@ function add_new_shortcode_handler_callback()
 
     $table_name = $wpdb->prefix . 'rm199_shortcodes';
     $current_user = wp_get_current_user();
-    if ($_POST['edit_mode_id']) {
+    if ($_POST['edit_mode_id'] != '') {
         $wpdb->update(
             $table_name,
             array(

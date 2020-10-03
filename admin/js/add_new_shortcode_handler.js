@@ -40,7 +40,7 @@ function add_new_shortcode_handler(e) {
     secondary_color = document.getElementById('choose_secondary_color').value,
     text_color = document.getElementById('choose_text_color').value,
     rm199_custom_css = document.getElementById('code_custom_css').value,
-    uniq_code = document.getElementById('rm199_if_edit_mode').value != '' ? document.getElementById('rm199_if_edit_mode').value : rm199Obj.rm199_code,
+    uniq_code = document.getElementById('rm199_if_edit_mode').value != '' ? document.getElementById('rm199_if_edit_mode').value : add_new_shortcode_rm199Obj.rm199_code,
     shortcode_content;
 
   shortcode_content = {
@@ -62,9 +62,9 @@ function add_new_shortcode_handler(e) {
   if (shortcode_content) {
     jQuery.ajax({
       beforeSend: (xhr) => {
-        xhr.setRequestHeader('X-WP-Nonce', rm199Obj.security)
+        xhr.setRequestHeader('X-WP-Nonce', add_new_shortcode_rm199Obj.security)
       },
-      url: rm199Obj.ajax_url,
+      url: add_new_shortcode_rm199Obj.ajax_url,
       type: 'POST',
       data: {
         action: 'add_new_shortcode_cb',
@@ -78,6 +78,7 @@ function add_new_shortcode_handler(e) {
       .success(function (results) {
         // console.log('User Meta Updated!');
         // console.log(results)
+        // console.log(add_new_shortcode_rm199Obj.rm199_code)
         // document.querySelector(`.all_keywords_shown .rm199__keyword-${um_val.replace(/\s/g, '')}`).remove()
         // location.reload()
         window.location = '/wp-admin/admin.php?page=rm199_manager&highlight_shortcode=' + uniq_code;

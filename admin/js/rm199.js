@@ -64,13 +64,20 @@ function toggleTagsBox() {
 }
 
 function copy_shortcode_for_shortcode(e, shortcode) {
-  var copyText = e.target.parentNode.childNodes[0];
-  // copyText.select();
-  // copyText.setSelectionRange(0, 99999); /*For mobile devices*/
-  console.log(copyText + shortcode);
-  // document.execCommand("copy");
-  // navigator.clipboard.writeText(shortcode);
+  var fullShortcode = '[rm199_posts id=' + shortcode + ']'
+  var copyText = document.querySelector('[value="' + fullShortcode + '"]');
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /*For mobile devices*/
+  document.execCommand("copy");
 
+  jQuery('.shortcodes_copier .dashicons').addClass('dashicons-admin-page')
+  jQuery('.shortcodes_copier .dashicons').removeClass('dashicons-yes')
+  jQuery('[data-code-for-style="' + shortcode + '"]').removeClass('dashicons-admin-page')
+  jQuery('[data-code-for-style="' + shortcode + '"]').addClass('dashicons-yes')
+  setTimeout(() => {
+    jQuery('.shortcodes_copier .dashicons').addClass('dashicons-admin-page')
+    jQuery('.shortcodes_copier .dashicons').removeClass('dashicons-yes')
+  }, 1000)
 }
 
 // function copy_shortcode_for_user_preferences() {

@@ -31,10 +31,9 @@ class Rm199TableRm199Shortcodes
 
                     ?>
                         <tr onmouseover="table_mOvr(this,'#ddd');" onmouseout="table_mOut(this,'#f8f8f8');" data-code="<?php echo $row->code; ?>">
-                            <td data-label="<?php _e('ShortCode', 'rm199'); ?>" class="d-flex align-items-center">
+                            <td data-label="<?php _e('ShortCode', 'rm199'); ?>" class="d-flex align-items-center shortcodes_copier">
                                 <input type="text" value="<?php echo  '[rm199_posts id=' . $row->code . ']'; ?>" readonly>
-                                <!-- <span class="ml-2 dashicons dashicons-admin-page cursor-pointer" onclick="copy_shortcode_for_shortcode(event , '<?php // echo  '[rm199_posts id=' . $row->code . ']'; 
-                                                                                                                                                        ?>')"></span> -->
+                                <span data-code-for-style="<?php echo  $row->code; ?>" class="ml-2 dashicons dashicons-admin-page cursor-pointer" onclick="copy_shortcode_for_shortcode(event , '<?php echo $row->code;  ?>')"></span>
                             </td>
                             <td data-label="<?php _e('', 'rm199'); ?>">
                                 <?php
@@ -63,10 +62,9 @@ class Rm199TableRm199Shortcodes
                                     </button>
                                 </a>
                                 <!-- todo : create a popup box with all the stats needed for the shortcode -> just like views , clicks and bounce rate ... also give some advices about how to make it perform better  -->
-                                <!-- <button class="rm199_btn rm199_btn_info cursor-pointer d-flex align-items-center " title="<?php //_e('More Info and Stats', 'rm199'); 
-                                                                                                                                ?>" style="text-decoration: none;margin:auto;">
+                                <button class="rm199_btn rm199_btn_info cursor-pointer d-flex align-items-center " title="<?php _e('More Info and Stats', 'rm199'); ?>" style="text-decoration:none;margin: 0 10px;">
                                     <span style="text-decoration: none;" class="dashicons dashicons-chart-line "></span>
-                                </button> -->
+                                </button>
                                 <!-- todo : make the delete action -> ajaxed  -->
                                 <form method="post" class="d-flex" style="margin:auto;">
                                     <input type="hidden" name="rm199_shrotcode_id" value="<?php echo $row->id ?>">
