@@ -68,10 +68,10 @@ class Rm199TableRm199Shortcodes
                                     <span style="text-decoration: none;" class="dashicons dashicons-chart-line "></span>
                                 </button> -->
                                 <!-- todo : make the delete action -> ajaxed  -->
-                                <form action="<?php echo esc_url($_SERVER['REQUEST_URI']) . '&req_id=' . $row->id; ?>" method="post" class="d-flex" style="margin:auto;">
+                                <form method="post" class="d-flex" style="margin:auto;">
                                     <input type="hidden" name="rm199_shrotcode_id" value="<?php echo $row->id ?>">
 
-                                    <button type="submit" class="rm199_btn rm199_btn_danger cursor-pointer d-flex align-items-center " title="<?php _e('Delete', 'rm199'); ?>" style="text-decoration: none;margin:auto;" name="rm199_delete_shortcode">
+                                    <button onclick="delete_this_shortcode_handler(event , '<?php echo $row->code; ?>')" type="submit" class="rm199_btn rm199_btn_danger cursor-pointer d-flex align-items-center " title="<?php _e('Delete', 'rm199'); ?>" style="text-decoration: none;margin:auto;" name="rm199_delete_shortcode">
                                         <span style="text-decoration: none;" class="dashicons dashicons-trash "></span>
                                     </button>
                                 </form>
@@ -81,20 +81,20 @@ class Rm199TableRm199Shortcodes
                     }
                     ?>
                     <?php
-                    if (!current_user_can('manage_options')) {
-                        exit;
-                    }
+                    // if (!current_user_can('manage_options')) {
+                    //     exit;
+                    // }
 
-                    // delete  the shortcode from database 
-                    if (isset($_POST['rm199_delete_shortcode']) && current_user_can('manage_options')) {
-                        global $wpdb;
-                        $table_name = $wpdb->prefix . 'rm199_shortcodes';
-                        $wpdb->delete($table_name, array('id' => $_POST['rm199_shrotcode_id']));
-                        echo 'This ShortCode has been Deleted';
-                        // header(esc_url($_SERVER['REQUEST_URI']));
-                        // wp_redirect(esc_url($_SERVER['REQUEST_URI']));
-                        echo '<script>Location.reload()</script>';
-                    }
+                    // // delete  the shortcode from database 
+                    // if (isset($_POST['rm199_delete_shortcode']) && current_user_can('manage_options')) {
+                    //     global $wpdb;
+                    //     $table_name = $wpdb->prefix . 'rm199_shortcodes';
+                    //     $wpdb->delete($table_name, array('id' => $_POST['rm199_shrotcode_id']));
+                    //     echo 'This ShortCode has been Deleted';
+                    //     // header(esc_url($_SERVER['REQUEST_URI']));
+                    //     // wp_redirect(esc_url($_SERVER['REQUEST_URI']));
+                    //     echo '<script>Location.reload()</script>';
+                    // }
                     ?>
                 </tbody>
             </table>

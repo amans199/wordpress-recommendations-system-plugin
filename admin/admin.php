@@ -67,33 +67,16 @@ add_action('admin_enqueue_scripts', 'add_new_shortcode_handler');
 
 function add_new_shortcode_handler_callback()
 {
-
-    // Ensure we have the data we need to continue
-
-
-    // echo 'testing ';
     if (!isset($_POST) || empty($_POST) || !is_user_logged_in()) {
-
-        // If we don't - return custom error message and exit
         header('HTTP/1.1 400 Empty POST Values');
         echo 'Could Not Verify POST Values.';
         exit;
     }
-
-
     $user_id        = get_current_user_id();
-    // $rm199_keyword_um_val    = sanitize_text_field(wp_strip_all_tags($_POST['delete_keyword']));
-
-    // delete_user_meta($user_id, 'preferences', $rm199_keyword_um_val);
     if (!current_user_can('manage_options')) {
         exit;
     }
-
-    // insert the shortcode's options into database 
-    // if (isset($_POST['save_shortcode']) && current_user_can('manage_options')) {
-    // echo 'testing';
     global $wpdb;
-
     $rm199_shortcode_content = json_encode([
         "title" => $_POST['shortcode_content']['title'],
         "description" => $_POST['shortcode_content']['description'],
@@ -111,7 +94,6 @@ function add_new_shortcode_handler_callback()
     ]);
 
     $table_name = $wpdb->prefix . 'rm199_shortcodes';
-    // $edit_shortcode = isset($_GET['edit_shortcode']) ?  $_GET['edit_shortcode'] : false;
     $current_user = wp_get_current_user();
     if ($_POST['edit_mode_id']) {
         $wpdb->update(
@@ -137,12 +119,64 @@ function add_new_shortcode_handler_callback()
             )
         );
     }
-
-    // dashboard_content::redirect('www.google.com');
-    // header('Location: http://www.google.com/');
-    // }
-
     exit;
 }
 add_action('wp_ajax_nopriv_add_new_shortcode_cb', 'add_new_shortcode_handler_callback');
 add_action('wp_ajax_add_new_shortcode_cb', 'add_new_shortcode_handler_callback');
+
+
+
+
+// delete shortcode with AJAX 
+function rm199_delete_shortcode()
+{
+    $plugin_url  = plugins_url() . '/recommendations-master';
+    $ajax_url   = admin_url('admin-ajax.php');
+    wp_register_script(
+        'delete_shortcode_rm199',
+        "{$plugin_url}/admin/js/delete_shortcode_rm199.js",
+        array('jquery'),
+        '1.0',
+        true
+    );
+    wp_localize_script(
+        'delete_shortcode_rm199',
+        'rm199Obj',
+        array(
+            'ajax_url' => $ajax_url,
+            'security'  => wp_create_nonce('rm199'),
+            'siteurl'  => get_site_url(),
+            'user' => get_current_user_id()
+        )
+    );
+    wp_enqueue_script('delete_shortcode_rm199');
+}
+add_action('admin_enqueue_scripts', 'rm199_delete_shortcode');
+
+function delete_shortcode_rm199_callback()
+{
+    if (!isset($_POST) || empty($_POST) || !is_user_logged_in()) {
+        header('HTTP/1.1 400 Empty POST Values');
+        echo 'Could Not Verify POST Values.';
+        exit;
+    }
+
+    $user_id        = get_current_user_id();
+
+    if (!current_user_can('manage_options')) {
+        exit;
+    }
+
+    // delete  the shortcode from database 
+    if (isset($_POST['delete_shortcode']) && current_user_can('manage_options')) {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'rm199_shortcodes';
+        $wpdb->delete($table_name, array('code' => $_POST['delete_shortcode']));
+        echo 'This ShortCode has been Deleted';
+    }
+
+
+    exit;
+}
+add_action('wp_ajax_nopriv_delete_shortcode_rm199', 'delete_shortcode_rm199_callback');
+add_action('wp_ajax_delete_shortcode_rm199', 'delete_shortcode_rm199_callback');
