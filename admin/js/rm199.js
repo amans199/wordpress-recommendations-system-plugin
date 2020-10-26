@@ -144,7 +144,6 @@ function rm199_number_of_posts(value) {
 //   document.getElementById('rm199_so_tags').value = value
 // }
 
-// todo : template is not a function 
 function template(value) {
   document.getElementById('rm199_so_template').value = value
   if (value === 'minimal') {
@@ -198,6 +197,24 @@ function unlockThis(e) {
   })
   e.target.style.display = 'none';
   console.log("this" + e.target)
+}
+
+function add_to_types_list(e,id){
+var thisType=e.target,
+  thisTypeText=thisType.outerText,
+  input= document.getElementById(id)
+  postType= ','+thisTypeText
+
+  if(input.value === ''){
+    postType= thisTypeText
+  }
+
+  if(input.value.includes(thisTypeText)){
+    return;
+  }
+
+  input.value +=postType
+
 }
 
 // todo : don't allow user to enter directly on generate button if not submitted all info needed in form 

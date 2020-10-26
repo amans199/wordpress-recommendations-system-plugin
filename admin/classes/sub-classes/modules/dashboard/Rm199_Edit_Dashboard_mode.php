@@ -110,6 +110,15 @@ class Rm199_Edit_Dashboard_mode
             <div class="rm199_input rm199_input_more_post_types" <?php echo ($all_post_types != '' ?: 'style="display: none;"'); ?>>
                 <button class="rm199_input_more_post_types__close" onclick="togglePostTypesBox()">X</button>
                 <p id="rm199__more_post_types_input_info"> <?php _e('Add any Number of post types separated with commas', 'rm199') ?></p>
+                <div class="all_posttypes d-flex" style="gap:10px; margin-bottom: 10px;flex-wrap: wrap;">
+                    <?php
+                    $post_types = get_post_types(array('public' => true, '_builtin' => true), 'names', 'and');
+                    // remove attachment from the list
+                    unset($post_types['attachment']);
+                    foreach ($post_types  as $post_type) { ?>
+                        <a onclick="add_to_types_list(event,'rm199__more_post_types_input')" class="button"><?php echo  $post_type; ?></a>
+                    <?php } ?>
+                </div>
                 <input id="rm199__more_post_types_input" type="text" aria-describedby="rm199__more_post_types_input_info" placeholder="<?php _e('posts,products,materials', 'rm199') ?>" value="<?php echo ($all_post_types ?: ''); ?>">
             </div>
             <!-- end post type customizer  -->
@@ -150,6 +159,17 @@ class Rm199_Edit_Dashboard_mode
             <div class="rm199_input rm199_input_more_categories" <?php echo ($all_categories != '' ?: 'style="display: none;"'); ?>>
                 <button class="rm199_input_more_categories__close" onclick="toggleCategoryBox()">X</button>
                 <p id="rm199__more_categories_input_info"> <?php _e('Add any Number of categories separated with commas', 'rm199') ?></p>
+                <div class="all_categories d-flex" style="gap:10px; margin-bottom: 10px;flex-wrap: wrap;">
+                    <?php
+                    $get_categories_args = array(
+                        'hide_empty'      => true,
+                    );
+                    $all_categories_list = get_categories($get_categories_args);
+                    // remove attachment from the list
+                    foreach ($all_categories_list  as $category) { ?>
+                        <a onclick="add_to_types_list(event,'rm199__more_categories_input')" class="button"><?php echo  $category->name; ?></a>
+                    <?php } ?>
+                </div>
                 <input id="rm199__more_categories_input" type="text" aria-describedby="rm199__more_categories_input_info" placeholder="<?php _e('books,pants,shirts', 'rm199') ?>" value="<?php echo ($all_categories ?: ''); ?>">
             </div>
             <!-- end category customizer  -->
@@ -188,6 +208,14 @@ class Rm199_Edit_Dashboard_mode
             <div class="rm199_input rm199_input_more_tags" <?php echo ($all_tags != '' ?: 'style="display: none;"'); ?>>
                 <button class="rm199_input_more_tags__close" onclick="toggleTagsBox()">X</button>
                 <p id="rm199__more_tags_input_info"> <?php _e('Add any Number of tags separated with commas', 'rm199') ?></p>
+                <div class="all_categories d-flex" style="gap:10px; margin-bottom: 10px;flex-wrap: wrap;">
+                    <?php
+                    $all_tags_list = get_tags();
+                    // remove attachment from the list
+                    foreach ($all_tags_list  as $tag) { ?>
+                        <a onclick="add_to_types_list(event,'rm199__more_tags_input')" class="button"><?php echo  $tag->name; ?></a>
+                    <?php } ?>
+                </div>
                 <input id="rm199__more_tags_input" type="text" aria-describedby="rm199__more_tags_input_info" placeholder="<?php _e('football,english,europe', 'rm199') ?>" value="<?php echo ($all_tags ?: ''); ?>">
             </div>
             <!-- end tags customizer  -->
@@ -198,7 +226,7 @@ class Rm199_Edit_Dashboard_mode
 
             <!-- choose template for recommendations -->
             <h2><?php _e('Templates ', 'rm199') ?></h2>
-            <form class="rm199_input--col">
+            <div class="rm199_input--col">
                 <div class="mb-4">
                     <input type="radio" id="minimal" name="template" value="minimal" onclick="template(this.value)" <?php echo ($template  != 'structured' ?  'checked' : ''); ?>>
                     <label for="minimal"><?php _e('Minimal', 'rm199') ?></label><br>
@@ -209,7 +237,7 @@ class Rm199_Edit_Dashboard_mode
                     <label for="structured"><?php _e('Structured', 'rm199') ?></label><br>
                     <label for="structured"><img src="https://via.placeholder.com/500x150" alt="structured-rm199" class="mt-2"></label>
                 </div>
-            </form>
+            </div>
             <hr style="margin-bottom: 10px;">
             <div class="">
                 <h2 class="mr-2"><span class="dashicons dashicons-admin-customizer mr-2"></span><?php _e('Styles', 'rm199') ?></h2>
@@ -238,6 +266,7 @@ class Rm199_Edit_Dashboard_mode
                     <label for="choose_text_color" style="min-width: 220px;"><?php _e('Add Custom CSS', 'rm199') ?></label><br><br>
                     <textarea name="code-custom-css" class="w-100" id="code_custom_css" rows="10" placeholder="<?php _e('.rm199_post__link {color:#000;}', 'rm199') ?>"><?php echo $custom_styles; ?></textarea>
                 </div>
+                <p>or <a class="cursor-pointer" target="_blank" href="https://www.linkedin.com/in/amans199/">contact me</a> to help you customize the best recommendations' templates for your website.</p>
             </div>
         </div>
 

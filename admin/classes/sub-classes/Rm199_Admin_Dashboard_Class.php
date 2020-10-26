@@ -53,6 +53,10 @@ class Rm199_Admin_Dashboard_Class
                         <h3 id="rm199__overview__title" class="m-0"><?php _e('Recommended for you:', 'rm199') ?></h3>
                         <!-- todo : make the template interact with the custom css entered be the user  -->
                         <div class="rm199__post rm199__post--overview d-flex align-items-center" style="justify-content: space-around;margin: 40px 0;">
+
+                            <!-- todo : add a real examples from the website with realtime update whenever eny argument change  -->
+
+                            <!-- structured template  -->
                             <div id="rm199__structured__template" class="text-center" <?php echo ($template == 'structured' ? 'style="max-width: 150px;"' : 'style="display: none;"'); ?>>
                                 <div id="rm199__post__img" style="margin-bottom: 2px;">
                                     <img src="https://via.placeholder.com/150x150" alt="amas199 post image" width="150" height="150" />
@@ -60,6 +64,8 @@ class Rm199_Admin_Dashboard_Class
                                 <a id="rm199__post__title" rel="noopener noreferer" href="#" style="margin-top: 2px;"><?php _e('Example Post Title', 'rm199') ?></a>
                                 <p id="rm199__post__excerpt" style="margin-top: 2px;"><?php _e('Lorem ipsum dolor sit amet consectetur', 'rm199') ?>...</p>
                             </div>
+
+                            <!-- minimal template  -->
                             <div id="rm199__minimal__template" class="" <?php echo ($template != 'structured' ?: 'style="display: none;max-width: 150px;"'); ?>>
                                 <a id="rm199__post__title" rel="noopener noreferer" class="mr-2" href="#"><?php _e('Example Post Title', 'rm199') ?></a>
                             </div>
