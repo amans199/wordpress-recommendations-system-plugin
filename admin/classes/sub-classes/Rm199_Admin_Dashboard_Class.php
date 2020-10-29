@@ -50,31 +50,60 @@ class Rm199_Admin_Dashboard_Class
                 <div class="generator_box">
                     <h2 class="generator_box__header"><span><?php _e('Generate ShortCodes', 'rm199') ?></span></h2>
                     <div class="generator_box__content">
+                        <!-- todo : make the h3 show the real title  -->
                         <h3 id="rm199__overview__title" class="m-0"><?php _e('Recommended for you:', 'rm199') ?></h3>
-                        <!-- todo : make the template interact with the custom css entered be the user  -->
+                        <!-- todo : make the template interact with the custom css entered by the user  -->
                         <div class="rm199__post rm199__post--overview d-flex align-items-center" style="justify-content: space-around;margin: 40px 0;">
 
                             <!-- todo : add a real examples from the website with realtime update whenever eny argument change  -->
 
+                            <?php
+                            // if ($template === 'structured') {
+                            //     require('modules/templates/Structured_rm199.php');
+                            //     $dashboard_edit_shortcode = new Rm199_Edit_Dashboard_mode();
+                            //     $dashboard_edit_shortcode->dashboard_edit_mode($results, $shortcode_decoded);
+                            // } else {
+                            //     require('modules/templates/Minimal_rm199.php');
+                            //     $Rm199_Minimal_Template = new Rm199_Minimal_Template();
+                            //     $Rm199_Minimal_Template->minimal_template_creator($results, $shortcode_decoded);
+                            // }
+
+                            ?>
+
                             <!-- structured template  -->
-                            <div id="rm199__structured__template" class="text-center" <?php echo ($template == 'structured' ? 'style="max-width: 150px;"' : 'style="display: none;"'); ?>>
-                                <div id="rm199__post__img" style="margin-bottom: 2px;">
-                                    <img src="https://via.placeholder.com/150x150" alt="amas199 post image" width="150" height="150" />
-                                </div>
-                                <a id="rm199__post__title" rel="noopener noreferer" href="#" style="margin-top: 2px;"><?php _e('Example Post Title', 'rm199') ?></a>
-                                <p id="rm199__post__excerpt" style="margin-top: 2px;"><?php _e('Lorem ipsum dolor sit amet consectetur', 'rm199') ?>...</p>
+                            <div id="rm199__structured__template" class="text-center" <?php echo ($template == 'structured' ? '' : 'style="display: none;"'); ?>>
+                                <?php
+                                require('modules/templates/Structured_rm199.php');
+                                $Rm199_Structured_Template = new Rm199_Structured_Template();
+                                $Rm199_Structured_Template->structured_template_creator();
+                                ?>
                             </div>
 
                             <!-- minimal template  -->
-                            <div id="rm199__minimal__template" class="" <?php echo ($template != 'structured' ?: 'style="display: none;max-width: 150px;"'); ?>>
-                                <a id="rm199__post__title" rel="noopener noreferer" class="mr-2" href="#"><?php _e('Example Post Title', 'rm199') ?></a>
+                            <div id="rm199__minimal__template" class="" <?php echo ($template != 'structured' ?: 'style="display: none;"'); ?>>
+                                <?php
+                                require('modules/templates/Minimal_rm199.php');
+                                $Rm199_Minimal_Template = new Rm199_Minimal_Template();
+                                $Rm199_Minimal_Template->minimal_template_creator();
+                                ?>
                             </div>
+
+
+
+
                             <div class="d-flex align-items-center text-left">
                                 <span class="dashicons dashicons-no-alt" style="font-size: 45px;display: inline-table;"></span>
                                 <h2 id="rm199__overview__number" style="font-size: 45px;display: inline-table;"><?php echo $number_of_items; ?></h2>
                             </div>
                         </div>
                     </div>
+
+
+
+
+
+
+
                     <div class="generator_box__btn">
                         <a href="#" class="generator_box__btn_cancel" onclick="location.reload()"><?php _e('Clear page', 'rm199') ?></a>
 

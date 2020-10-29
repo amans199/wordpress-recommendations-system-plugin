@@ -12,25 +12,7 @@ class Rm199_Structured_Template
         // $title = $post->post_title;
         // $excerpt = $post->post_excerpt;
 ?>
-        <!-- <?php //echo get_the_post_thumbnail('thumbnail'); 
-                ?>
-        <a href="<?php // echo get_the_permalink(); 
-                    ?>" class="rm199_post__link">
-            <?php // echo get_the_title(); 
-            ?>
-        </a>
-        <p><?php // echo get_the_excerpt(); 
-            ?></p> -->
-        <?php
 
-        $categories = get_the_category();
-        // if (!empty($categories)) {
-        //     echo '<a href="' . esc_url(get_category_link($categories[0]->term_id)) . '">' . esc_html($categories[0]->name) . '</a>';
-        // }
-        // foreach ($categories as $category) {
-        //     echo $category->name;
-        // }
-        ?>
         <article class="article">
 
             <?php
