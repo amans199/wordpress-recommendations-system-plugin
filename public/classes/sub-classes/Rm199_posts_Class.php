@@ -30,7 +30,7 @@ class Rm199AllPosts
 
             // if there is no user preferences
             if (!is_user_logged_in() || !$parsed_options['can_user_select_keywords']) {
-                echo 'user not logger in ::: ';
+                // echo 'user not logged in ::: ';
                 include_once('posts-cases/NoUserPreferences_rm199_class.php');
                 $posts_when_user_not_loggedin = new NoUserPreferencesRm199();
                 $posts_when_user_not_loggedin->showPosts($attr, $parsed_options, $custom_styles);

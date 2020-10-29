@@ -10,11 +10,14 @@ class NoUserPreferencesRm199
     function __construct()
     {
         include_once('SetPostViewsCounter_Rm199_class.php');
+        include_once('templates/Minimal_rm199.php');
+        include_once('templates/Structured_rm199.php');
     }
 
     public static function showPosts($attr, $parsed_options, $custom_styles)
     {
-
+        $Rm199_Minimal_Template = new Rm199_Minimal_Template();
+        $Rm199_Structured_Template = new Rm199_Structured_Template();
 
         $args = array(
             'posts_per_page' => ($parsed_options['number_of_items'] ? $parsed_options['number_of_items'] : 3),
@@ -41,30 +44,37 @@ class NoUserPreferencesRm199
                 }
                 ?>
             </style>
-            <?php
+            <div class="all_recommendations">
+                <?php
 
-            while ($query->have_posts()) {
-                $query->the_post();
+                while ($query->have_posts()) {
+                    $query->the_post();
 
-                // ===================== post's views counter 
-                $set_post_views_counter = new SetPostViewsCounter_Rm199_class();
-                $set_post_views_counter->setPostViews(get_the_ID());
-                // Remove issues with prefetching adding extra views
-                remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
-                // ===================== post's views counter 
+                    // ===================== post's views counter 
+                    $set_post_views_counter = new SetPostViewsCounter_Rm199_class();
+                    $set_post_views_counter->setPostViews(get_the_ID());
+                    // Remove issues with prefetching adding extra views
+                    remove_action('wp_head', 'adjacent_posts_rel_link_wp_head', 10, 0);
+                    // ===================== post's views counter 
 
-                ob_start(); ?>
+                    // todo : ob_start();
+                ?>
 
-                <a href="<?php the_permalink(); ?>" class="rm199_front__post__link"><?php the_title(); ?></a>
-                <?php echo get_the_post_thumbnail('thumbnail'); ?>
-                <!-- /* todo :  here add code what you need to display like above title, image and more */ -->
+                    <?php
+                    if ($parsed_options['template'] === 'structured') {
+                        $Rm199_Structured_Template->structured_template_creator(get_the_ID());
+                    } else {
+                        $Rm199_Minimal_Template->minimal_template_creator(get_the_ID());
+                    }
+                    ?>
 
-<?php
-            } // end while
+    <?php
+                } // end while
 
-            wp_reset_postdata();
-            ob_clean();
-            echo '</div>';
+                wp_reset_postdata();
+                // todo : ob_clean();
+                echo '</div>';
+                echo '</div>';
+            }
         }
     }
-}
