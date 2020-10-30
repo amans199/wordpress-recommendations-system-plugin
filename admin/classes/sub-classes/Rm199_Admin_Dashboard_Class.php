@@ -6,8 +6,8 @@ class Rm199_Admin_Dashboard_Class
 {
     public static function dashboard_content()
     {
+        $plugin_dir = ABSPATH . 'wp-content/plugins/recommendations-master/assets/templates/';
         $edit_shortcode = isset($_GET['edit_shortcode']) ?  $_GET['edit_shortcode'] : false;
-
         // connect to db 
         global $wpdb;
         $table_name = $wpdb->prefix . 'rm199_shortcodes';
@@ -57,34 +57,25 @@ class Rm199_Admin_Dashboard_Class
 
                             <!-- todo : add a real examples from the website with realtime update whenever eny argument change  -->
 
-                            <?php
-                            // if ($template === 'structured') {
-                            //     require('modules/templates/Structured_rm199.php');
-                            //     $dashboard_edit_shortcode = new Rm199_Edit_Dashboard_mode();
-                            //     $dashboard_edit_shortcode->dashboard_edit_mode($results, $shortcode_decoded);
-                            // } else {
-                            //     require('modules/templates/Minimal_rm199.php');
-                            //     $Rm199_Minimal_Template = new Rm199_Minimal_Template();
-                            //     $Rm199_Minimal_Template->minimal_template_creator($results, $shortcode_decoded);
-                            // }
-
-                            ?>
-
                             <!-- structured template  -->
                             <div id="rm199__structured__template" class="text-center" <?php echo ($template == 'structured' ? '' : 'style="display: none;"'); ?>>
                                 <?php
-                                require('modules/templates/Structured_rm199.php');
+                                // require('modules/templates/Structured_rm199.php');
+                                include_once($plugin_dir . 'Structured_rm199.php');
                                 $Rm199_Structured_Template = new Rm199_Structured_Template();
-                                $Rm199_Structured_Template->structured_template_creator();
+                                $Rm199_Structured_Template->structured_template_creator($rm199_mode = 'admin');
+
                                 ?>
                             </div>
 
                             <!-- minimal template  -->
-                            <div id="rm199__minimal__template" class="" <?php echo ($template != 'structured' ?: 'style="display: none;"'); ?>>
+                            <div id="rm199__minimal__template" class="rm199__minimal__template" <?php echo ($template !== 'structured' ? '' : 'style="display: none;"'); ?>>
                                 <?php
-                                require('modules/templates/Minimal_rm199.php');
+                                // require('modules/templates/Minimal_rm199.php');
+                                include_once($plugin_dir . 'Minimal_rm199.php');
+
                                 $Rm199_Minimal_Template = new Rm199_Minimal_Template();
-                                $Rm199_Minimal_Template->minimal_template_creator();
+                                $Rm199_Minimal_Template->minimal_template_creator($rm199_mode = 'admin');
                                 ?>
                             </div>
 

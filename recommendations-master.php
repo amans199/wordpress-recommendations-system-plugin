@@ -22,6 +22,7 @@ if (!class_exists('rm199')) :
         {
             $this->initializeHooks();
             $this->setupDatabase();
+            add_action('wp_enqueue_scripts', 'rm199_public_scripts');
         }
         public static function getInstance()
         {

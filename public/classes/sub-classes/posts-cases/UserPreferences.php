@@ -9,8 +9,9 @@ class UserPreferencesRm199
     function __construct()
     {
         include_once('SetPostViewsCounter_Rm199_class.php');
-        include_once('templates/Minimal_rm199.php');
-        include_once('templates/Structured_rm199.php');
+        $plugin_dir = ABSPATH . 'wp-content/plugins/recommendations-master/assets/templates/';
+        include_once($plugin_dir . 'Minimal_rm199.php');
+        include_once($plugin_dir . 'Structured_rm199.php');
     }
 
     public static function showPosts($attr, $parsed_options, $custom_styles)
@@ -110,10 +111,12 @@ class UserPreferencesRm199
 
                             <!-- start testing - -->
                             <?php
+
+
                             if ($parsed_options['template'] === 'structured') {
-                                $Rm199_Structured_Template->structured_template_creator(get_the_ID());
+                                $Rm199_Structured_Template->structured_template_creator($rm199_mode = "public");
                             } else {
-                                $Rm199_Minimal_Template->minimal_template_creator(get_the_ID());
+                                $Rm199_Minimal_Template->minimal_template_creator($rm199_mode = "public");
                             }
                             ?>
 
@@ -168,9 +171,9 @@ class UserPreferencesRm199
                     ?>
                         <?php
                         if ($parsed_options['template'] === 'structured') {
-                            $Rm199_Structured_Template->structured_template_creator(get_the_ID());
+                            $Rm199_Structured_Template->structured_template_creator($rm199_mode = "public");
                         } else {
-                            $Rm199_Minimal_Template->minimal_template_creator(get_the_ID());
+                            $Rm199_Minimal_Template->minimal_template_creator($rm199_mode = "public");
                         }
                         ?>
         <?php

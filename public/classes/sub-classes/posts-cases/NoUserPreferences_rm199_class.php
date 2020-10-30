@@ -62,9 +62,9 @@ class NoUserPreferencesRm199
 
                     <?php
                     if ($parsed_options['template'] === 'structured') {
-                        $Rm199_Structured_Template->structured_template_creator(get_the_ID());
+                        $Rm199_Structured_Template->structured_template_creator($rm199_mode = "public");
                     } else {
-                        $Rm199_Minimal_Template->minimal_template_creator(get_the_ID());
+                        $Rm199_Minimal_Template->minimal_template_creator($rm199_mode = "public");
                     }
                     ?>
 

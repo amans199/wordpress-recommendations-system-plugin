@@ -40,6 +40,21 @@ class Rm199_New_Dashboard_mode
                 <label for="show_only_for_loggedin_users"><?php _e('Show Only For Logged In Users', 'rm199') ?></label>
             </div>
 
+            <!-- todo :: show in large screen -->
+            <!-- <div class="rm199_input--row">
+                <input type="checkbox" id="show_only_for_loggedin_users">
+                <label for="show_in_large_screen"><?php // _e('Show in Large Screen', 'rm199') 
+                                                    ?></label>
+            </div> -->
+
+            <!-- todo :: show in mobile -->
+            <!-- <div class="rm199_input--row">
+                <input type="checkbox" id="show_only_for_loggedin_users">
+                <label for="show_in_mobile"><?php // _e('Show in Mobile', 'rm199') 
+                                            ?></label>
+            </div> -->
+
+
             <!-- number of posts to display -->
             <div class="rm199_input--row">
                 <label for="number_of_posts_2_show" class="mx-2"><?php _e('Number of Items', 'rm199') ?></label>
