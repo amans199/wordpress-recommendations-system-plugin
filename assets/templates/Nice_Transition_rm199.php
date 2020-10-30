@@ -13,7 +13,16 @@ class Rm199_Transitioned_Template
             $title =  esc_html(get_the_title());
         } else {
             $post_url =   "#";
-            $title =  _e('Example Post Title', 'rm199');
+            $title =  __('Example Post Title', 'rm199');
+        }
+
+        if (str_word_count($title) > 5) {
+            $title_words_arr = explode(' ', trim($title));
+            $first_5_words =  array_slice($title_words_arr, 0, 5, true);
+            array_push($first_5_words, "...");
+            $first_words_of_title = implode(" ", $first_5_words);
+        } else {
+            $first_words_of_title = $title;
         }
 
 ?>
@@ -22,10 +31,10 @@ class Rm199_Transitioned_Template
             <li class="articles__article" style="--animation-order:1">
                 <a class="articles__link" href="<?php echo $post_url; ?>">
                     <div class="articles__content articles__content--lhs">
-                        <h2 class="articles__title"><?php echo  $title; ?></h2>
+                        <h2 class="articles__title"><?php echo  $first_words_of_title; ?></h2>
                     </div>
                     <div class="articles__content articles__content--rhs" aria-hidden="true">
-                        <h2 class="articles__title"><?php echo  $title; ?></h2>
+                        <h2 class="articles__title"><?php echo  $first_words_of_title; ?></h2>
                     </div>
                 </a>
             </li>

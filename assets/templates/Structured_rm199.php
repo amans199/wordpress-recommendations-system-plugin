@@ -29,6 +29,15 @@ class Rm199_Structured_Template
             $excerpt =  __('Lorem ipsum dolor sit amet consectetur', 'rm199');
             $categories_output = __('Example-Category', 'rm199');
         }
+
+        if (str_word_count($title) > 5) {
+            $title_words_arr = explode(' ', trim($title));
+            $first_5_words =  array_slice($title_words_arr, 0, 5, true);
+            array_push($first_5_words, "...");
+            $first_words_of_title = implode(" ", $first_5_words);
+        } else {
+            $first_words_of_title = $title;
+        }
 ?>
 
         <article class="article">
@@ -38,13 +47,13 @@ class Rm199_Structured_Template
             if (has_post_thumbnail()) {
                 $image = get_the_post_thumbnail_url();
             } else {
-                $image =  plugins_url() . '/recommendations-master/assets/images/no_image_available.svg.png';
+                $image =  plugins_url() . '/recommendations-master/assets/images/example_img.jpg';
             }
 
-            echo '<a href="' . $post_url . '" title="' .  $title  . '">';
+            echo '<a href="' . $post_url . '" title="' .  $first_words_of_title  . '">';
             ?>
             <figure>
-                <img src="<?php echo $image; ?>" alt="<?php echo $title; ?>">
+                <img src="<?php echo $image; ?>" alt="<?php echo $title; ?>" <?php echo ($rm199_mode === 'admin' ? 'style="object-fit: contain;"' : ''); ?>>
                 <figcaption>
                     <h3 class="article__category">
                         <?php echo $categories_output; ?>
@@ -57,7 +66,7 @@ class Rm199_Structured_Template
 
 
             <a href="<?php echo $post_url; ?>" class="text-decoration-none">
-                <h2 class="article__title"><?php echo $title; ?></h2>
+                <h2 class="article__title"><?php echo $first_words_of_title; ?></h2>
                 <p class="article__excerpt"><?php echo $excerpt; ?></p>
             </a>
         </article>

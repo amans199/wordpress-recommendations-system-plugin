@@ -144,14 +144,34 @@ function rm199_number_of_posts(value) {
 //   document.getElementById('rm199_so_tags').value = value
 // }
 
+// function template(value) {
+//   document.getElementById('rm199_so_template').value = value
+//   if (value === 'minimal') {
+//     document.getElementById("rm199__minimal__template").style.display = "block"
+//     document.getElementById("rm199__structured__template").style.display = "none"
+//   } else {
+//     document.getElementById("rm199__structured__template").style.display = "block"
+//     document.getElementById("rm199__minimal__template").style.display = "none"
+//   }
+// }
+
+
+
+
 function template(value) {
   document.getElementById('rm199_so_template').value = value
   if (value === 'minimal') {
     document.getElementById("rm199__minimal__template").style.display = "block"
+    document.getElementById("rm199__transitioned__template").style.display = "none"
     document.getElementById("rm199__structured__template").style.display = "none"
-  } else {
-    document.getElementById("rm199__structured__template").style.display = "block"
+  } else if(value === 'transitioned'){
     document.getElementById("rm199__minimal__template").style.display = "none"
+    document.getElementById("rm199__transitioned__template").style.display = "block"
+    document.getElementById("rm199__structured__template").style.display = "none"
+  }else{
+    document.getElementById("rm199__minimal__template").style.display = "none"
+    document.getElementById("rm199__transitioned__template").style.display = "none"
+    document.getElementById("rm199__structured__template").style.display = "block"
   }
 }
 

@@ -9,9 +9,10 @@ class UserPreferencesRm199
     function __construct()
     {
         include_once('SetPostViewsCounter_Rm199_class.php');
-        $plugin_dir = ABSPATH . 'wp-content/plugins/recommendations-master/assets/templates/';
-        include_once($plugin_dir . 'Minimal_rm199.php');
-        include_once($plugin_dir . 'Structured_rm199.php');
+        $templates_dir = ABSPATH . 'wp-content/plugins/recommendations-master/assets/templates/';
+        include_once($templates_dir . 'Minimal_rm199.php');
+        include_once($templates_dir . 'Nice_Transition_rm199.php');
+        include_once($templates_dir . 'Structured_rm199.php');
     }
 
     public static function showPosts($attr, $parsed_options, $custom_styles)
@@ -30,6 +31,7 @@ class UserPreferencesRm199
 
         // get template
         $Rm199_Minimal_Template = new Rm199_Minimal_Template();
+        $Rm199_Transitioned_Template = new  Rm199_Transitioned_Template();
         $Rm199_Structured_Template = new Rm199_Structured_Template();
 
         foreach ($current_user_preferences as $preference) {
@@ -115,6 +117,8 @@ class UserPreferencesRm199
 
                             if ($parsed_options['template'] === 'structured') {
                                 $Rm199_Structured_Template->structured_template_creator($rm199_mode = "public");
+                            } elseif ($parsed_options['template'] === 'transitioned') {
+                                $Rm199_Transitioned_Template->transitioned_template_creator($rm199_mode = "public");
                             } else {
                                 $Rm199_Minimal_Template->minimal_template_creator($rm199_mode = "public");
                             }
@@ -172,6 +176,8 @@ class UserPreferencesRm199
                         <?php
                         if ($parsed_options['template'] === 'structured') {
                             $Rm199_Structured_Template->structured_template_creator($rm199_mode = "public");
+                        } elseif ($parsed_options['template'] === 'transitioned') {
+                            $Rm199_Transitioned_Template->transitioned_template_creator($rm199_mode = "public");
                         } else {
                             $Rm199_Minimal_Template->minimal_template_creator($rm199_mode = "public");
                         }

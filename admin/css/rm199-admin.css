@@ -465,3 +465,8 @@ a.generator_box__content--href {
 .rm199__minimal__template{
     font-size: 16px;
 }
+
+
+.templates_dashboard img{
+    max-width: 300px;
+}

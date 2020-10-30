@@ -58,7 +58,7 @@ class Rm199_Admin_Dashboard_Class
                             <!-- todo : add a real examples from the website with realtime update whenever eny argument change  -->
 
                             <!-- structured template  -->
-                            <div id="rm199__structured__template" class="text-center" <?php echo ($template == 'structured' ? '' : 'style="display: none;"'); ?>>
+                            <div id="rm199__structured__template" class="text-center" <?php echo ($template === 'structured' ? '' : 'style="display: none;"'); ?>>
                                 <?php
                                 // require('modules/templates/Structured_rm199.php');
                                 include_once($plugin_dir . 'Structured_rm199.php');
@@ -69,9 +69,8 @@ class Rm199_Admin_Dashboard_Class
                             </div>
 
                             <!-- minimal template  -->
-                            <div id="rm199__minimal__template" class="rm199__minimal__template" <?php echo ($template !== 'structured' ? '' : 'style="display: none;"'); ?>>
+                            <div id="rm199__minimal__template" class="rm199__minimal__template" <?php echo ($template === 'minimal' ? '' : 'style="display: none;"'); ?>>
                                 <?php
-                                // require('modules/templates/Minimal_rm199.php');
                                 include_once($plugin_dir . 'Minimal_rm199.php');
 
                                 $Rm199_Minimal_Template = new Rm199_Minimal_Template();
@@ -79,6 +78,14 @@ class Rm199_Admin_Dashboard_Class
                                 ?>
                             </div>
 
+                            <!-- transitioned template  -->
+                            <div id="rm199__transitioned__template" class="rm199__transitioned__template" <?php echo ($template === 'transitioned' ? '' : 'style="display: none;"'); ?>>
+                                <?php
+                                include_once($plugin_dir . 'Nice_Transition_rm199.php');
+                                $Rm199_Transitioned_Template = new Rm199_Transitioned_Template();
+                                $Rm199_Transitioned_Template->transitioned_template_creator($rm199_mode = 'admin');
+                                ?>
+                            </div>
 
 
 

@@ -11,12 +11,14 @@ class NoUserPreferencesRm199
     {
         include_once('SetPostViewsCounter_Rm199_class.php');
         include_once('templates/Minimal_rm199.php');
+        include_once($templates_dir . 'Nice_Transition_rm199.php');
         include_once('templates/Structured_rm199.php');
     }
 
     public static function showPosts($attr, $parsed_options, $custom_styles)
     {
         $Rm199_Minimal_Template = new Rm199_Minimal_Template();
+        $Rm199_Transitioned_Template = new  Rm199_Transitioned_Template();
         $Rm199_Structured_Template = new Rm199_Structured_Template();
 
         $args = array(
@@ -63,6 +65,8 @@ class NoUserPreferencesRm199
                     <?php
                     if ($parsed_options['template'] === 'structured') {
                         $Rm199_Structured_Template->structured_template_creator($rm199_mode = "public");
+                    } elseif ($parsed_options['template'] === 'transitioned') {
+                        $Rm199_Transitioned_Template->transitioned_template_creator($rm199_mode = "public");
                     } else {
                         $Rm199_Minimal_Template->minimal_template_creator($rm199_mode = "public");
                     }

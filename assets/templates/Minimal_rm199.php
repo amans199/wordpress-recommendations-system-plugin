@@ -16,9 +16,17 @@ class Rm199_Minimal_Template
             $title =  __('Example Post Title', 'rm199');
         }
 
+        if (str_word_count($title) > 5) {
+            $title_words_arr = explode(' ', trim($title));
+            $first_5_words =  array_slice($title_words_arr, 0, 5, true);
+            array_push($first_5_words, "...");
+            $first_words_of_title = implode(" ", $first_5_words);
+        } else {
+            $first_words_of_title = $title;
+        }
 ?>
         <a href="<?php echo $post_url;  ?>" class="rm199_post__link effect1 text-decoration-none mr-1 my-1">
-            <?php echo $title; ?>
+            <?php echo $first_words_of_title; ?>
         </a>
 <?php
     }

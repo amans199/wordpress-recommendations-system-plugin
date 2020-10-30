@@ -57,6 +57,9 @@
     margin-bottom: 10px;
 }
 
+.w-100{
+    width:100%;
+}
 .cursor-pointer {
     cursor: pointer;
 }
@@ -167,6 +170,7 @@ a.rm199_post__link.effect1 {
     max-height: 200px;
     width: 100%;
     object-fit: cover;
+    height: 200px;
 }
 
     .article__category {
@@ -211,14 +215,16 @@ a.rm199_post__link.effect1 {
 /*//////////////////////////////////////////////////////////////////////////////////////////////////// */
   /* template 3 :: nice transitioned  */
   .articles {
-    margin: calc(var(--base-grid)*2) auto calc(var(--base-grid)*5);
+    margin: calc(var(--base-grid)*2) auto calc(var(--base-grid)*2);
     display: grid;
     grid-row-gap: calc(var(--base-grid)*8);
     grid-column-gap: calc(var(--base-grid)*6);
     grid-template-columns: repeat(auto-fit,minmax(calc(var(--base-grid)*35),1fr));
     justify-items: center;
   }
-  
+  .articles h1::before , .articles h2::before {
+      display: none;
+  }
   .articles__article {
     cursor: pointer;
     display: block;
@@ -245,6 +251,7 @@ a.rm199_post__link.effect1 {
   .articles__article:before {
     width: calc(var(--base-grid)*35);
     height: calc(var(--base-grid)*35);
+    max-height: 50px;
   }
   
   .articles__link {
@@ -278,10 +285,13 @@ a.rm199_post__link.effect1 {
     right: 0;
     bottom: 0;
     left: 0;
-    padding: calc(var(--base-grid)*2);
+    padding: calc(var(--base-grid)*1);
     display: flex;
     flex-direction: column;
     border: 2px solid var(--colour-background);
+    align-items: center;
+    justify-content: center;
+    /* justify-content: flex-start; */
   }
   
   .articles__content--lhs {
@@ -300,6 +310,7 @@ a.rm199_post__link.effect1 {
     line-height: 1.125;
     font-weight: 500;
     letter-spacing: -.02em;
+    margin: 0;
   }
   
   .articles__footer {

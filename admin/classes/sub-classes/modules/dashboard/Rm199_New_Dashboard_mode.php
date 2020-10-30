@@ -182,21 +182,28 @@ class Rm199_New_Dashboard_mode
 
 
             <hr style="margin-bottom: 20px;">
-
+            <?php
+            $image_dir = WP_PLUGIN_URL  . '/recommendations-master/assets/images/templates/';
+            ?>
             <!-- choose template for recommendations -->
             <h2><?php _e('Templates ', 'rm199') ?></h2>
-            <div class="rm199_input--col">
+            <div class="rm199_input--col templates_dashboard">
                 <div class="mb-4">
                     <input type="radio" id="minimal" name="template" value="minimal" onclick="template(this.value)">
                     <label for="minimal"><?php _e('Minimal', 'rm199') ?></label><br>
-                    <label for="minimal"><img src="https://via.placeholder.com/500x150" alt="minimal-rm199" class="mt-2"></label>
+                    <label for="minimal"><img src="<?php echo $image_dir . 'minimal.PNG'; ?>" alt="minimal-rm199" class="mt-2 w-100"></label>
+                </div>
+                <div class="mb-4">
+                    <input type="radio" id="transitioned" name="template" value="transitioned" onclick="template(this.value)">
+                    <label for="transitioned"><?php _e('Transitioned', 'rm199') ?></label><br>
+                    <label for="transitioned"><img src="<?php echo $image_dir . 'transitioned.PNG'; ?>" alt="transitioned-rm199" class="mt-2 w-100"></label>
                 </div>
                 <div class="mb-4">
                     <input type="radio" id="structured" name="template" value="structured" onclick="template(this.value)">
                     <label for="structured"><?php _e('Structured', 'rm199') ?></label><br>
-                    <label for="structured"><img src="https://via.placeholder.com/500x150" alt="structured-rm199" class="mt-2"></label>
+                    <label for="structured"><img src="<?php echo $image_dir . 'structured.PNG'; ?>" alt="structured-rm199" class="mt-2 w-100"></label>
                 </div>
-
+                <!-- transitioned -->
                 <!--a text-decoration: underline; class="cursor-pointer"><?php //_e('Or Customize your own template', 'rm199') 
                                                                             ?></a> -->
             </div>
