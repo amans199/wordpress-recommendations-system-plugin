@@ -23,6 +23,7 @@ if (!class_exists('rm199')) :
             $this->initializeHooks();
             $this->setupDatabase();
             add_action('wp_enqueue_scripts', 'rm199_public_scripts');
+            define('RM199_PATH', plugin_dir_path(__FILE__));
         }
         public static function getInstance()
         {

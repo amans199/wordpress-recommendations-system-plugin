@@ -9,10 +9,9 @@ class UserPreferencesRm199
     function __construct()
     {
         include_once('SetPostViewsCounter_Rm199_class.php');
-        $templates_dir = ABSPATH . 'wp-content/plugins/recommendations-master/assets/templates/';
-        include_once($templates_dir . 'Minimal_rm199.php');
-        include_once($templates_dir . 'Nice_Transition_rm199.php');
-        include_once($templates_dir . 'Structured_rm199.php');
+        foreach (glob(RM199_PATH . "assets/templates/*.php") as $file) {
+            include_once $file;
+        }
     }
 
     public static function showPosts($attr, $parsed_options, $custom_styles)

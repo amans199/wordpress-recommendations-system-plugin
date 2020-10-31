@@ -10,9 +10,9 @@ class NoUserPreferencesRm199
     function __construct()
     {
         include_once('SetPostViewsCounter_Rm199_class.php');
-        include_once('templates/Minimal_rm199.php');
-        include_once($templates_dir . 'Nice_Transition_rm199.php');
-        include_once('templates/Structured_rm199.php');
+        foreach (glob(RM199_PATH . "assets/templates/*.php") as $file) {
+            include_once $file;
+        }
     }
 
     public static function showPosts($attr, $parsed_options, $custom_styles)
