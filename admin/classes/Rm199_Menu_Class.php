@@ -23,11 +23,27 @@ class Rm199_Menu_Class
         );
         add_submenu_page(
             'rm199_manager',
-            __('Generator', 'rm199'),
-            __('Generator', 'rm199'),
+            __('Dashboard', 'rm199'),
+            __('Dashboard', 'rm199'),
             'manage_options',
             'rm199_dashboard',
             array('Rm199_Menu_Class', 'dashboardCallback')
+        );
+        add_submenu_page(
+            'rm199_manager',
+            __('User Preferences', 'rm199'),
+            __('User Preferences', 'rm199'),
+            'manage_options',
+            'rm199_preferences',
+            array('Rm199_Menu_Class', 'preferencesCallback')
+        );
+        add_submenu_page(
+            'rm199_manager',
+            __('Settings', 'rm199'),
+            __('Settings', 'rm199'),
+            'manage_options',
+            'rm199_settings',
+            array('Rm199_Menu_Class', 'settingsCallback')
         );
         // add_submenu_page(
         //     'rm199_templates',
@@ -71,6 +87,19 @@ class Rm199_Menu_Class
         $overview_content = new Rm199_Admin_Overview_Class();
         $overview_content->overview_content();
     }
+
+    public static function preferencesCallback()
+    {
+        require('sub-classes/RM199_Users_Preferences.php');
+        $preferences_customizer = new RM199_Users_Preferences();
+        $preferences_customizer->customize_the_preferences_input();
+    }
+    public static function settingsCallback()
+    {
+        echo 'settingsCallback';
+    }
+
+
     // public static function templateCreator()
     // {
     //     require('sub-classes/Rm199_Templates_Class.php');
