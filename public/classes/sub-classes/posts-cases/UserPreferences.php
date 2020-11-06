@@ -3,6 +3,10 @@ if (!defined('ABSPATH')) {
     die();
 }
 
+// todo :: get the array of posts at first .. and choose a random 3 posts for instance ... then loop on those 3 .... this will improve the performance ...
+
+// todo :: make the posts load with ajax after the page load to not affect page speed 
+
 // if the user is logged in and can add preferences
 class UserPreferencesRm199
 {

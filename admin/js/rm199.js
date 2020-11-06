@@ -242,3 +242,11 @@ var thisType=e.target,
 // function get_all_options(){
 //   rm199_title('We Recommend You Those Posts')
 // }
+
+
+function rm199_preferences_title(e){
+  var thisInput = e.target,
+  title=thisInput.value,
+  txtShown = document.querySelector(".rm199_preferences_example__txt")
+  txtShown.textContent = title
+}

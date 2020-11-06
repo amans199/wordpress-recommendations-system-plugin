@@ -470,3 +470,17 @@ a.generator_box__content--href {
 .templates_dashboard img{
     max-width: 300px;
 }
+
+
+
+/* rm199_preferences  */
+.rm199_preferences_example{
+    background: darkseagreen;
+    text-align: center;
+    padding: 10px;
+}
+
+.rm199_preferences_example *{   
+    display: inline;
+    margin:0px;
+}
