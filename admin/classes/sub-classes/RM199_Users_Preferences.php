@@ -13,7 +13,7 @@ class RM199_Users_Preferences
 
     public static function customize_the_preferences_input()
     {
-
+        // todo :: add show it in  specific pages option 
 
 ?>
         <h1><?php _e('Create A Preferences Handler: ', 'rm199') ?></h1>

@@ -167,9 +167,21 @@ require_once('classes/Rm199_Shortcode_Class.php');
 add_shortcode('rm199_posts',  array('Rm199ShortCodeManager', 'rm199_posts'));
 
 // add shortCode to show the tags input for user 
-add_shortcode('rm199_input',  array('Rm199ShortCodeManager', 'rm199_input'));
+// add_shortcode('rm199_input',  array('Rm199ShortCodeManager', 'rm199_input'));
 
 
 // add user preferences meta 
 require_once('classes/Rm199_Handel_User_Meta_Class.php');
 new Rm199HandelUserMetaClass();
+
+
+
+function process_post()
+{
+    if (!is_admin()) {
+        require_once('classes/sub-classes/Rm199_Input_Class.php');
+        $Rm199Input = new Rm199Input();
+        $Rm199Input->rm199_input();
+    }
+}
+add_action('init', 'process_post');
