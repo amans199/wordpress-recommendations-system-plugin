@@ -9,6 +9,11 @@
 }
 
 
+/* todo : remove this  */
+/* #wpadminbar{
+  display: none !important;
+} */
+
 .rm199__keyword {
     padding: 5px 10px;
     background: #0073aa;
@@ -81,7 +86,7 @@
     background: darkseagreen;
     text-align: center;
     padding: 10px;
-    position: absolute;
+    /* position: absolute; */
     top: 0;
     left:0;
     width: 100%;
@@ -106,6 +111,7 @@
     width: 100%;
     overflow: auto;
     background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
   }
   
   .modal-content {
@@ -113,7 +119,7 @@
     width: 60%;
     box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 7px 20px 0 rgba(0, 0, 0, 0.17);
     animation-name: modalopen;
-    animation-duration: var(--modal-duration);
+    animation-duration: .2s;
   }
   
   .modal-header h2,
@@ -122,11 +128,13 @@
   }
   
   .modal-header {
-    background: var(--modal-color);
+    background: #eee;
     padding: 15px;
     color: #fff;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    align-items: center;
+    justify-content: space-between;
   }
   
   .modal-body {
@@ -135,7 +143,7 @@
   }
   
   .modal-footer {
-    background: var(--modal-color);
+    background: #eee;
     padding: 10px;
     color: #fff;
     text-align: center;
@@ -144,11 +152,9 @@
   }
   
   .close {
-    color: #ccc;
     float: right;
     font-size: 30px;
-    color: #fff;
-  }
+    color: black;  }
   
   .close:hover,
   .close:focus {
@@ -164,5 +170,137 @@
     to {
       opacity: 1;
     }
+  }
+  
+
+  /* preferences cards  */
+  .small-meta {
+    font-size: 12px;
+  }
+  .dim {
+    opacity: 0.4;
+  }
+  .image {
+    width: 180px;
+    height: 120px;
+    background: #CCC;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .grid-wrapper {
+    margin: 0 auto;
+    width: 80%;
+    /* vertical-align: middle; */
+    text-align: center;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    grid-gap: 20px;
+    align-items: stretch;
+}
+  }
+  .card-content {
+    border: 1px solid #CCC;
+    border-radius: 3px;
+    padding: 25px 25px 10px 25px;
+  }
+  .card-content * {
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .card-content label {
+    z-index: 99;
+  }
+  .card-wrapper {
+    position: relative;
+    /*width: 235px;
+    *//*height: 270px;
+    *//*float: left;
+    *//*margin-right: 50px;
+    *//*margin-bottom: 50px;
+    */
+}
+  .c-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    visibility: hidden;
+  }
+  .c-card ~ .card-content {
+    transition: all 500ms ease-out;
+    max-height: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .c-card ~ .card-content .card-state-icon {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 2;
+    width: 20px;
+    height: 20px;
+    background-position: 0 0;
+    transition: all 100ms ease-out;
+  }
+  .c-card ~ .card-content:before {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    width: 0;
+    height: 0;
+    border-top: 52px solid #47cf73;
+    border-left: 52px solid transparent;
+    transition: all 200ms ease-out;
+  }
+  .c-card ~ .card-content:after {
+    position: absolute;
+    top: 1px;
+    right: 1px;
+    content: "";
+    width: 0;
+    height: 0;
+    border-top: 50px solid #FFF;
+    border-left: 50px solid transparent;
+    transition: all 200ms ease-out;
+  }
+  .c-card ~ .card-content:hover {
+    border: 1px solid #6dc5dc;
+  }
+  .c-card ~ .card-content:hover .card-state-icon {
+    background-position: -30px 0;
+  }
+  .c-card ~ .card-content:hover:before {
+    border-top: 52px solid #47cf73;
+  }
+  .c-card:checked ~ .card-content {
+    border: 1px solid #6dc5dc;
+  }
+  .c-card:checked ~ .card-content .card-state-icon {
+    background-position: -90px 2px;
+  }
+  .c-card:checked ~ .card-content:before {
+    border-top: 52px solid #47cf73;
+        background: url("https://www.shareicon.net/download/2016/08/20/817721_check.svg") no-repeat;
+  }
+  .c-card:checked ~ .card-content:after {
+    border-top: 52px solid #47cf73;
+    
+  }
+  .c-card:checked:hover ~ .card-content .card-state-icon {
+    background-position: -60px 2px;
+  }
+  .c-card:checked:hover ~ .card-content:before {
+    border-top: 52px solid #47cf73;
+  }
+  .c-card:checked:hover ~ .card-content:after {
+    border-top: 52px solid #47cf73;
   }
   

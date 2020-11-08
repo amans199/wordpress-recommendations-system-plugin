@@ -26,7 +26,7 @@ class Rm199_Transitioned_Template
         }
 
 ?>
-        <!-- testing  -->
+        <!-- credits to : dbenmore https://codepen.io/dbenmore/pen/eYpYPEL -->
         <div class="articles">
             <li class="articles__article" style="--animation-order:1">
                 <a class="articles__link" href="<?php echo $post_url; ?>">
@@ -39,7 +39,6 @@ class Rm199_Transitioned_Template
                 </a>
             </li>
         </div>
-        <!-- end testing  -->
 <?php
     }
 }

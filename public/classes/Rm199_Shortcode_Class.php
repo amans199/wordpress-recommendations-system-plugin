@@ -11,7 +11,7 @@ class Rm199ShortCodeManager
      * @since    1.0.0
      */
 
-
+    // todo :: make rm199_input doesn't show for not logged in && fix its issues
     // public static function rm199_input($attr)
     // {
     //     include_once('sub-classes/Rm199_Input_Class.php');
