@@ -1,6 +1,6 @@
 // Get DOM Elements
-const modal = document.querySelector('#my-modal');
-const modalBtn = document.querySelector('#modal-btn');
+const modal = document.querySelector('#rm199_preferences_modal');
+const modalBtn = document.querySelector('#rm199_preferences_modal_btn');
 const closeBtn = document.querySelector('.close');
 
 // Events

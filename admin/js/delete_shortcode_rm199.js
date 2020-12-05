@@ -16,10 +16,6 @@ function delete_this_shortcode_handler(e, code) {
     })
       .success(function (results) {
         document.querySelector('tr[data-code="' + code + '"]').remove();
-        // jQuery('tr[data-code="' + code + '"]').slideUp(1000, function () {
-        //   jQuery(this).remove();
-        // });
-        // jQuery('tr[data-code="' + code + '"]').slideUp("normal", function () { jQuery(this).remove(); });
       })
       .fail(function (data) {
         console.log(data.responseText);

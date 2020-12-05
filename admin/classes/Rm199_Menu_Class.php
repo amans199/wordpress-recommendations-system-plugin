@@ -2,6 +2,10 @@
 if (!defined('ABSPATH')) {
     exit;
 }
+
+if (!is_admin()) {
+    exit;
+}
 class Rm199_Menu_Class
 {
 
@@ -32,22 +36,6 @@ class Rm199_Menu_Class
             'rm199_dashboard',
             array('Rm199_Menu_Class', 'dashboardCallback')
         );
-        add_submenu_page(
-            'rm199_manager',
-            __('User Preferences', 'rm199'),
-            __('User Preferences', 'rm199'),
-            'manage_options',
-            'rm199_preferences',
-            array('Rm199_Menu_Class', 'preferencesCallback')
-        );
-        add_submenu_page(
-            'rm199_manager',
-            __('Settings', 'rm199'),
-            __('Settings', 'rm199'),
-            'manage_options',
-            'rm199_settings',
-            array('Rm199_Menu_Class', 'settingsCallback')
-        );
     }
     public static function dashboardCallback()
     {
@@ -64,27 +52,4 @@ class Rm199_Menu_Class
         $overview_content = new Rm199_Admin_Overview_Class();
         $overview_content->overview_content();
     }
-
-    public static function preferencesCallback()
-    {
-        require('sub-classes/RM199_Users_Preferences.php');
-        $preferences_customizer = new RM199_Users_Preferences();
-        $preferences_customizer->customize_the_preferences_input();
-    }
-    public static function settingsCallback()
-    {
-        // if (is_admin())
-        require('sub-classes/RM199_Settings.php');
-        // $settings_page = new Rm199SettingsPage();
-        // add_action('admin_init', array('Rm199SettingsPage', 'page_init'));
-
-    }
-
-
-    // public static function templateCreator()
-    // {
-    //     require('sub-classes/Rm199_Templates_Class.php');
-    //     $template_creator = new Rm199TemplatesClass();
-    //     $template_creator->allTemplates();
-    // }
 }

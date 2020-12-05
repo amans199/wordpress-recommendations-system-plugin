@@ -76,11 +76,6 @@ function add_new_shortcode_handler(e) {
       }
     })
       .success(function (results) {
-        // console.log('User Meta Updated!');
-        // console.log(results)
-        // console.log(add_new_shortcode_rm199Obj.rm199_code)
-        // document.querySelector(`.all_keywords_shown .rm199__keyword-${um_val.replace(/\s/g, '')}`).remove()
-        // location.reload()
         window.location = '/wp-admin/admin.php?page=rm199_manager&highlight_shortcode=' + uniq_code;
       })
       .fail(function (data) {
@@ -90,6 +85,7 @@ function add_new_shortcode_handler(e) {
 
   } else {
     // Show user error message.
+    alert('error, please add  required data')
   }
   return false;   // Stop our form from submitting
 };
