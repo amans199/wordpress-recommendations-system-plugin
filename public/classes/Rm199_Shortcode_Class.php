@@ -12,12 +12,12 @@ class Rm199ShortCodeManager
      */
 
     // todo :: make rm199_input doesn't show for not logged in && fix its issues
-    // public static function rm199_input($attr)
-    // {
-    //     include_once('sub-classes/Rm199_Input_Class.php');
-    //     $Rm199Input = new Rm199Input();
-    //     $Rm199Input->rm199_input($attr);
-    // }
+    public static function rm199_input($attr)
+    {
+        include_once('sub-classes/Rm199_Input_Class.php');
+        $Rm199Input = new Rm199Input();
+        $Rm199Input->rm199_input($attr);
+    }
     public static function rm199_posts($attr)
     {
         include_once('sub-classes/Rm199_posts_Class.php');

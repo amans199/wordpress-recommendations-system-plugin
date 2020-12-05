@@ -4,6 +4,9 @@ if (!defined('ABSPATH')) {
 }
 class Rm199_Menu_Class
 {
+
+
+
     public static function createMenu()
     {
         add_menu_page(
@@ -45,32 +48,6 @@ class Rm199_Menu_Class
             'rm199_settings',
             array('Rm199_Menu_Class', 'settingsCallback')
         );
-        // add_submenu_page(
-        //     'rm199_templates',
-        //     __('All Templates', 'rm199'),
-        //     __('All Templates', 'rm199'),
-        //     'manage_options',
-        //     'edit.php?post_type=rm_templates'
-        // );
-        // add_submenu_page(
-        //     'rm199_manager',
-        //     __('Templates', 'rm199'),
-        //     __('Templates', 'rm199'),
-        //     'manage_options',
-        //     'rm199_templates',
-        //     array('Rm199_Menu_Class', 'templateCreator')
-        // );
-
-
-
-        // add_submenu_page(
-        //     'rm199_manager',
-        //     __('rm sub manager', 'rm199'),
-        //     __('Settings', 'rm199'),
-        //     'manage_options',
-        //     'rm199_settings',
-        //     array('Rm199_Menu_Class', 'Settings')
-        // );
     }
     public static function dashboardCallback()
     {
@@ -96,7 +73,11 @@ class Rm199_Menu_Class
     }
     public static function settingsCallback()
     {
-        echo 'settingsCallback';
+        // if (is_admin())
+        require('sub-classes/RM199_Settings.php');
+        // $settings_page = new Rm199SettingsPage();
+        // add_action('admin_init', array('Rm199SettingsPage', 'page_init'));
+
     }
 
 

@@ -180,3 +180,107 @@ function delete_shortcode_rm199_callback()
 }
 add_action('wp_ajax_nopriv_delete_shortcode_rm199', 'delete_shortcode_rm199_callback');
 add_action('wp_ajax_delete_shortcode_rm199', 'delete_shortcode_rm199_callback');
+
+
+
+
+// register preferences settings 
+function register_preferences_topbar_settings()
+{
+    // register_setting('rm199_preferences',  'rm199_topbar_settings_group');
+    add_option('rm199_topbar_display', 'yes');
+    // add_settings_section(
+    //     'rm199_preferences_settings_section',
+    //     'rm199_preferences Settings Section',
+    //     'rm199_preferences_settings_section_callback',
+    //     'rm199_preferences'
+    // );
+    // add_settings_field(
+    //     'rm199_settings_topbar_display',
+    //     'rm199_preferences Setting',
+    //     'rm199_preferences_settings_field_callback',
+    //     'rm199_preferences',
+    //     'rm199_preferences_settings_section'
+    // );
+
+    // register_setting(
+    //     'rm199_topbar_settings_group',
+    //     'rm199_topbar_settings_group'
+    // );
+    // add_settings_section(
+    //     'rm199_topbar_settings',
+    //     'Course Requirements',
+    //     array($this, 'reqs_college_fn'),
+    //     'cemb-seminar'
+    // );
+    // add_settings_field(
+    //     'rm199_topbar_settings_field',
+    //     'Seminars',
+    //     array($this, 'seminars_college_fn'),
+    //     'cemb-seminar',
+    //     'rm199_topbar_settings'
+    // );
+}
+
+add_action('admin_init', 'register_preferences_topbar_settings');
+
+
+
+
+// Handle Preferences Tob bar settings via ajax 
+
+// delete shortcode with AJAX 
+function update_preferences_settings()
+{
+    $plugin_url  = plugins_url() . '/recommendations-master';
+    // $options_url   = admin_url('options.php');
+    $ajax_url   = admin_url('admin-ajax.php');        // Localized AJAX URL
+
+    wp_register_script(
+        'update_preferences_settings',
+        "{$plugin_url}/admin/js/update_preferences_settings.js",
+        array('jquery'),
+        '1.0',
+        true
+    );
+    wp_localize_script(
+        'update_preferences_settings',
+        'rm199Obj',
+        array(
+            'options_url' => $ajax_url,
+            'security'  => wp_create_nonce('rm199'),
+            'siteurl'  => get_site_url(),
+            'user' => get_current_user_id()
+        )
+    );
+    wp_enqueue_script('update_preferences_settings');
+}
+add_action('admin_enqueue_scripts', 'update_preferences_settings');
+
+function update_preferences_settings_callback()
+{
+    if (!isset($_POST) || empty($_POST) || !is_user_logged_in()) {
+        header('HTTP/1.1 400 Empty POST Values');
+        echo 'Could Not Verify POST Values.';
+        exit;
+    }
+
+    $user_id        = get_current_user_id();
+
+    if (!current_user_can('manage_options')) {
+        exit;
+    }
+
+    echo 'update_preferences_topbarupdate_preferences_topbar';
+    echo $_POST['isEnabled'];
+    if (isset($_POST['update_preferences_topbar']) && current_user_can('manage_options')) {
+        // update_option('rm199_topbar_display', isset($_POST['isEnabled']) ? 'yes' : 'no');
+        echo 'it is working';
+    }
+
+
+    exit;
+}
+
+add_action('wp_ajax_nopriv_update_preferences_settings', 'update_preferences_settings_callback');
+add_action('wp_ajax_update_preferences_settings', 'update_preferences_settings_callback');

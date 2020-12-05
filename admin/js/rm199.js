@@ -250,3 +250,25 @@ function rm199_preferences_title(e){
   txtShown = document.querySelector(".rm199_preferences_example__txt")
   txtShown.textContent = title
 }
+
+// window.onload(()=>{
+// if(document.querySelector('#toggle_preferences_input').checked)
+
+// })
+
+window.onload = function() {
+  // var enable_preferences_bar = document.querySelector('#toggle_preferences_input').checked;
+  
+    if (document.body.contains(document.querySelector('#toggle_preferences_input'))) {
+      document.querySelector('#toggle_preferences_input').addEventListener( 'change', function() {
+        if(this.checked) {
+            document.querySelector('.add_blur_if_disabled').style.display = "none";
+        } else {
+            document.querySelector('.add_blur_if_disabled').style.display = "block";
+        }
+    });
+  }
+
+}
+
+
