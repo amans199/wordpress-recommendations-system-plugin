@@ -48,8 +48,8 @@ function rm199_preferences_input_enqueue()
 
     // Register Our Script for Localization
     wp_register_script(
-        'rm199_um-modifications',
-        "{$plugin_url}/public/js/rm199_um-modifications.js",
+        'rm199_user_preferences',
+        "{$plugin_url}/public/js/rm199_user_preferences.js",
         array('jquery'),
         '1.0',
         true
@@ -57,7 +57,7 @@ function rm199_preferences_input_enqueue()
 
     // Localize Our Script so we can use `ajax_url`
     wp_localize_script(
-        'rm199_um-modifications',
+        'rm199_user_preferences',
         'rm199Obj',
         array(
             'ajax_url' => $ajax_url,
@@ -69,7 +69,7 @@ function rm199_preferences_input_enqueue()
     );
 
     // Finally enqueue our script
-    wp_enqueue_script('rm199_um-modifications');
+    wp_enqueue_script('rm199_user_preferences');
 }
 add_action('wp_enqueue_scripts', 'rm199_preferences_input_enqueue');
 
@@ -103,8 +103,8 @@ function rm199_um_modifications_callback()
     }
     exit;
 }
-add_action('wp_ajax_nopriv_um_cb', 'rm199_um_modifications_callback');
-add_action('wp_ajax_um_cb', 'rm199_um_modifications_callback');
+add_action('wp_ajax_nopriv_preferences_cb', 'rm199_um_modifications_callback');
+add_action('wp_ajax_preferences_cb', 'rm199_um_modifications_callback');
 
 
 // start shortcode functions
@@ -124,15 +124,7 @@ new Rm199HandelUserMetaClass();
 
 
 
-function process_post()
-{
-    if (!is_admin() && is_user_logged_in()) {
-        require_once('classes/sub-classes/Rm199_Input_Class.php');
-        $Rm199Input = new Rm199Input();
-        $Rm199Input->rm199_input();
-    }
-}
-add_action('init', 'process_post');
+
 
 
 
@@ -189,23 +181,82 @@ function rm199_fetch_keywords_callback()
         echo 'Could Not Verify POST Values.';
         exit;
     }
-
-    // $user_id                        = get_current_user_id();
-    // delete_user_meta($user_id, 'preferences');
-
-    // $arr_of_preferences       = array_filter($_POST['preferences']);
-    // $arr_of_preferences_sanitized = [];
-    // foreach ($arr_of_preferences as $el) {
-    //     $value_sanitized = sanitize_text_field(wp_strip_all_tags($el));
-    //     if ($value_sanitized !== '' && !in_array($value_sanitized, $arr_of_preferences_sanitized)) {
-    //         array_push($arr_of_preferences_sanitized,  $value_sanitized);
-    //         add_user_meta($user_id, 'preferences', $value_sanitized);
-    //     }
-    // }
-    echo 'aloha';
-
-
+    // 
     exit;
 }
 add_action('wp_ajax_nopriv_fetch_keywords_cb', 'rm199_fetch_keywords_callback');
 add_action('wp_ajax_fetch_keywords_cb', 'rm199_fetch_keywords_callback');
+
+
+
+function process_post()
+{
+    if (!is_admin() && is_user_logged_in()) {
+        require_once('classes/sub-classes/Rm199_Input_Class.php');
+        $Rm199Input = new Rm199Input();
+        $Rm199Input->rm199_input();
+    }
+}
+add_action('init', 'process_post');
+
+
+
+// /**
+//  * Show Preferences Topbar after 30 seconds
+//  */
+// function rm199_show_preferences_topbar()
+// {
+
+//     $plugin_url  = plugins_url() . '/recommendations-master';     // Used to keep our Template Directory URL
+//     $ajax_url   = admin_url('admin-ajax.php');        // Localized AJAX URL
+
+//     // Register Our Script for Localization
+//     wp_register_script(
+//         'show_preferences_topbar',
+//         "{$plugin_url}/public/js/show_preferences_topbar.js",
+//         array('jquery'),
+//         '1.0',
+//         true
+//     );
+
+//     // Localize Our Script so we can use `ajax_url`
+//     wp_localize_script(
+//         '',
+//         'rm199Obj',
+//         array(
+//             'ajax_url' => $ajax_url,
+//             'security'  => wp_create_nonce('rm199'),
+//             'siteurl'  => get_site_url(),
+//             'user' => get_current_user_id(),
+//             'show_topbar_after' => 5000 //this doesn't work
+//         )
+
+//     );
+
+//     // Finally enqueue our script
+//     wp_enqueue_script('show_preferences_topbar');
+// }
+// add_action('wp_enqueue_scripts', 'rm199_show_preferences_topbar');
+
+
+// /**
+//  * AJAX Callback
+//  * Always Echos and Exits
+//  */
+// function rm199_show_preferences_topbar_cb()
+// {
+
+//     // Ensure we have the data we need to continue
+//     if (!isset($_POST) || empty($_POST) || !is_user_logged_in()) {
+
+//         // If we don't - return custom error message and exit
+//         header('HTTP/1.1 400 Empty POST Values');
+//         echo 'Could Not Verify POST Values.';
+//         exit;
+//     }
+//     // 
+//     echo 'is is shown now';
+//     exit;
+// }
+// add_action('wp_ajax_nopriv_show_preferences_topbar_cb', 'rm199_show_preferences_topbar_cb');
+// add_action('wp_ajax_show_preferences_topbar_cb', 'rm199_show_preferences_topbar_cb');

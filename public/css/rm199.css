@@ -133,8 +133,10 @@
     color: #fff;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
+    display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    gap: 20px;
   }
   
   .modal-body {
@@ -154,11 +156,10 @@
   .close {
     float: right;
     font-size: 30px;
-    color: black;  }
+  }
   
   .close:hover,
   .close:focus {
-    color: #000;
     text-decoration: none;
     cursor: pointer;
   }
@@ -354,4 +355,41 @@
 @keyframes spin {
     from {transform:rotate(0deg);transform-origin: center;}
     to {transform:rotate(360deg);transform-origin: center;}
+}
+
+
+.button-danger{
+  background-color: rgba(128,128,128,1) !important;
+}
+
+.button-danger:hover{
+  background-color: rgba(128,128,128,.5) !important;
+}
+
+.justify-content-end{
+  justify-content: flex-end;
+}
+
+.rm199_preferences_modal_status {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  padding: 50px;
+}
+
+.rm199_preferences_modal_status  span {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.rm199__status--failed{
+  color:#d9534f
+}
+
+
+.rm199__status--success{
+  color:#5cb85c
 }

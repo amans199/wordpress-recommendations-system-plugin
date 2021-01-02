@@ -12,7 +12,7 @@ function add_preferences_handler(){
         }
       })
         .success(function (results) {
-          console.log('User Meta Updated!');
+          // console.log('User Meta Updated!');
 
           for (var key in rm199Obj.all_categories) {
             if (!rm199Obj.all_categories.hasOwnProperty(key)) continue;
@@ -30,6 +30,7 @@ function add_preferences_handler(){
           }
 
               setTimeout(function() {
+                document.querySelector('#rm199_preferences_form').style.display = 'block'
                 document.querySelector('.modal_loader').style.display = 'none'
             });
         })
