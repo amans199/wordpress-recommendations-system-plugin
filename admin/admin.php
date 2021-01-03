@@ -6,6 +6,7 @@ defined('ABSPATH') or die();
 // =====================================
 require_once('classes/Rm199_Menu_Class.php');
 add_action('admin_menu', array('Rm199_Menu_Class', 'createMenu'));
+include "addons/rm19btn-shortcode.php";
 
 
 // =====================================
@@ -173,3 +174,32 @@ function delete_shortcode_rm199_callback()
 }
 add_action('wp_ajax_nopriv_delete_shortcode_rm199', 'delete_shortcode_rm199_callback');
 add_action('wp_ajax_delete_shortcode_rm199', 'delete_shortcode_rm199_callback');
+
+
+
+// localize rm199_tinymce to send the shortcodes to it 
+// function add_rm199_shortocodes_to_tinymce()
+// {
+//     $plugin_url  = plugins_url() . '/recommendations-master';
+//     $ajax_url   = admin_url('admin-ajax.php');
+//     wp_register_script(
+//         'add_rm199_shortocodes_to_tinymce',
+//         "{$plugin_url}/admin/js/rm199_tinymce.js",
+//         array('jquery'),
+//         '1.0',
+//         true
+//     );
+//     wp_localize_script(
+//         'add_rm199_shortocodes_to_tinymce',
+//         'rm199Obj',
+//         array(
+//             'ajax_url' => $ajax_url,
+//             'security'  => wp_create_nonce('rm199'),
+//             'siteurl'  => get_site_url(),
+//             'user' => get_current_user_id(),
+            
+//         )
+//     );
+//     // wp_enqueue_script('add_rm199_shortocodes_to_tinymce');
+// }
+// add_action('admin_enqueue_scripts', 'add_rm199_shortocodes_to_tinymce');
