@@ -1,0 +1,22 @@
+<!-- # add recommendation to the articles, pages :: ( DONE ) 
+    1- add on the fly from the classic editor
+    2- add on any page using the shortcode-->
+
+<!-- # show recommendations using ajax on the frontend (POSTPONED ) -->
+
+<!-- # show the top bar using ajax (DONE) -->
+
+
+<!-- # show the description   (DONE) -->
+
+<!-- # Enhance the behavior after saving the preferences (DONE ) -->
+
+<!-- # create logo files (DONE)  -->
+
+# enhance the design 
+
+# create a logo for the project and use it in the tinymce editor and in the admin sidebar 
+
+# create how to use section
+
+# create translations files pot .... 

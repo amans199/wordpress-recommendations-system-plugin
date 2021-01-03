@@ -20,7 +20,7 @@ if (!function_exists('rm199_btn')) {
 
         $table_name = $wpdb->prefix . 'rm199_shortcodes';
         $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_in  DESC");
-
+        // todo : make this input appear only on the pages that contains editors 
         echo "<input id='rm199_tinymce_shortcodes' type='hidden' value='" . json_encode($results)  . "' />";
         add_filter('mce_external_plugins', 'rm199_register_tinymce_javascript');
         add_filter('mce_buttons', 'rm199_register_buttons');

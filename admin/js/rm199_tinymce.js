@@ -21,9 +21,9 @@
   tinymce.create('tinymce.plugins.rm199', {
     init: function(ed, url){
       ed.addButton('rm199_shortcode', {
-        title: 'Rm199 Shortcodes',
+        title: 'Recommendations Master',
         cmd: 'rm199_shortcodeCmd',
-        image: url + '/img/rm199_tinymce.svg'
+        image: url + '/img/icon_2.svg'
       });
       ed.addCommand('rm199_shortcodeCmd', function(){
         var win = ed.windowManager.open({

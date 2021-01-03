@@ -1,0 +1,14 @@
+
+Hope you enjoy your new logo, here are the people that
+made your beautiful logo happen :)
+font name: Amethysta-Regular
+font link: https://fonts.google.com/specimen/Amethysta
+font author: Konstantin Vinogradov
+font author site: http://www.cyreal.org/
+Slogan Font: Fanwood Text.otf
+
+icon designer: Larisa Skosyrska
+icon designer link: /Lara.Skosyrska
+        
+{"bg":"#442D81","icon":"#727FD5","font":"#FFFFFF","slogan":"#ffffff"}
+      

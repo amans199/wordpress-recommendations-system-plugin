@@ -14,8 +14,8 @@ class Rm199_Menu_Class
     public static function createMenu()
     {
         add_menu_page(
-            __('Recommendations', 'rm199'),
-            __('Recommendations', 'rm199'),
+            __('RM199', 'rm199'),
+            __('RM199', 'rm199'),
             'manage_options',
             'rm199_manager',
             array('Rm199_Menu_Class', 'overviewCallback'),
