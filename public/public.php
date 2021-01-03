@@ -77,7 +77,7 @@ add_action('wp_enqueue_scripts', 'rm199_preferences_input_enqueue');
  * AJAX Callback
  * Always Echos and Exits
  */
-function rm199_um_modifications_callback()
+function rm199_user_preferences_callback()
 {
 
     // Ensure we have the data we need to continue
@@ -103,15 +103,80 @@ function rm199_um_modifications_callback()
     }
     exit;
 }
-add_action('wp_ajax_nopriv_preferences_cb', 'rm199_um_modifications_callback');
-add_action('wp_ajax_preferences_cb', 'rm199_um_modifications_callback');
+add_action('wp_ajax_nopriv_preferences_cb', 'rm199_user_preferences_callback');
+add_action('wp_ajax_preferences_cb', 'rm199_user_preferences_callback');
 
 
 // start shortcode functions
 require_once('classes/Rm199_Shortcode_Class.php');
 
 // add shortCode to show posts 
-add_shortcode('rm199_posts',  array('Rm199ShortCodeManager', 'rm199_posts'));
+// add_shortcode('rm199_posts',  array('Rm199ShortCodeManager', 'rm199_posts'));
+
+function register_shortcodes()
+{
+    add_shortcode('rm199_posts',  array('Rm199ShortCodeManager', 'rm199_posts'));
+}
+add_action('init',  'register_shortcodes');
+
+// start testing //////////////////////////////////////
+
+
+// function my_awesome_shortcode( $atts, $content = null ) {
+//     // begin output buffering
+//     ob_start();
+
+//     // output some text
+//     echo 'foo' . "bar\n";
+//     $greeting = 'Hello';
+//     printf( '%s, %s!', $greeting, 'World' );
+
+//     // end output buffering, grab the buffer contents, and empty the buffer
+//     return ob_get_clean();
+// }
+
+// add_shortcode( 'awesome', 'my_awesome_shortcode' );
+
+// add_filter('the_content', 'prefix_insert_post_related');
+
+// function prefix_insert_post_related($content)
+// {
+
+//     $related_code .= do_shortcode("[divider]");
+//     $related_code .= do_shortcode("[bws_related_posts]");
+
+//     if (is_single() && !is_admin()) {
+//         return prefix_insert_after_paragraph($related_code, 4, $content);
+//     }
+
+//     return $content;
+// }
+
+// function prefix_insert_after_paragraph($insertion, $paragraph_id, $content)
+// {
+//     $closing_p = '</p>';
+//     $paragraphs = explode($closing_p, $content);
+//     foreach ($paragraphs as $index => $paragraph) {
+
+//         if (trim($paragraph)) {
+//             $paragraphs[$index] .= $closing_p;
+//         }
+
+//         if ($paragraph_id == $index + 1) {
+//             $paragraphs[$index] .= $insertion;
+//         }
+//     }
+
+//     return implode('', $paragraphs);
+// }
+
+
+
+
+// end testing /////////////////////////////////////
+
+
+
 
 // add shortCode to show the tags input for user 
 // todo ::: fix problem with this shortcode 

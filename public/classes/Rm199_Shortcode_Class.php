@@ -20,8 +20,10 @@ class Rm199ShortCodeManager
     }
     public static function rm199_posts($attr)
     {
+        ob_start();
         include_once('sub-classes/Rm199_posts_Class.php');
         $Rm199Posts = new Rm199AllPosts();
         $Rm199Posts->rm199_posts($attr);
+        return ob_get_clean();
     }
 }
