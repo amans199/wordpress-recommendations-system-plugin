@@ -122,7 +122,11 @@ class Rm199_Admin_Dashboard_Class
                     <h2 class="generator_box__header">
                         <span><?php _e('How To Use', 'rm199') ?></span></h2>
                     <div class="generator_box__content">
-                        dddddd
+                        <?php
+                        require('modules/RM199_how_to_use.php');
+                        $rm199_how_to_use = new Rm199HowToUse();
+                        $rm199_how_to_use->howToUse();
+                        ?>
                     </div>
                 </div>
 
