@@ -15,6 +15,8 @@
 
 # enhance the design 
 
+# create an input for the users to edit their preferences
+
 # create a logo for the project and use it in the tinymce editor and in the admin sidebar 
 
 # create how to use section

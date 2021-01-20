@@ -14,9 +14,14 @@ class Rm199ShortCodeManager
     // todo :: make rm199_input doesn't show for not logged in && fix its issues
     public static function rm199_input($attr)
     {
-        include_once('sub-classes/Rm199_Input_Class.php');
-        $Rm199Input = new Rm199Input();
+        // include_once('sub-classes/Rm199_Input_Class.php');
+        // $Rm199Input = new Rm199Input();
+        // $Rm199Input->rm199_input($attr);
+        ob_start();
+        include_once('sub-classes/Rm199_edit_preferences_handler_Class.php');
+        $Rm199Input = new Rm199_edit_preferences_handler_Class();
         $Rm199Input->rm199_input($attr);
+        return ob_get_clean();
     }
     public static function rm199_posts($attr)
     {
