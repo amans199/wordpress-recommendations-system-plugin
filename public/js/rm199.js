@@ -3,6 +3,17 @@
 window.onload = (event) => {
   setTimeout(()=>{
     if (document.body.contains(document.getElementById('rm199_topbar_sys'))) {
+
+
+      // .rm199_topbar :: STYLES
+      document.querySelector(".rm199_topbar").style.background = document.querySelector(".rm199_topbar").dataset.background;
+      document.querySelector(".rm199_topbar").style.color = document.querySelector(".rm199_topbar").dataset.color;
+      document.querySelector("#rm199_preferences_modal_btn").style.color = document.querySelector(".rm199_topbar").dataset.btn_color;
+
+      
+      // End Styling
+
+
       if (!localStorage.rm199_preferences) {
         document.querySelector("#rm199_topbar_sys").style.display = "block"
       }else{

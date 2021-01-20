@@ -20,9 +20,9 @@ class Rm199Input
         if (is_user_logged_in()) { ?>
             <!-- todo :: add templates :: topbar , side notice , send email , etc...  -->
             <div id="rm199_topbar_sys" style="display: none;">
-                <div class="rm199_topbar">
+                <div class="rm199_topbar" data-background="#9b59b6" data-color="#fff" data-btn_color="#000">
                     <p class="rm199_preferences_example__txt"><?php _e('Preferences helps us to provide you with the best experience', 'rm199'); ?></p>
-                    <a href="#" id="rm199_preferences_modal_btn" onclick="add_preferences_handler()"><?php _e('Add Preferences', 'rm199'); ?></a>
+                    <a href="#" role="button" id="rm199_preferences_modal_btn" onclick="add_preferences_handler()"><?php _e('Add Preferences', 'rm199'); ?></a>
                     <!-- <div class="rm199_preferences_modal_status_topbar">
                         topbar status
                     </div> -->
