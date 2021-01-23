@@ -14,7 +14,11 @@ class RM199_Users_Preferences
     public static function customize_the_preferences_input()
     {
         // todo :: add show it in  specific pages option 
-
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'rm199_topbar';
+        $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY ID DESC LIMIT 1");
+        $last_row = $results[0];
+        // print_r($last_row->enabled);
 ?>
         <h1><?php _e('Create A Preferences Handler: ', 'rm199') ?></h1>
         <div class="rm199__home_cols">
@@ -24,20 +28,28 @@ class RM199_Users_Preferences
                 <div class="rm199_input">
                     <div class="rm199_preferences_example" style="margin-bottom:10px">
                         <p class="rm199_preferences_example__txt">Preferences helps us to provide you with the best experience</p>
-                        <a href="#">Add Preferences</a>
+                        <a href="#" class="rm199_preferences_example__link_txt">Add Preferences</a>
                     </div>
-                    <!-- title -->
-                    <div class="rm199_input">
-                        <label for="rm199__title_input"><?php _e('Message', 'rm199') ?></label>
-                        <input id="rm199__title_input" type="text" placeholder="<?php _e('Preferences helps us to provide you with the best experience', 'rm199') ?>" onkeyup="rm199_preferences_title(event)" aria-describedby="rm199__title">
+
+                </div>
+                <h3 for="rm199__title_input" style="margin-bottom:10px;"><?php _e('Settings', 'rm199') ?></h3>
+                <hr style="margin-bottom: 10px;">
+
+                <!-- =============  title =============  -->
+                <div class="rm199_input">
+                    <h4 for="rm199__title_input"><?php _e('Text inside Topbar', 'rm199') ?></h4>
+                    <div class="row">
+                        <input id="rm199__title_input" type="text" placeholder="<?php _e('Preferences helps us to provide you with the best experience', 'rm199') ?>" onkeyup="rm199_topbar_title(event)" aria-describedby="rm199__topbar_text" style="margin-bottom: 10px;    width: 65%;">
+                        <input id="rm199_topbar_link" type="text" placeholder="<?php _e('Add preferences', 'rm199') ?>" onkeyup="rm199_topbar_link(event)" aria-describedby="rm199__link_text" style="margin-bottom: 10px;    width: 30%;">
                     </div>
                 </div>
+
                 <hr style="margin-bottom: 10px;">
-                <!-- options -->
+                <!-- ============= preferences include ============= -->
                 <div class="rm199_input">
-                    <h2 for="rm199__title_input" style="margin-bottom:0px;"><?php _e('Options', 'rm199') ?></h2>
-                    <small for="rm199__title_input" style="margin-bottom:10px"><?php _e('What do you want users to choose from !?', 'rm199') ?></small>
-                    <div class="mb-4">
+
+                    <h4 for="preferences" style="margin-bottom:10px"><?php _e('Preferences may include:', 'rm199') ?></h4>
+                    <div class="mb-4" id="preferences">
                         <input type="checkbox" id="categories" name="preferences_handler" value="categories" onclick="">
                         <label for="categories">
                             <span>
@@ -67,25 +79,33 @@ class RM199_Users_Preferences
                 </div>
                 <hr style="margin-bottom: 10px;">
 
-
-                <!-- Settings  -->
-                <!-- options -->
+                <!-- ============= Delay ============= -->
                 <div class="rm199_input">
-                    <h2 for="rm199__title_input"><?php _e('Options', 'rm199') ?></h2>
+                    <h4 for="rm199__title_input" style="margin-bottom:0"><?php _e('Delay', 'rm199') ?></h4>
                     <div class="rm199_input--row mb-3">
-                        <h4><?php _e('Display After', 'rm199') ?></h4>
+                        <p><?php _e('Display After', 'rm199') ?></p>
                         <input type="number" style="margin: 0 10px;" placeholder="<?php _e('30', 'rm199') ?>" style="max-width:80px;" min="10" onkeyup="" onchange="">
-                        <h4><?php _e('Seconds', 'rm199') ?></h4>
+                        <p><?php _e('Seconds', 'rm199') ?></p>
+                    </div>
+                </div>
+                <hr style=" margin-bottom: 10px;">
+
+                <!-- ============= Duration ============= -->
+                <!-- todo : add toggle to allow to display it until user choose preferences -->
+                <div class="rm199_input">
+                    <h4 for="rm199__title_input" style="margin-bottom:0"><?php _e('Duration', 'rm199') ?></h4>
+                    <div class="rm199_input--row mb-3">
+                        <p><?php _e('Display for', 'rm199') ?></p>
+                        <input type="number" style="margin: 0 10px;" placeholder="<?php _e('30', 'rm199') ?>" style="max-width:80px;" min="10" onkeyup="" onchange="">
+                        <p><?php _e('Seconds', 'rm199') ?></p>
                     </div>
                 </div>
                 <hr style=" margin-bottom: 10px;">
 
 
-
-
-                <!-- Customization -->
+                <!-- ============= Styles ============= -->
                 <div class="rm199_input">
-                    <h2 for="rm199__title_input mb-4"><?php _e('Styles', 'rm199') ?></h2>
+                    <h4 for="rm199__title_input mb-4"><?php _e('Styles', 'rm199') ?></h4>
                     <div class="rm199_input--row mb-3">
                         <label for="choose_main_color" style="min-width: 220px;"><?php _e('Choose background Color ', 'rm199') ?></label>
                         <input class="mx-2" type="color" id="choose_main_color" name="main-color" value="#0073aa">
@@ -122,28 +142,15 @@ class RM199_Users_Preferences
                                 <h3 id="rm199__overview__title"><?php _e('Enable Preferences Bar ', 'rm199') ?></h3>
                             </label>
                             <label class="switch">
-                                <input type="checkbox" id="toggle_preferences_input" value="yes" <?php checked(get_option('rm199_topbar_display'), 'yes'); ?>>
+                                <input type="checkbox" id="toggle_preferences_input" value="<?php echo $results[0]->enabled ?>" <?php checked($results[0]->enabled); ?>>
                                 <span class="slider round"></span>
                             </label>
                         </div>
                     </div>
-                    <!-- <form method="post" action="options.php"> -->
 
-                    <?php // settings_fields('rm199_preferences_topbar'); 
-                    ?>
-                    <?php //do_settings_sections('rm199_preferences'); 
-                    ?>
-                    <?php //register_setting(
-                    // 'rm199_preferences_topbar', // Option group
-                    // 'my_option_name', // Option name
-                    // '' // Sanitize
-                    // );
-                    ?>
-                    <?php// submit_button(); ?>
-                    <!-- </form> -->
                     <div class="generator_box__btn">
                         <a href="#" class="generator_box__btn_cancel" onclick="location.reload()"><?php _e('Clear page', 'rm199') ?></a>
-                        <input type="submit" class="button button-primary button-large" id="save_changes" name="save_changes" onclick="update_preferences_settings(event)" value=" <?php _e('Save', 'rm199');  ?>" />
+                        <input type="submit" class="button button-primary button-large" id="save_changes" name="save_changes" onclick="topbar_options_handler(event)" value=" <?php _e('Save', 'rm199');  ?>" />
                     </div>
                 </div>
                 <?php // submit_button(__('Save', 'rm199'));
@@ -153,16 +160,22 @@ class RM199_Users_Preferences
                 <!-- how to use  -->
                 <div class="generator_box">
                     <h2 class="generator_box__header">
-                        <span><?php _e('How To Use', 'rm199') ?></span></h2>
+                        <span><?php _e('How To Use', 'rm199') ?></span>
+                    </h2>
                     <div class="generator_box__content">
-                        dddddd
+                        <?php
+                        require('modules/RM199_how_to_use.php');
+                        $rm199_how_to_use = new Rm199HowToUse();
+                        $rm199_how_to_use->howToUse();
+                        ?>
                     </div>
                 </div>
 
                 <!-- credits  -->
                 <div class="generator_box">
                     <h2 class="generator_box__header">
-                        <span><?php _e('Credits', 'rm199') ?></span></h2>
+                        <span><?php _e('Credits', 'rm199') ?></span>
+                    </h2>
                     <div class="generator_box__content">
                         <?php
                         require('modules/Rm199_Credits_Class.php');

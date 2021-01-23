@@ -138,16 +138,16 @@ var thisType=e.target,
 }
 
 
-function rm199_preferences_title(e){
-  var thisInput = e.target,
-  title=thisInput.value,
-  txtShown = document.querySelector(".rm199_preferences_example__txt")
-  txtShown.textContent = title
-}
 
 
 window.onload = function() {
     if (document.body.contains(document.querySelector('#toggle_preferences_input'))) {
+      var toggle_preferences_input = document.querySelector('#toggle_preferences_input').checked;
+      if(toggle_preferences_input) {
+        document.querySelector('.add_blur_if_disabled').style.display = "none";
+    } else {
+        document.querySelector('.add_blur_if_disabled').style.display = "block";
+    }
       document.querySelector('#toggle_preferences_input').addEventListener( 'change', function() {
         if(this.checked) {
             document.querySelector('.add_blur_if_disabled').style.display = "none";
@@ -159,3 +159,18 @@ window.onload = function() {
 }
 
 
+// topbar Settings
+
+function rm199_topbar_title(e){
+  var thisInput = e.target,
+  title=thisInput.value,
+  txtShown = document.querySelector(".rm199_preferences_example__txt")
+  txtShown.textContent = title
+}
+
+function rm199_topbar_link(e){
+  var thisInput = e.target,
+  title=thisInput.value,
+  txtShown = document.querySelector(".rm199_preferences_example__link_txt")
+  txtShown.textContent = title
+}

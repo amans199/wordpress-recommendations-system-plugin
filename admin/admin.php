@@ -176,30 +176,60 @@ add_action('wp_ajax_nopriv_delete_shortcode_rm199', 'delete_shortcode_rm199_call
 add_action('wp_ajax_delete_shortcode_rm199', 'delete_shortcode_rm199_callback');
 
 
+// =====================================
+// Topbar Settings
+// =====================================
 
-// localize rm199_tinymce to send the shortcodes to it 
-// function add_rm199_shortocodes_to_tinymce()
-// {
-//     $plugin_url  = plugins_url() . '/recommendations-master';
-//     $ajax_url   = admin_url('admin-ajax.php');
-//     wp_register_script(
-//         'add_rm199_shortocodes_to_tinymce',
-//         "{$plugin_url}/admin/js/rm199_tinymce.js",
-//         array('jquery'),
-//         '1.0',
-//         true
-//     );
-//     wp_localize_script(
-//         'add_rm199_shortocodes_to_tinymce',
-//         'rm199Obj',
-//         array(
-//             'ajax_url' => $ajax_url,
-//             'security'  => wp_create_nonce('rm199'),
-//             'siteurl'  => get_site_url(),
-//             'user' => get_current_user_id(),
-            
-//         )
-//     );
-//     // wp_enqueue_script('add_rm199_shortocodes_to_tinymce');
-// }
-// add_action('admin_enqueue_scripts', 'add_rm199_shortocodes_to_tinymce');
+function topbar_options_handler()
+{
+    $plugin_url  = plugins_url() . '/recommendations-master';
+    $ajax_url   = admin_url('admin-ajax.php');
+    wp_register_script(
+        'topbar_options_handler',
+        "{$plugin_url}/admin/js/rm199_topbar_settings.js",
+        array('jquery'),
+        '1.0',
+        true
+    );
+    wp_localize_script(
+        'topbar_options_handler',
+        'rm199Obj',
+        array(
+            'ajax_url' => $ajax_url,
+            'security'  => wp_create_nonce('rm199'),
+            'siteurl'  => get_site_url(),
+            'user' => get_current_user_id()
+        )
+    );
+    wp_enqueue_script('topbar_options_handler');
+}
+add_action('admin_enqueue_scripts', 'topbar_options_handler');
+
+function topbar_options_handler_callback()
+{
+    if (!isset($_POST) || empty($_POST) || !is_user_logged_in()) {
+        header('HTTP/1.1 400 Empty POST Values');
+        echo 'Could Not Verify POST Values.';
+        exit;
+    }
+
+    if (!current_user_can('manage_options')) {
+        exit;
+    }
+
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'rm199_topbar';
+    $wpdb->insert(
+        $table_name,
+        array(
+            'enabled' =>  $_POST['enabled'],
+            'code' => $_POST['code'],
+            'options' =>  $_POST['settings'],
+            'created_by' => get_current_user_id(),
+            "custom_styles" => $_POST['styles']
+        )
+    );
+    exit;
+}
+add_action('wp_ajax_nopriv_topbar_options_handler', 'topbar_options_handler_callback');
+add_action('wp_ajax_topbar_options_handler', 'topbar_options_handler_callback');

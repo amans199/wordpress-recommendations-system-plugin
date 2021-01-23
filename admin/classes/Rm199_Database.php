@@ -21,6 +21,7 @@ class Rm199Database
         $topbar_options_table = $wpdb->prefix . 'rm199_topbar';
         $topbar_options_table_sql = "CREATE TABLE $topbar_options_table (
             id int(11) NOT NULL AUTO_INCREMENT,
+            enabled Boolean  DEFAULT 0 NOT NULL,
             code text NOT NULL,
             options json NOT NULL,
             custom_styles text,

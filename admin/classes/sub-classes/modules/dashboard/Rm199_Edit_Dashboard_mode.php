@@ -35,14 +35,14 @@ class Rm199_Edit_Dashboard_mode
                 <input id="rm199__title_input" type="text" placeholder="<?php _e('We Recommend You Those Posts', 'rm199') ?>" onkeyup="rm199_title(this.value)" aria-describedby="rm199__title" value="<?php echo $title; ?>">
                 <small id="rm199__title"><?php _e('This Title is shown to the Users', 'rm199') ?></small>
             </div>
-
+            <hr style="margin-bottom: 10px;">
             <!-- Description -->
             <div class="rm199_input">
                 <label for="rm199__description_input"><?php _e('Description', 'rm199') ?></label>
                 <input id="rm199__description_input" type="text" placeholder="<?php _e('Enter a Description here', 'rm199') ?>" aria-describedby="rm199__description" value="<?php echo $description; ?>">
                 <small id="rm199__description"><?php _e('What do you want this Shortcode to do !? ', 'rm199') ?></small>
             </div>
-
+            <hr style="margin-bottom: 10px;">
             <!-- filter by keyword -->
             <div class="rm199_input--row">
                 <input type="checkbox" id="filter_by_keyword" <?php echo $can_user_select_keywords; ?>>
@@ -53,14 +53,14 @@ class Rm199_Edit_Dashboard_mode
                 <input type="checkbox" id="show_only_for_loggedin_users" <?php echo $show_only_for_loggedin_users; ?>>
                 <label for="show_only_for_loggedin_users"><?php _e('Show Only For Logged In Users', 'rm199') ?></label>
             </div>
-
+            <hr style="margin-bottom: 10px;">
             <!-- number of posts to display -->
             <div class="rm199_input--row">
                 <label for="number_of_posts_2_show" class="mx-2"><?php _e('Number of Items', 'rm199') ?></label>
                 <input type="number" id="number_of_posts_2_show" name="number_of_posts_2_show" placeholder="<?php _e('3', 'rm199') ?>" style="max-width:80px;" min="-1" max="10" onkeyup="rm199_number_of_posts(this.value)" onchange="rm199_number_of_posts(this.value)" value="<?php echo $number_of_items; ?>">
                 <!-- todo : add an ( all ) button to disable the input number and make it assigned to -1  -->
             </div>
-
+            <hr style="margin-bottom: 10px;">
             <!-- types of posts  -->
             <div class=" rm199_input--row">
                 <label for="rm199_post_type" class="mx-2"><?php _e('Type', 'rm199') ?></label>
