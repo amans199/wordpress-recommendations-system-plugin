@@ -17,12 +17,23 @@ class Rm199Input
 
     public static function rm199_input()
     {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'rm199_shortcodes';
+        ob_start();
+        $row_id = $attr['id'];
+        $results = $wpdb->get_results("SELECT * FROM $table_name WHERE code='$row_id'");
+        $parsed_options = json_decode($results[0]->options, true);
+        $custom_styles = $results[0]->custom_styles;
+        ob_get_clean();
+
         if (is_user_logged_in()) { ?>
             <!-- todo :: add templates :: topbar , side notice , send email , etc...  -->
             <div id="rm199_topbar_sys" style="display: none;">
                 <div class="rm199_topbar" data-background="#9b59b6" data-color="#fff" data-btn_color="#000">
                     <p class="rm199_preferences_example__txt"><?php _e('Preferences helps us to provide you with the best experience', 'rm199'); ?></p>
-                    <a href="#" role="button" id="rm199_preferences_modal_btn" onclick="add_preferences_handler()"><?php _e('Add Preferences', 'rm199'); ?></a>
+
+                    <?php echo $parsed_options['text'] . $parsed_options['link']; ?>
+                    <a href="#" role="button" id="button button-primary rm199_preferences_modal_btn" onclick="add_preferences_handler()"><?php _e('Add Preferences', 'rm199'); ?></a>
                     <!-- <div class="rm199_preferences_modal_status_topbar">
                         topbar status
                     </div> -->
