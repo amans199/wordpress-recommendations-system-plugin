@@ -478,6 +478,10 @@ a.generator_box__content--href {
     background: darkseagreen;
     text-align: center;
     padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
 }
 
 .rm199_preferences_example *{   

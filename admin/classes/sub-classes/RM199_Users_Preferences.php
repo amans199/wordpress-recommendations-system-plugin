@@ -27,8 +27,9 @@ class RM199_Users_Preferences
                 <div class="add_blur_if_disabled"></div>
                 <div class="rm199_input">
                     <div class="rm199_preferences_example" style="margin-bottom:10px">
-                        <p class="rm199_preferences_example__txt">Preferences helps us to provide you with the best experience</p>
-                        <a href="#" class="rm199_preferences_example__link_txt">Add Preferences</a>
+                        <p class="rm199_preferences_example__txt"><?php _e('Preferences helps us to provide you with the best experience'); ?></p>
+                        <a href="#" class="rm199_preferences_example__link_txt"></a>
+                        <button class="button button-primary"><?php _e('Add Preferences'); ?></button>
                     </div>
 
                 </div>
@@ -50,7 +51,7 @@ class RM199_Users_Preferences
 
                     <h4 for="preferences" style="margin-bottom:10px"><?php _e('Preferences may include:', 'rm199') ?></h4>
                     <div class="mb-4" id="preferences">
-                        <input type="checkbox" id="categories" name="preferences_handler" value="categories" onclick="">
+                        <input type="checkbox" id="categories" name="preferences_handler" value="categories" onchange="add_to_preferences_include_handler(event)" class="preferences_include_handler">
                         <label for="categories">
                             <span>
                                 <?php _e('Categories', 'rm199') ?>
@@ -59,7 +60,7 @@ class RM199_Users_Preferences
                         </label>
                     </div>
                     <div class="mb-4">
-                        <input type="checkbox" id="tags" name="preferences_handler" value="tags" onclick="">
+                        <input type="checkbox" id="tags" name="preferences_handler" value="tags" onchange="add_to_preferences_include_handler(event)" class="preferences_include_handler">
                         <label for="tags">
                             <span>
                                 <?php _e('Tags', 'rm199') ?>
@@ -69,12 +70,7 @@ class RM199_Users_Preferences
 
                     </div>
                     <div class="mb-4">
-                        <input type="checkbox" id="add_manual" name="preferences_handler" value="add_manual" onclick="">
-                        <label for="add_manual">
-                            <span>
-                                <?php _e('Add Manual', 'rm199') ?>
-                            </span>
-                            <small>(<?php _e('Add Keywords Manually', 'rm199') ?>)</small></label>
+                        <button class="button button-primary" onclick="add_to_preferences_include_handler(event)"><?php _e('Add Manual', 'rm199') ?></button>
                     </div>
                 </div>
                 <hr style="margin-bottom: 10px;">
@@ -84,7 +80,7 @@ class RM199_Users_Preferences
                     <h4 for="rm199__title_input" style="margin-bottom:0"><?php _e('Delay', 'rm199') ?></h4>
                     <div class="rm199_input--row mb-3">
                         <p><?php _e('Display After', 'rm199') ?></p>
-                        <input type="number" style="margin: 0 10px;" placeholder="<?php _e('30', 'rm199') ?>" style="max-width:80px;" min="10" onkeyup="" onchange="">
+                        <input class="topbar_delay_seconds" type="number" style="margin: 0 10px;" placeholder="<?php _e('30', 'rm199') ?>" style="max-width:80px;" min="10">
                         <p><?php _e('Seconds', 'rm199') ?></p>
                     </div>
                 </div>
@@ -96,7 +92,7 @@ class RM199_Users_Preferences
                     <h4 for="rm199__title_input" style="margin-bottom:0"><?php _e('Duration', 'rm199') ?></h4>
                     <div class="rm199_input--row mb-3">
                         <p><?php _e('Display for', 'rm199') ?></p>
-                        <input type="number" style="margin: 0 10px;" placeholder="<?php _e('30', 'rm199') ?>" style="max-width:80px;" min="10" onkeyup="" onchange="">
+                        <input type="number" style="margin: 0 10px;" placeholder="<?php _e('30', 'rm199') ?>" style="max-width:80px;" min="10" class="topbar_duration_seconds">
                         <p><?php _e('Seconds', 'rm199') ?></p>
                     </div>
                 </div>
@@ -149,6 +145,7 @@ class RM199_Users_Preferences
                     </div>
 
                     <div class="generator_box__btn">
+                        <!-- <input type="hidden" id="preferences_may_include_obj"> -->
                         <a href="#" class="generator_box__btn_cancel" onclick="location.reload()"><?php _e('Clear page', 'rm199') ?></a>
                         <input type="submit" class="button button-primary button-large" id="save_changes" name="save_changes" onclick="topbar_options_handler(event)" value=" <?php _e('Save', 'rm199');  ?>" />
                     </div>

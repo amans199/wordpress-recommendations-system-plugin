@@ -69,7 +69,7 @@ function add_new_shortcode_handler(e) {
       data: {
         action: 'add_new_shortcode_cb',
         'shortcode_content': shortcode_content,
-        'shortcode_uniqid': uniq_code,
+        'shortcode_uniqid': uniq_code + '_' + Math.random().toString(36).substr(2, 9),
         'rm199_custom_css': rm199_custom_css,
         'edit_mode_id': edit_mode_id ? edit_mode_id : '',
         'created_in': created_in

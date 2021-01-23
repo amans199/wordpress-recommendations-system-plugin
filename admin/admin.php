@@ -198,7 +198,8 @@ function topbar_options_handler()
             'ajax_url' => $ajax_url,
             'security'  => wp_create_nonce('rm199'),
             'siteurl'  => get_site_url(),
-            'user' => get_current_user_id()
+            'user' => get_current_user_id(),
+            'rm199_code' => uniqid(),
         )
     );
     wp_enqueue_script('topbar_options_handler');
@@ -219,12 +220,25 @@ function topbar_options_handler_callback()
 
     global $wpdb;
     $table_name = $wpdb->prefix . 'rm199_topbar';
+
+    $rm199_topbar_options_content = json_encode([
+        "text" => $_POST['settings']['text'],
+        "link_text" => $_POST['settings']['link_text'],
+        "bg_color" => $_POST['settings']['bg_color'],
+        "text_color" => $_POST['settings']['text_color'],
+        "text_link_color" => $_POST['settings']['text_link_color'],
+        "preferences_include" => $_POST['settings']['preferences_include'],
+        "delay" => $_POST['settings']['delay'],
+        "duration" => $_POST['settings']['duration'],
+        "enabled" => $_POST['settings']['enabled'],
+        "transition" => $_POST['settings']['transition'],
+    ]);
     $wpdb->insert(
         $table_name,
         array(
             'enabled' =>  $_POST['enabled'],
             'code' => $_POST['code'],
-            'options' =>  $_POST['settings'],
+            'options' =>  $rm199_topbar_options_content,
             'created_by' => get_current_user_id(),
             "custom_styles" => $_POST['styles']
         )

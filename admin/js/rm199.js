@@ -174,3 +174,8 @@ function rm199_topbar_link(e){
   txtShown = document.querySelector(".rm199_preferences_example__link_txt")
   txtShown.textContent = title
 }
+
+function add_to_preferences_include_handler(e){
+  console.log(e.target.value)
+  // document.querySelector("#preferences_may_include_obj").value += 'e.target.value'
+}

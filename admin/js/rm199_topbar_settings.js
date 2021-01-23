@@ -1,12 +1,23 @@
 // Form submission listener
 function topbar_options_handler(e) {
   e.preventDefault();
-
-
+  
   var enabled = document.querySelector('#toggle_preferences_input').checked,
-  code='dsdsdv4',
-  settings=[],
-  styles=[]
+   uniq_code =  rm199Obj.rm199_code,
+    settings={
+      text:document.querySelector(".rm199_preferences_example__txt").value,
+      link_text:document.querySelector(".rm199_preferences_example__link_txt").value,
+      bg_color:"",
+      text_color:"",
+      text_link_color:"",
+      preferences_include:[],
+      delay:document.querySelector('.topbar_delay_seconds').value,
+      duration:document.querySelector('.topbar_duration_seconds').value,
+      enabled:document.querySelector('#toggle_preferences_input').checked,
+      transition:"slide-down"
+    },
+  styles=""
+
 
   // if (code) {
     jQuery.ajax({
@@ -18,9 +29,9 @@ function topbar_options_handler(e) {
       data: {
         action: 'topbar_options_handler',
         'enabled': enabled ? 1 : 0,
-        'code': code ? 1 : 0,
-        'settings': settings ? 1 : 0,
-        'styles': styles ? 1 : 0
+        'code': uniq_code ? uniq_code + '_' + Math.random().toString(36).substr(2, 9) : '_' + Math.random().toString(36).substr(2, 9),
+        'settings': settings,
+        'styles': styles ? styles : 0
       }
     })
       .success(function (results) {
