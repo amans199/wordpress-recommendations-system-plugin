@@ -27,9 +27,9 @@ class RM199_Users_Preferences
                 <div class="add_blur_if_disabled"></div>
                 <div class="rm199_input">
                     <div class="rm199_preferences_example" style="margin-bottom:10px">
-                        <p class="rm199_preferences_example__txt"><?php _e('Preferences helps us to provide you with the best experience'); ?></p>
-                        <a href="#" class="rm199_preferences_example__link_txt"></a>
-                        <button class="button button-primary"><?php _e('Add Preferences'); ?></button>
+                        <p class="rm199_preferences_example__txt"><?php _e('Your preferences helps us providing you with the best experience'); ?></p>
+                        <a href="#" class="rm199_preferences_example__link_txt">
+                            <button class="button button-primary"><?php _e('Add Preferences'); ?></button></a>
                     </div>
 
                 </div>
@@ -51,8 +51,8 @@ class RM199_Users_Preferences
 
                     <h4 for="preferences" style="margin-bottom:10px"><?php _e('Preferences may include:', 'rm199') ?></h4>
                     <div class="mb-4" id="preferences">
-                        <input type="checkbox" id="categories" name="preferences_handler" value="categories" onchange="add_to_preferences_include_handler(event)" class="preferences_include_handler">
-                        <label for="categories">
+                        <input type="checkbox" id="preferences_handler_categories" name="preferences_handler" value="categories" class="preferences_include_handler">
+                        <label for="preferences_handler_categories">
                             <span>
                                 <?php _e('Categories', 'rm199') ?>
                             </span>
@@ -60,8 +60,8 @@ class RM199_Users_Preferences
                         </label>
                     </div>
                     <div class="mb-4">
-                        <input type="checkbox" id="tags" name="preferences_handler" value="tags" onchange="add_to_preferences_include_handler(event)" class="preferences_include_handler">
-                        <label for="tags">
+                        <input type="checkbox" id="preferences_handler_tags" name="preferences_handler" value="tags" class="preferences_include_handler">
+                        <label for="preferences_handler_tags">
                             <span>
                                 <?php _e('Tags', 'rm199') ?>
                             </span>
@@ -70,8 +70,18 @@ class RM199_Users_Preferences
 
                     </div>
                     <div class="mb-4">
-                        <button class="button button-primary" onclick="add_to_preferences_include_handler(event)"><?php _e('Add Manual', 'rm199') ?></button>
+                        <input type="checkbox" id="preferences_handler_select_all" name="preferences_handler" value="select_all" class="preferences_include_handler" onchange="select_all_tags_and_categories(event)">
+                        <label for="preferences_handler_select_all">
+                            <span>
+                                <?php _e('Select All', 'rm199') ?>
+                            </span>
+                            <small>(<?php _e('Select all tags and categories', 'rm199') ?>)</small>
+                        </label>
                     </div>
+                    <!-- <div class="mb-4">
+                        <button class="button button-primary" onclick="add_to_preferences_include_handler(event)"><?php //_e('Add Manual', 'rm199') 
+                                                                                                                    ?></button>
+                    </div> -->
                 </div>
                 <hr style="margin-bottom: 10px;">
 
@@ -90,10 +100,14 @@ class RM199_Users_Preferences
                 <!-- todo : add toggle to allow to display it until user choose preferences -->
                 <div class="rm199_input">
                     <h4 for="rm199__title_input" style="margin-bottom:0"><?php _e('Duration', 'rm199') ?></h4>
-                    <div class="rm199_input--row mb-3">
-                        <p><?php _e('Display for', 'rm199') ?></p>
-                        <input type="number" style="margin: 0 10px;" placeholder="<?php _e('30', 'rm199') ?>" style="max-width:80px;" min="10" class="topbar_duration_seconds">
-                        <p><?php _e('Seconds', 'rm199') ?></p>
+                    <div class="row">
+                        <div class="rm199_input--row mb-3">
+                            <p><?php _e('Display for', 'rm199') ?></p>
+                            <input type="number" style="margin: 0 10px;" placeholder="<?php _e('30', 'rm199') ?>" style="max-width:80px;" min="10" class="topbar_duration_seconds">
+                            <p><?php _e('Seconds', 'rm199') ?></p>
+                        </div>
+                        <input type="checkbox" name="display_topbar_till_user_choose_preferences" id="display_topbar_till_user_choose_preferences" onchange="display_topbar_till_user_choose_preferences(event)">
+                        <label for="display_topbar_till_user_choose_preferences"><?php _e('Display topbar till user choose preferences') ?></label>
                     </div>
                 </div>
                 <hr style=" margin-bottom: 10px;">
@@ -104,15 +118,15 @@ class RM199_Users_Preferences
                     <h4 for="rm199__title_input mb-4"><?php _e('Styles', 'rm199') ?></h4>
                     <div class="rm199_input--row mb-3">
                         <label for="choose_main_color" style="min-width: 220px;"><?php _e('Choose background Color ', 'rm199') ?></label>
-                        <input class="mx-2" type="color" id="choose_main_color" name="main-color" value="#0073aa">
+                        <input class="mx-2" type="color" id="choose_main_color_topbar" name="main-color" value="" onchange="topbar_change_the_bg_color(event)">
                     </div>
                     <div class="rm199_input--row mb-3">
                         <label for="choose_text_color" style="min-width: 220px;"><?php _e('Choose  Text color ', 'rm199') ?></label>
-                        <input class="mx-2" type="color" id="choose_text_color" name="text-color" value="#f00000">
+                        <input class="mx-2" type="color" id="choose_text_color_topbar" name="text-color" value="" onchange="topbar_change_the_txt_color(event)">
                     </div>
                     <div class="rm199_input--row mb-3">
                         <label for="choose_button_link_color" style="min-width: 220px;"><?php _e('Choose  Link color ', 'rm199') ?></label>
-                        <input class="mx-2" type="color" id="choose_button_link_color" name="link-color" value="#00ff00">
+                        <input class="mx-2" type="color" id="choose_button_link_color_topbar" name="link-color" value="" onchange="topbar_change_the_link_color(event)">
                     </div>
                 </div>
             </div>

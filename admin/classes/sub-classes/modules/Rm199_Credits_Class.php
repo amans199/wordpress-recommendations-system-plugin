@@ -9,7 +9,7 @@ class Rm199Credits
 
 
 ?>
-
+        <!-- todo : add style="display:block !important" to all credits elements  -->
         <div class="amans199__photo text-center">
             <img class="generator_box__content--amans199" src="<?php echo plugins_url() . '/recommendations-master/assets/images/amans199.png' ?>" alt="amans199">
         </div>
