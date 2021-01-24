@@ -587,6 +587,7 @@ input:checked + .slider:before {
     transition: all 0.2s ease-in-out;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 .preferences_logger_item_actions {
     display: flex;

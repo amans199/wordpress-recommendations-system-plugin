@@ -172,26 +172,27 @@ class RM199_Users_Preferences
                             <?php
                             foreach ($all_results as $key => $result) {
                                 if (count($all_results) - $key === count($all_results)) {
-                                    $the_current = __('The Current Applied');
+                                    $the_current = __('Current');
                                 } else {
                                     $the_current = "";
                                 }
                             ?>
                                 <!-- todo : add a modal of info  -->
                                 <div class="preferences_logger_item d-flex ">
+                                    <div>
+                                        <small> <?php echo  count($all_results) - $key; ?> )
+                                        </small>
+                                        <span style="margin:0 2px;"></span>
 
-                                    <small> <?php echo  count($all_results) - $key; ?> )
-                                    </small>
-                                    <span style="margin:0 2px;"></span>
-
-                                    <small><?php _e('last saved in ') ?>
-                                        <?php
-                                        echo  date_i18n(get_option('date_format'), $result->created_in);
-                                        ?></small>
-                                    <span style="margin:0 2px;"></span>
-                                    <small><?php _e('by ') ?> <?php echo get_the_author_meta('nicename', $result->created_by); ?></small>
-                                    <?php //print_r($result); 
-                                    ?>
+                                        <small><?php _e('last saved in ') ?>
+                                            <?php
+                                            echo  date_i18n(get_option('date_format'), $result->created_in);
+                                            ?></small>
+                                        <span style="margin:0 2px;"></span>
+                                        <small><?php _e('by ') ?> <?php echo get_the_author_meta('nicename', $result->created_by); ?></small>
+                                        <?php //print_r($result); 
+                                        ?>
+                                    </div>
                                     <section class="preferences_logger_item_actions d-flex">
                                         <?php
                                         if (count($all_results) - $key !== count($all_results)) {
@@ -202,7 +203,7 @@ class RM199_Users_Preferences
                                             <button class="rm199_btn rm199_btn_warning cursor-pointer d-flex align-items-center "><span class="dashicons dashicons-update"></span></span></button>
                                         <?php
                                         } else {
-                                            // echo  "(" . $the_current . ")";
+                                            echo  "( " . $the_current . " )";
                                         }
                                         ?>
                                     </section>
