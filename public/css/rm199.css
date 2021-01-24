@@ -83,13 +83,14 @@
 
 
 .rm199_topbar{
-  /* background-color: #9b59b6; */
-  text-align: center;
+    text-align: center;
     padding: 10px;
-    /* position: absolute; */
     top: 0;
-    left:0;
+    left: 0;
     width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .rm199_topbar *{   
@@ -393,3 +394,46 @@
 .rm199__status--success{
   color:#5cb85c
 }
+
+
+/* EFFECT ONE */
+a.effect1 {
+  margin: 0 10px;
+}
+/* a.effect1:after{
+  content: '';
+  box-sizing: border-box;
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  line-height: 100px;
+  
+  -webkit-transition: all 0.3s;
+	transition: all 0.3s;
+}
+a.effect1:before {
+  box-sizing: border-box;
+  content: '';
+  position: absolute;
+  top: 100%;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  
+  -webkit-transition: all 0.3s;
+	transition: all 0.3s;
+}
+a.effect1:hover:before {
+  top: 0;
+}
+a.effect1:hover:after {
+} */
+
+/* .rm199_topbar_sys{
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -ms-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+} */

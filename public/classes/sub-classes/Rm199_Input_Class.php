@@ -18,23 +18,36 @@ class Rm199Input
     public static function rm199_input()
     {
         global $wpdb;
-        $table_name = $wpdb->prefix . 'rm199_shortcodes';
+        // $table_name = $wpdb->prefix . 'rm199_shortcodes';
         ob_start();
-        $row_id = $attr['id'];
-        $results = $wpdb->get_results("SELECT * FROM $table_name WHERE code='$row_id'");
-        $parsed_options = json_decode($results[0]->options, true);
-        $custom_styles = $results[0]->custom_styles;
+        // $row_id = $attr['id'];
+        // $results = $wpdb->get_results("SELECT * FROM $table_name WHERE code='$row_id'");
+        // $parsed_options = json_decode($results[0]->options, true);
+        // $custom_styles = $results[0]->custom_styles;
+        $topbar_settings_table_name = $wpdb->prefix . 'rm199_topbar';
+        $topbar_settings = $wpdb->get_results("SELECT * FROM $topbar_settings_table_name ORDER BY ID DESC LIMIT 1");
+        $topbar_settings_obj = $topbar_settings[0];
+        $parsed_topbar_settings_obj = json_decode($topbar_settings_obj->options, true);
         ob_get_clean();
-
         if (is_user_logged_in()) { ?>
             <!-- todo :: add templates :: topbar , side notice , send email , etc...  -->
             <div id="rm199_topbar_sys" style="display: none;">
-                <div class="rm199_topbar" data-background="#9b59b6" data-color="#fff" data-btn_color="#000">
-                    <p class="rm199_preferences_example__txt"><?php _e('Preferences helps us to provide you with the best experience', 'rm199'); ?></p>
+                <div class="rm199_topbar" data-background="<?php echo $parsed_topbar_settings_obj['bg_color']; ?>" data-color="<?php echo $parsed_topbar_settings_obj['text_color']; ?>">
+                    <p class="rm199_preferences_example__txt">
+                        <?php
+                        echo $parsed_topbar_settings_obj['text'];
+                        ?></p>
 
-                    <?php // echo $parsed_options['text'] . $parsed_options['link']; 
+                    <?php
+                    //  print_r($topbar_settings_obj);
+
                     ?>
-                    <a href="#" role="button" class="button  " id="rm199_preferences_modal_btn" onclick="add_preferences_handler()"><?php _e('Add Preferences', 'rm199'); ?></a>
+                    <!-- todo : add button styles  -->
+                    <a href="#" role="button" id="rm199_preferences_modal_btn" class="rm199_btn rm199_btn_warning  effect1" data-btn_color="<?php echo $parsed_topbar_settings_obj['text_link_color']; ?>" onclick="add_preferences_handler()">
+                        <?php
+                        echo $parsed_topbar_settings_obj['link_text'];
+                        ?>
+                    </a>
                     <!-- <div class="rm199_preferences_modal_status_topbar">
                         topbar status
                     </div> -->

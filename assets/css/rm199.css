@@ -382,3 +382,67 @@ a.rm199_post__link.effect1:hover {
     /* color: #f0f5fa; */
     font-size: 1.3em !important;
 }
+
+
+
+
+.rm199_btn {
+    display: inline-block;
+    margin-bottom: 0;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    background-image: none;
+    border: 1px solid transparent;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    border-radius: 4px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+.rm199_btn_edit {
+    color: #fff;
+    background-color: #337ab7;
+    border-color: #2e6da4;
+}
+.rm199_btn_edit:hover {
+    background-color: #286090;
+    border-color: #204d74;
+}
+
+.rm199_btn_info {
+    color: #fff;
+    background-color: #5bc0de;
+    border-color: #46b8da;
+}
+.rm199_btn_info:hover {
+    background-color: #31b0d5;
+    border-color: #269abc;
+}
+
+.rm199_btn_warning {
+    color: #fff;
+    background-color: #ffc107;
+    border-color: #fdbe02;
+}
+.rm199_btn_warning:hover {
+    background-color: #f8cf55fd;
+    border-color: #f7c530;
+}
+
+.rm199_btn_danger {
+    color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+}
+.rm199_btn_danger:hover {
+    background-color: #c9302c;
+    border-color: #ac2925;
+}

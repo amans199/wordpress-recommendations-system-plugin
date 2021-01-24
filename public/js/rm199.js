@@ -8,8 +8,8 @@ window.onload = (event) => {
       // .rm199_topbar :: STYLES
       document.querySelector(".rm199_topbar").style.background = document.querySelector(".rm199_topbar").dataset.background;
       document.querySelector(".rm199_topbar").style.color = document.querySelector(".rm199_topbar").dataset.color;
-      document.querySelector("#rm199_preferences_modal_btn").style.color = document.querySelector(".rm199_topbar").dataset.btn_color;
-
+      document.querySelector("#rm199_preferences_modal_btn").style.color = document.querySelector(".rm199_topbar #rm199_preferences_modal_btn").dataset.btn_color;
+      // document.querySelector("#rm199_preferences_modal_btn").style.color = document.querySelector(".rm199_topbar  #rm199_preferences_modal_btn").dataset.btn_color_hover;
       
       // End Styling
 
