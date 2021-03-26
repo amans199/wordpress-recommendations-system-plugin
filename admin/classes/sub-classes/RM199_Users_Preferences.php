@@ -16,9 +16,11 @@ class RM199_Users_Preferences
         // todo :: add show it in  specific pages option 
         global $wpdb;
         $table_name = $wpdb->prefix . 'rm199_topbar';
-        $all_results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY ID DESC");
+        $all_results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY ID DESC") ?: [];
+        if (count($all_results) > 0) {
+        }
         $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY ID DESC LIMIT 1");
-        $last_row = $results[0];
+        // $last_row = $results[0];
         // print_r($last_row->enabled);
 ?>
         <h1><?php _e('Create A Preferences Handler: ', 'rm199') ?></h1>
@@ -151,7 +153,14 @@ class RM199_Users_Preferences
                                 <h3 id="rm199__overview__title"><?php _e('Enable Preferences Bar ', 'rm199') ?></h3>
                             </label>
                             <label class="switch">
-                                <input type="checkbox" id="toggle_preferences_input" value="<?php echo $results[0]->enabled ?>" <?php checked($results[0]->enabled); ?>>
+                                <?php if (count($results) > 0) { ?>
+                                    <input type="checkbox" id="toggle_preferences_input" value="<?php echo $results[0]->enabled ?>" <?php checked($results[0]->enabled); ?>>
+                                <?php } else {
+                                ?>
+                                    <input type="checkbox" id="toggle_preferences_input" value="false">
+                                <?php
+                                }
+                                ?>
                                 <span class="slider round"></span>
                             </label>
                         </div>
@@ -169,55 +178,62 @@ class RM199_Users_Preferences
 
                         <section class="preferences_logger overflow-y-auto">
                             <!-- todo : add functionality to restore or delete any logger history -->
-                            <?php
-                            foreach ($all_results as $key => $result) {
-                                if (count($all_results) - $key === count($all_results)) {
-                                    $the_current = __('Current');
-                                } else {
-                                    $the_current = "";
-                                }
-                            ?>
-                                <!-- todo : add a modal of info  -->
-                                <div class="preferences_logger_item d-flex ">
-                                    <div>
-                                        <small> <?php echo  count($all_results) - $key; ?> )
-                                        </small>
-                                        <span style="margin:0 2px;"></span>
+                            <?php if (count($all_results) > 0) { ?>
 
-                                        <small><?php _e('last saved in ') ?>
+                                <?php
+                                foreach ($all_results as $key => $result) {
+                                    if (count($all_results) - $key === count($all_results)) {
+                                        $the_current = __('Current');
+                                    } else {
+                                        $the_current = "";
+                                    }
+                                ?>
+                                    <!-- todo : add a modal of info  -->
+                                    <div class="preferences_logger_item d-flex ">
+                                        <div>
+                                            <small> <?php echo  count($all_results) - $key; ?> )
+                                            </small>
+                                            <span style="margin:0 2px;"></span>
+
+                                            <small><?php _e('last saved in ') ?>
+                                                <?php
+                                                echo  date_i18n(get_option('date_format'), $result->created_in);
+                                                ?></small>
+                                            <span style="margin:0 2px;"></span>
+                                            <small><?php _e('by ') ?> <?php echo get_the_author_meta('nicename', $result->created_by); ?></small>
+                                            <?php //print_r($result); 
+                                            ?>
+                                        </div>
+                                        <section class="preferences_logger_item_actions d-flex">
                                             <?php
-                                            echo  date_i18n(get_option('date_format'), $result->created_in);
-                                            ?></small>
-                                        <span style="margin:0 2px;"></span>
-                                        <small><?php _e('by ') ?> <?php echo get_the_author_meta('nicename', $result->created_by); ?></small>
-                                        <?php //print_r($result); 
-                                        ?>
+                                            if (count($all_results) - $key !== count($all_results)) {
+                                            ?>
+                                                <!-- todo : add functionality of deleting a row or restoring another one -->
+                                                <button class="rm199_btn rm199_btn_danger cursor-pointer d-flex align-items-center "><span class="dashicons dashicons-trash"></span></button>
+                                                <!-- todo : show info -->
+                                                <button class="rm199_btn rm199_btn_warning cursor-pointer d-flex align-items-center "><span class="dashicons dashicons-update"></span></span></button>
+                                            <?php
+                                            } else {
+                                                echo  "( " . $the_current . " )";
+                                            }
+                                            ?>
+                                        </section>
+
                                     </div>
-                                    <section class="preferences_logger_item_actions d-flex">
-                                        <?php
-                                        if (count($all_results) - $key !== count($all_results)) {
-                                        ?>
-
-                                            <button class="rm199_btn rm199_btn_danger cursor-pointer d-flex align-items-center "><span class="dashicons dashicons-trash"></span></button>
-                                            <!-- todo : show info -->
-                                            <button class="rm199_btn rm199_btn_warning cursor-pointer d-flex align-items-center "><span class="dashicons dashicons-update"></span></span></button>
-                                        <?php
-                                        } else {
-                                            echo  "( " . $the_current . " )";
-                                        }
-                                        ?>
-                                    </section>
-
-                                </div>
                             <?php
+                                }
+                            } else {
+                                echo 'You have not enabled the topbar yet';
                             }
                             ?>
                         </section>
                     </div>
-
-                    <div class="generator_box__btn">
-                        <button class="rm199_btn rm199_btn_danger cursor-pointer d-flex align-items-center "><?php _e('Clear History', 'rm199');  ?></button>
-                    </div>
+                    <!-- todo : add functionality to clear history button  -->
+                    <?php if (count($all_results) > 0) { ?>
+                        <div class="generator_box__btn">
+                            <button class="rm199_btn rm199_btn_danger cursor-pointer d-flex align-items-center "><?php _e('Clear History', 'rm199');  ?></button>
+                        </div>
+                    <?php } ?>
                 </div>
 
                 <!-- how to use  -->

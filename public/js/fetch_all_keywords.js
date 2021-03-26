@@ -1,5 +1,14 @@
 
-function add_preferences_handler(){
+function add_preferences_handler(preferences_include){
+
+if(preferences_include !==""){
+  var preferences_arr = preferences_include.split("/");
+}
+// else{
+//   var preferences_arr = ;
+// }
+console.log(preferences_arr)
+
         jQuery.ajax({
         beforeSend: (xhr) => {
           xhr.setRequestHeader('X-WP-Nonce', rm199Obj.security)

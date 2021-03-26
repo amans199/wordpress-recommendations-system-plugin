@@ -4,6 +4,9 @@
   // console.log(JSON.parse(document.querySelector('#rm199_tinymce_shortcodes').value))
 
   const rm199Shortcodes = []
+  if(JSON.parse(document.querySelector('#rm199_tinymce_shortcodes').value).length === 0){
+    return;
+  }
 
   JSON.parse(document.querySelector('#rm199_tinymce_shortcodes').value).forEach(elem => {
     var elemDescription = JSON.parse(elem.options).description
