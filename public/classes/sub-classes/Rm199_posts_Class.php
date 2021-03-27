@@ -19,6 +19,9 @@ class Rm199AllPosts
         ob_start();
         $row_id = $attr['id'];
         $results = $wpdb->get_results("SELECT * FROM $table_name WHERE code='$row_id'");
+        if (count($results) == 0) {
+            return;
+        }
         $parsed_options = json_decode($results[0]->options, true);
         $custom_styles = $results[0]->custom_styles;
         ob_get_clean();

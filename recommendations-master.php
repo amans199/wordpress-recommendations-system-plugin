@@ -66,10 +66,13 @@ if (!class_exists('rm199')) :
         private function setupDatabase()
         {
             require_once('admin/classes/Rm199_Database.php');
+
             register_activation_hook(__FILE__, array('Rm199Database', 'setup'));
+
             add_action('wp_login', array('Rm199Database', 'setup'), 10, 2);
-            require_once('uninstall.php');
-            register_uninstall_hook(__FILE__, array('Rm199Uninstall', 'uninstall'));
+
+            // require_once('uninstall.php');
+            // register_uninstall_hook(__FILE__, array('Rm199Uninstall', 'uninstall'));
         }
     }
 endif;

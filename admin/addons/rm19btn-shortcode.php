@@ -2,6 +2,11 @@
 
 
 /********* TinyMCE Buttons ***********/
+
+// if (!function_exists('get_current_screen')) {
+//     require_once ABSPATH . '/wp-admin/includes/screen.php';
+// }
+
 add_action('init', 'rm199_btn');
 
 if (!function_exists('rm199_btn')) {
@@ -17,14 +22,22 @@ if (!function_exists('rm199_btn')) {
         //to do : make this appear only on the post pages 
         // get all rm199 shortcodes 
         global $wpdb;
+
         // ob_start();
 
-        $table_name = $wpdb->prefix . 'rm199_shortcodes';
-        $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_in  DESC");
-        if (count($results) > 0) {
-            echo "<input id='rm199_tinymce_shortcodes' type='hidden' value='" . json_encode($results)  . "' />";
-        } else {
-            echo "<input id='rm199_tinymce_shortcodes' type='hidden' value='" . json_encode([])  . "' />";
+        // $screen = get_current_screen();
+        global $pagenow;
+        if (($pagenow == 'post.php') || (get_post_type() == 'post') || ($pagenow ==   'post-new.php')) {
+            // print_r($screen);
+            // if (is_admin() && $screen->parent_base == 'edit') {
+
+            $table_name = $wpdb->prefix . 'rm199_shortcodes';
+            $results = $wpdb->get_results("SELECT * FROM $table_name ORDER BY created_in  DESC");
+            if (count($results) > 0) {
+                echo "<input id='rm199_tinymce_shortcodes' type='hidden' value='" . json_encode($results)  . "' />";
+            } else {
+                echo "<input id='rm199_tinymce_shortcodes' type='hidden' value='" . json_encode([])  . "' />";
+            }
         }
         // todo : make this input appear only on the pages that contains editors 
         add_filter('mce_external_plugins', 'rm199_register_tinymce_javascript');

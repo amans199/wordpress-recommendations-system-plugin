@@ -26,24 +26,27 @@ class Rm199Input
         // $custom_styles = $results[0]->custom_styles;
         $topbar_settings_table_name = $wpdb->prefix . 'rm199_topbar';
         $topbar_settings = $wpdb->get_results("SELECT * FROM $topbar_settings_table_name ORDER BY ID DESC LIMIT 1");
-        if ($topbar_settings) {
-            $topbar_settings_obj = $topbar_settings[0];
+        if (count($topbar_settings) > 0 && !empty($topbar_settings)) {
+            $topbar_settings_obj =  $topbar_settings[0];
             $parsed_topbar_settings_obj = json_decode($topbar_settings_obj->options, true);
             ob_get_clean();
             if (is_user_logged_in() && $parsed_topbar_settings_obj['enabled']) { ?>
                 <!-- todo :: add templates :: topbar , side notice , send email , etc...  -->
                 <div id="rm199_topbar_sys" style="display: none;">
-                    <div class="rm199_topbar" data-background="<?php echo $parsed_topbar_settings_obj['bg_color']; ?>" data-color="<?php echo $parsed_topbar_settings_obj['text_color']; ?>" data-duration="<?php echo $parsed_topbar_settings_obj['duration']; ?>" data-enabled="<?php echo $parsed_topbar_settings_obj['enabled']; ?>" data-delay="<?php echo $parsed_topbar_settings_obj['delay']; ?>" data-preferences_include="<?php echo $parsed_topbar_settings_obj['preferences_include']; ?>">
+                    <div class="rm199_topbar" data-background="<?php //echo $parsed_topbar_settings_obj['bg_color']; 
+                                                                ?>" data-color="<?php //echo $parsed_topbar_settings_obj['text_color']; 
+                                                                                                                                        ?>" data-duration="<?php //echo $parsed_topbar_settings_obj['duration']; 
+                                                                                                                                                                                                                ?>" data-enabled="<?php //echo $parsed_topbar_settings_obj['enabled']; 
+                                                                                                                                                                                                                                                                                        ?>" data-delay="<?php //echo $parsed_topbar_settings_obj['delay']; 
+                                                                                                                                                                                                                                                                                                                                                                ?>" data-preferences_include="<?php //echo $parsed_topbar_settings_obj['preferences_include']; 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                ?>">
                         <p class="rm199_preferences_example__txt">
                             <?php
-                            echo $parsed_topbar_settings_obj['text'];
+                            //echo $parsed_topbar_settings_obj['text'];
+                            echo 'remember to fix this static text ';
                             ?></p>
                         <?php
-                        //  print_r($topbar_settings_obj);
                         $preferences_should_include = $parsed_topbar_settings_obj['preferences_include'];
-                        // print_r(array_values($preferences_should_include));
-                        // echo json_encode(array_values($preferences_should_include));
-                        // echo  implode('/', array_values($preferences_should_include))
                         ?>
                         <!-- todo : add button styles  -->
                         <a href="#" role="button" id="rm199_preferences_modal_btn" class="rm199_btn rm199_btn_warning  effect1" data-btn_color="<?php echo $parsed_topbar_settings_obj['text_link_color']; ?>" onclick="add_preferences_handler('<?php echo implode('/', array_values($preferences_should_include)); ?>')">

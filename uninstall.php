@@ -1,9 +1,9 @@
 <?php
-class Rm199Uninstall
-{
 
-    public static function uninstall()
-    {
-        if (!defined('WP_UNINSTALL_PLUGIN')) exit();
-    }
-}
+defined('ABSPATH') or die();
+
+global $wpdb;
+$shortcodes_table = $wpdb->prefix . 'rm199_shortcodes';
+$topbar_options_table = $wpdb->prefix . 'rm199_topbar';
+$wpdb->query("DROP TABLE IF EXISTS $shortcodes_table");
+$wpdb->query("DROP TABLE IF EXISTS $topbar_options_table");
