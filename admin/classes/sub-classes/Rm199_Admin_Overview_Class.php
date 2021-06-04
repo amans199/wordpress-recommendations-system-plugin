@@ -52,33 +52,15 @@ class Rm199_Admin_Overview_Class
         </div>
         <div class="custom_row">
             <div class="rm199__home_col">
-
-                <!-- <div class="generator_box mr-2">
+ <!-- how to use  -->
+ <div class="generator_box">
                     <h2 class="generator_box__header">
-                        <span class="mr-2"><?php //_e('Posts Performance', 'rm199') 
-                                            ?></span>
-                    </h2>
+                        <span><?php _e('How To Use', 'rm199') ?></span></h2>
                     <div class="generator_box__content">
                         <?php
-                        // require('modules/Rm199_Table_rm199_posts_clicks.php');
-                        // $table_posts_clicks = new Rm199TableRm199PostsClicks();
-                        // $table_posts_clicks->postsClicks();
-                        ?>
-                    </div>
-                </div> -->
-                <div class="generator_box mr-2">
-                    <h2 class="generator_box__header">
-                        <span><?php _e('User can Edit his preferences in : ', 'rm199') ?></span>
-                        <!-- <button class="button button-primary button-large " onclick=""><?php // _e('add another keyword', 'rm199') 
-                                                                                            ?></button> -->
-                    </h2>
-                    <!-- <div class="table__overlay" onclick="unlockThis(event)"><span class="table__overlay__content"><?php //_e('Click To See Table', 'rm199') 
-                                                                                                                        ?></span></div> -->
-                    <div class="generator_box__content">
-                        <?php
-                        require('modules/Rm199_Table_rm199_input.php');
-                        $keywords_table_structure = new Rm199TableRm199Input();
-                        $keywords_table_structure->keywords_table_structure();
+                        require('modules/RM199_how_to_use.php');
+                        $rm199_how_to_use = new Rm199HowToUse();
+                        $rm199_how_to_use->howToUse();
                         ?>
                     </div>
                 </div>

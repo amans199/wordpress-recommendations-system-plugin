@@ -8,4 +8,6 @@
 
 # create translations files pot .... 
 
-# when you edit a recommendation pack this will change the id of the pack which make it doesn't appear on the frontend: fix that 
+# when you edit a recommendation pack this will change the id of the pack which make it doesn't appear on the frontend: fix that \
+
+# in preview : show if the used shortcode is depricated or has been removed
