@@ -63,6 +63,14 @@ class Rm199_Admin_Dashboard_Class
 
                             <!-- todo : add a real examples from the website with realtime update whenever eny argument change  -->
 
+                   <!-- links template  -->
+                   <div id="rm199__links__template" class="text-center" <?php echo ($template === 'links' ? '' : 'style="display: none;"'); ?>>
+                                <?php
+                                    $Rm199_Links_Template = new Rm199_Links_Template();
+                                    $Rm199_Links_Template->links_template_creator($rm199_mode = 'admin');
+                                ?>
+                            </div>
+
                             <!-- structured template  -->
                             <div id="rm199__structured__template" class="text-center" <?php echo ($template === 'structured' ? '' : 'style="display: none;"'); ?>>
                                 <?php

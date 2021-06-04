@@ -20,7 +20,8 @@ class NoUserPreferencesRm199
         $Rm199_Minimal_Template = new Rm199_Minimal_Template();
         $Rm199_Transitioned_Template = new  Rm199_Transitioned_Template();
         $Rm199_Structured_Template = new Rm199_Structured_Template();
-
+        $Rm199_Links_Template = new Rm199_Links_Template();
+        
         $args = array(
             'posts_per_page' => ($parsed_options['number_of_items'] ? $parsed_options['number_of_items'] : 3),
             'orderby' => 'post_date',
@@ -67,8 +68,10 @@ class NoUserPreferencesRm199
                         $Rm199_Structured_Template->structured_template_creator($rm199_mode = "public");
                     } elseif ($parsed_options['template'] === 'transitioned') {
                         $Rm199_Transitioned_Template->transitioned_template_creator($rm199_mode = "public");
-                    } else {
+                    } elseif ($parsed_options['template'] === 'minimal') {
                         $Rm199_Minimal_Template->minimal_template_creator($rm199_mode = "public");
+                    } else {
+                        $Rm199_Links_Template->links_template_creator($rm199_mode = "public");
                     }
                     ?>
 

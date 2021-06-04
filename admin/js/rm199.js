@@ -81,14 +81,22 @@ function template(value) {
     document.getElementById("rm199__minimal__template").style.display = "block"
     document.getElementById("rm199__transitioned__template").style.display = "none"
     document.getElementById("rm199__structured__template").style.display = "none"
+    document.getElementById("rm199__links__template").style.display = "none"
   } else if(value === 'transitioned'){
     document.getElementById("rm199__minimal__template").style.display = "none"
     document.getElementById("rm199__transitioned__template").style.display = "block"
     document.getElementById("rm199__structured__template").style.display = "none"
+    document.getElementById("rm199__links__template").style.display = "none"
+  } else if(value === 'minimal'){
+    document.getElementById("rm199__minimal__template").style.display = "none"
+    document.getElementById("rm199__transitioned__template").style.display = "none"
+    document.getElementById("rm199__links__template").style.display = "none"
+    document.getElementById("rm199__structured__template").style.display = "block"
   }else{
     document.getElementById("rm199__minimal__template").style.display = "none"
     document.getElementById("rm199__transitioned__template").style.display = "none"
-    document.getElementById("rm199__structured__template").style.display = "block"
+    document.getElementById("rm199__links__template").style.display = "block"
+    document.getElementById("rm199__structured__template").style.display = "none"
   }
 }
 

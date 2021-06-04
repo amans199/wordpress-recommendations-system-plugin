@@ -188,6 +188,14 @@ class Rm199_New_Dashboard_mode
             <!-- choose template for recommendations -->
             <h2><?php _e('Templates ', 'rm199') ?></h2>
             <div class="rm199_input--col templates_dashboard">
+            <!-- foreach (glob(RM199_PATH . "assets/templates/*.php") as $file) {
+            include_once $file;
+        } -->
+            <div class="mb-4">
+                    <input type="radio" id="links" name="template" value="links" onclick="template(this.value)">
+                    <label for="links"><?php _e('Links', 'rm199') ?></label><br>
+                    <label for="links"><img src="<?php echo $image_dir . 'minimal.PNG'; ?>" alt="links-rm199" class="mt-2 w-100"></label>
+                </div>
                 <div class="mb-4">
                     <input type="radio" id="minimal" name="template" value="minimal" onclick="template(this.value)">
                     <label for="minimal"><?php _e('Minimal', 'rm199') ?></label><br>
