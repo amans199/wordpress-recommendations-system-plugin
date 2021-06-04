@@ -61,10 +61,8 @@ class Rm199_Admin_Dashboard_Class
                         <!-- todo : make the template interact with the custom css entered by the user  -->
                         <div class="rm199__post rm199__post--overview d-flex align-items-center" style="justify-content: space-around;margin: 40px 0;">
 
-                            <!-- todo : add a real examples from the website with realtime update whenever eny argument change  -->
-
-                   <!-- links template  -->
-                   <div id="rm199__links__template" class="text-center" <?php echo ($template === 'links' ? '' : 'style="display: none;"'); ?>>
+                            <!-- links template  -->
+                            <div id="rm199__links__template" class="text-center" <?php echo ($template === 'links' ? '' : 'style="display: none;"'); ?>>
                                 <?php
                                     $Rm199_Links_Template = new Rm199_Links_Template();
                                     $Rm199_Links_Template->links_template_creator($rm199_mode = 'admin');

@@ -229,22 +229,16 @@ class Rm199_Edit_Dashboard_mode
             <!-- choose template for recommendations -->
             <h2><?php _e('Templates ', 'rm199') ?></h2>
             <div class="rm199_input--col templates_dashboard">
+                <?php 
+                foreach (glob(RM199_PATH . "assets/templates/*.php") as $file) {
+                     $template_name = str_replace('.php' , '' ,basename($file));
+                ?>
                 <div class="mb-4">
-                    <input type="radio" id="minimal" name="template" value="minimal" onclick="template(this.value)" <?php echo ($template  === 'minimal' ?  'checked' : ''); ?>>
-                    <label for="minimal"><?php _e('Minimal', 'rm199') ?></label><br>
-                    <label for="minimal"><img src="<?php echo $image_dir . 'minimal.PNG'; ?>" alt="minimal-rm199" class="mt-2"></label>
+                    <input type="radio" id="<?php echo $template_name; ?>" name="template" value="<?php echo $template_name; ?>" onclick="template(this.value)">
+                    <label for="<?php echo $template_name; ?>"><?php _e($template_name, 'rm199') ?></label><br>
+                    <label for="<?php echo $template_name; ?>"><img src="<?php echo $image_dir . $template_name . '.PNG'; ?>" alt="<?php echo $template_name; ?>" class="mt-2 w-100"></label>
                 </div>
-                <div class="mb-4">
-                    <input type="radio" id="transitioned" name="template" value="transitioned" onclick="template(this.value)" <?php echo ($template === 'transitioned' ?  'checked' : ''); ?>>
-                    <label for="transitioned"><?php _e('Transitioned', 'rm199') ?></label><br>
-                    <label for="transitioned"><img src="<?php echo $image_dir . 'transitioned.PNG'; ?>" alt="transitioned-rm199" class="mt-2"></label>
-                </div>
-                <div class="mb-4">
-                    <input type="radio" id="structured" name="template" value="structured" onclick="template(this.value)" <?php echo ($template === 'structured' ?  'checked' : ''); ?>>
-                    <label for="structured"><?php _e('Structured', 'rm199') ?></label><br>
-                    <label for="structured"><img src="<?php echo $image_dir . 'structured.PNG'; ?>" alt="structured-rm199" class="mt-2"></label>
-                </div>
-
+                <?php } ?>
 
             </div>
             <hr style="margin-bottom: 10px;">

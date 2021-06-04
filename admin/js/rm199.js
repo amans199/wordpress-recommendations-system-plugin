@@ -87,7 +87,7 @@ function template(value) {
     document.getElementById("rm199__transitioned__template").style.display = "block"
     document.getElementById("rm199__structured__template").style.display = "none"
     document.getElementById("rm199__links__template").style.display = "none"
-  } else if(value === 'minimal'){
+  } else if(value === 'structured'){
     document.getElementById("rm199__minimal__template").style.display = "none"
     document.getElementById("rm199__transitioned__template").style.display = "none"
     document.getElementById("rm199__links__template").style.display = "none"
