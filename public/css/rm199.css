@@ -1,27 +1,11 @@
-/* style {
-    display: none !important;
-} */
-
 @import "../../assets/css/rm199.css";
 
-.rm199_frontend_title {
-    /* color: blue; */
-}
-
-
-/* todo : remove this  */
-/* #wpadminbar{
-  display: none !important;
-} */
 
 .rm199__keyword {
     padding: 5px 10px;
     background: #0073aa;
     border-radius: 5px;
     color: #fff;
-    /* display: flex;
-    align-items: center;
-    justify-content: center; */
     width: fit-content;
     display: inline-block;
 
@@ -37,11 +21,7 @@
     -o-transition: all 0.2s ease-in-out;
     cursor: default;
 }
-/* .rm199__keyword:hover {
-    background: #036696;
-} */
 .rm199__keyword .dashicons {
-    /* background: #036696; */
     position: absolute;
     right: 0;
     height: 100%;
@@ -54,6 +34,7 @@
     -moz-transition: all 0.2s ease-in-out;
     -ms-transition: all 0.2s ease-in-out;
     -o-transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease-in-out;
     cursor: pointer;
 }
 .rm199__keyword .dashicons:hover {
@@ -72,7 +53,6 @@
 
 
 /* start the structured template */
-
 
 .all_recommendations{
     display: flex;
@@ -192,7 +172,6 @@
   .grid-wrapper {
     margin: 0 auto;
     width: 80%;
-    /* vertical-align: middle; */
     text-align: center;
     position: relative;
     display: grid;
@@ -200,7 +179,6 @@
     grid-gap: 20px;
     align-items: stretch;
 }
-  }
   .card-content {
     border: 1px solid #CCC;
     border-radius: 3px;
@@ -220,12 +198,6 @@
   }
   .card-wrapper {
     position: relative;
-    /*width: 235px;
-    *//*height: 270px;
-    *//*float: left;
-    *//*margin-right: 50px;
-    *//*margin-bottom: 50px;
-    */
 }
   .c-card {
     position: absolute;
@@ -400,40 +372,3 @@
 a.effect1 {
   margin: 0 10px;
 }
-/* a.effect1:after{
-  content: '';
-  box-sizing: border-box;
-  position: absolute;
-  text-align: center;
-  width: 100%;
-  line-height: 100px;
-  
-  -webkit-transition: all 0.3s;
-	transition: all 0.3s;
-}
-a.effect1:before {
-  box-sizing: border-box;
-  content: '';
-  position: absolute;
-  top: 100%;
-  right: 0;
-  width: 100%;
-  height: 100%;
-  background: white;
-  
-  -webkit-transition: all 0.3s;
-	transition: all 0.3s;
-}
-a.effect1:hover:before {
-  top: 0;
-}
-a.effect1:hover:after {
-} */
-
-/* .rm199_topbar_sys{
-  -webkit-transition: all 1s ease-in-out;
-  -moz-transition: all 1s ease-in-out;
-  -ms-transition: all 1s ease-in-out;
-  -o-transition: all 1s ease-in-out;
-  transition: all 1s ease-in-out;
-} */
