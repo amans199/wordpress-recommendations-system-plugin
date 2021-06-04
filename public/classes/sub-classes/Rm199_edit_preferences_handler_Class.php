@@ -21,7 +21,10 @@ class Rm199_edit_preferences_handler_Class
             <section>
                 <!-- todo : add a design for the input for users to edit their preferences -->
                 <?php
-                echo 'heeloooooo i am hereeeeeee';
+                // echo 'heeloooooo i am hereeeeeee';
+                require_once('Rm199_Input_Class.php');
+                $Rm199Input = new Rm199Input();
+                $Rm199Input->rm199_input();
                 ?>
             </section>
 <?php

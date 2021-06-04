@@ -62,9 +62,9 @@ class Rm199TableRm199Shortcodes
                                     </button>
                                 </a>
                                 <!-- todo : create a popup box with all the stats needed for the shortcode -> just like views , clicks and bounce rate ... also give some advices about how to make it perform better  -->
-                                <button class="rm199_btn rm199_btn_info cursor-pointer d-flex align-items-center " title="<?php _e('More Info and Stats', 'rm199'); ?>" style="text-decoration:none;margin: 0 10px;">
+                                <!-- <button class="rm199_btn rm199_btn_info cursor-pointer d-flex align-items-center " title="<?php// _e('More Info and Stats', 'rm199'); ?>" style="text-decoration:none;margin: 0 10px;">
                                     <span style="text-decoration: none;" class="dashicons dashicons-chart-line "></span>
-                                </button>
+                                </button> -->
                                 <!-- todo : make the delete action -> ajaxed  -->
                                 <form method="post" class="d-flex" style="margin:auto;">
                                     <input type="hidden" name="rm199_shrotcode_id" value="<?php echo $row->id ?>">

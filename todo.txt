@@ -22,3 +22,5 @@
 # create how to use section
 
 # create translations files pot .... 
+
+# when you edit a recommendation pack this will change the id of the pack which make it doesn't appear on the frontend: fix that 
