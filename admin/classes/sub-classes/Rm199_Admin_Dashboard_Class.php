@@ -21,7 +21,7 @@ class Rm199_Admin_Dashboard_Class
         $results = "";
         $custom_styles = "";
         $number_of_items = "3";
-        $template = "minimal";
+        $template = "links";
         if ($edit_shortcode) {
             $results = $wpdb->get_results("SELECT * FROM $table_name WHERE id=$edit_shortcode");
             $shortcode_decoded = json_decode($results[0]->options, true);
@@ -29,7 +29,8 @@ class Rm199_Admin_Dashboard_Class
             $uniq_code =  isset($results[0]->code) ?   $results[0]->code : '';
             $shortcode_created_in = isset($results[0]->created_in) ?   $results[0]->created_in : '';
             $number_of_items = isset($shortcode_decoded['number_of_items']) ? $shortcode_decoded['number_of_items'] : '3';
-            $template = isset($shortcode_decoded['template']) ? $shortcode_decoded['template'] : 'minimal';
+            $title = isset($shortcode_decoded['title']) ? $shortcode_decoded['title'] : '3';
+            $template = isset($shortcode_decoded['template']) ? $shortcode_decoded['template'] : 'links';
         }
 
 ?>
@@ -57,7 +58,8 @@ class Rm199_Admin_Dashboard_Class
                     <h2 class="generator_box__header"><span><?php _e('Generate ShortCodes', 'rm199') ?></span></h2>
                     <div class="generator_box__content">
                         <!-- todo : make the h3 show the real title  -->
-                        <h3 id="rm199__overview__title" class="m-0"><?php _e('Recommended for you:', 'rm199') ?></h3>
+                       
+                        <h3 id="rm199__overview__title" class="m-0"> <?php echo ($edit_shortcode ?  $title : ''); ?></h3>
                         <!-- todo : make the template interact with the custom css entered by the user  -->
                         <div class="rm199__post rm199__post--overview d-flex align-items-center" style="justify-content: space-around;margin: 40px 0;">
 
@@ -112,7 +114,7 @@ class Rm199_Admin_Dashboard_Class
                     <div class="generator_box__btn">
                         <a href="#" class="generator_box__btn_cancel" onclick="location.reload()"><?php _e('Clear page', 'rm199') ?></a>
                         <form method="post" id="rm199_generator_form">
-                            <input type="hidden" name="rm199_so_template" id="rm199_so_template" value="<?php echo (($edit_shortcode  && !empty($results)) ? $template  : 'minimal');  ?>">
+                            <input type="hidden" name="rm199_so_template" id="rm199_so_template" value="<?php echo (($edit_shortcode  && !empty($results)) ? $template  : 'links');  ?>">
                             <input type="hidden" name="rm199_if_edit_mode" id="rm199_if_edit_mode" value="<?php echo (($edit_shortcode  && !empty($results)) ?  $uniq_code  : '');  ?>">
                             <input type="hidden" name="shortcode_created_in" id="shortcode_created_in" value="<?php echo (($edit_shortcode  && !empty($results)) ?  $shortcode_created_in  : current_time('mysql'));  ?>">
                             <!-- <button type="submit" class="button button-primary button-large " name="save_shortcode" id="save_shortcode"> -->

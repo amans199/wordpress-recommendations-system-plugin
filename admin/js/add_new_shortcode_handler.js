@@ -55,7 +55,7 @@ const isEditMode = !!document.getElementById('rm199_if_edit_mode').value
     main_color: main_color !== '' ? main_color : null,
     secondary_color: secondary_color !== '' ? secondary_color : null,
     text_color: text_color !== '' ? text_color : null,
-    template: template !== '' ? template : "minimal",
+    template: template !== '' ? template : "links",
     code: uniq_code
   }
 
