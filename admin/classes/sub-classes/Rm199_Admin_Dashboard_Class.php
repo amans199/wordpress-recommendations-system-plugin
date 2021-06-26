@@ -111,9 +111,8 @@ class Rm199_Admin_Dashboard_Class
 
                     <div class="generator_box__btn">
                         <a href="#" class="generator_box__btn_cancel" onclick="location.reload()"><?php _e('Clear page', 'rm199') ?></a>
-
                         <form method="post" id="rm199_generator_form">
-                            <input type="hidden" name="rm199_so_template" id="rm199_so_template" value="minimal">
+                            <input type="hidden" name="rm199_so_template" id="rm199_so_template" value="<?php echo (($edit_shortcode  && !empty($results)) ? $template  : 'minimal');  ?>">
                             <input type="hidden" name="rm199_if_edit_mode" id="rm199_if_edit_mode" value="<?php echo (($edit_shortcode  && !empty($results)) ?  $uniq_code  : '');  ?>">
                             <input type="hidden" name="shortcode_created_in" id="shortcode_created_in" value="<?php echo (($edit_shortcode  && !empty($results)) ?  $shortcode_created_in  : current_time('mysql'));  ?>">
                             <!-- <button type="submit" class="button button-primary button-large " name="save_shortcode" id="save_shortcode"> -->

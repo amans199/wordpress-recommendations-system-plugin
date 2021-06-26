@@ -28,7 +28,6 @@ class Rm199_Edit_Dashboard_mode
 
         <div class="rm199__home_col--lg">
             <h2 style="margin-top: 0px;"><?php _e('General ', 'rm199') ?></h2>
-
             <!-- title -->
             <div class="rm199_input">
                 <label for="rm199__title_input"><?php _e('Title', 'rm199') ?></label>
@@ -229,12 +228,13 @@ class Rm199_Edit_Dashboard_mode
             <!-- choose template for recommendations -->
             <h2><?php _e('Templates ', 'rm199') ?></h2>
             <div class="rm199_input--col templates_dashboard">
+
                 <?php 
                 foreach (glob(RM199_PATH . "assets/templates/*.php") as $file) {
-                     $template_name = str_replace('.php' , '' ,basename($file));
-                ?>
+                    $template_name = str_replace('.php' , '' ,basename($file));
+                    ?>
                 <div class="mb-4">
-                    <input type="radio" id="<?php echo $template_name; ?>" name="template" value="<?php echo $template_name; ?>" onclick="template(this.value)">
+                    <input type="radio" id="<?php echo $template_name; ?>" name="template" value="<?php echo $template_name; ?>" onclick="template(this.value)"  <?= $template !== $template_name ?: 'checked' ?>>
                     <label for="<?php echo $template_name; ?>"><?php _e($template_name, 'rm199') ?></label><br>
                     <label for="<?php echo $template_name; ?>"><img src="<?php echo $image_dir . $template_name . '.PNG'; ?>" alt="<?php echo $template_name; ?>" class="mt-2 w-100"></label>
                 </div>

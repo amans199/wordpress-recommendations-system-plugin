@@ -24,7 +24,7 @@ function add_new_shortcode_handler(e) {
   var url = new URL(window.location.href);
   var edit_mode_id = url.searchParams.get("edit_shortcode")
 
-
+const isEditMode = !!document.getElementById('rm199_if_edit_mode').value
   var created_in = document.getElementById('shortcode_created_in').value
 
   var title = document.getElementById('rm199__title_input').value,
@@ -40,12 +40,12 @@ function add_new_shortcode_handler(e) {
     secondary_color = document.getElementById('choose_secondary_color').value,
     text_color = document.getElementById('choose_text_color').value,
     rm199_custom_css = document.getElementById('code_custom_css').value,
-    uniq_code = document.getElementById('rm199_if_edit_mode').value != '' ? document.getElementById('rm199_if_edit_mode').value : add_new_shortcode_rm199Obj.rm199_code,
+    uniq_code = document.getElementById('rm199_if_edit_mode').value !== '' ? document.getElementById('rm199_if_edit_mode').value : add_new_shortcode_rm199Obj.rm199_code,
     shortcode_content;
 
   shortcode_content = {
-    title: title !== '' ? title : "Recommended for you:",
-    description: description,
+    title: title || '',
+    description: description || '',
     can_user_select_keywords: can_user_select_keywords !== '' ? can_user_select_keywords : false,
     show_only_for_loggedin_users: show_only_for_loggedin_users !== '' ? show_only_for_loggedin_users : false,
     number_of_items: number_of_items !== '' ? number_of_items : 3,
@@ -69,7 +69,7 @@ function add_new_shortcode_handler(e) {
       data: {
         action: 'add_new_shortcode_cb',
         'shortcode_content': shortcode_content,
-        'shortcode_uniqid': uniq_code + '_' + Math.random().toString(36).substr(2, 9),
+        'shortcode_uniqid': isEditMode ? uniq_code : uniq_code + '_' + Math.random().toString(36).substr(2, 9),
         'rm199_custom_css': rm199_custom_css,
         'edit_mode_id': edit_mode_id ? edit_mode_id : '',
         'created_in': created_in
