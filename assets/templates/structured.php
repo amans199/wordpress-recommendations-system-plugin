@@ -39,7 +39,6 @@ class Rm199_Structured_Template
             $first_words_of_title = $title;
         }
 ?>
-        <!-- credits to : andytran https://codepen.io/andytran/pen/PNGNpw -->
         <article class="article">
 
             <?php

@@ -139,7 +139,7 @@ a.rm199_post__link.effect1:hover {
     -o-transition: 0.3s ease;
     transition: 0.3s ease;
     overflow: hidden;
-    max-width: 250px;
+    /* max-width: 250px; */
 }
 
 .article:hover {
